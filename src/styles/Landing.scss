@@ -1,10 +1,50 @@
 @import "common";
 
 body {
-
-        background-color: rgb(30, 27, 25);
-        width: 100%;
-        margin: 0;
-        padding: 0;
+        background-color: #1e1b19;
     
 }
+
+.white-container{
+        height: 140vh;
+
+}
+
+.button-container {
+        display: flex;
+        flex-direction: column;
+
+}
+
+.meny-button, .boka-button {
+        color: rgb(206, 192, 137);
+        font-family: 'Chivo', serif;
+        font-weight: lighter;
+        font-size: 60px;
+        background-color: transparent;
+        border: none;
+        line-height: 200px;
+        a {
+                text-decoration: none;
+                color: inherit;
+        }
+        
+}
+
+hr {
+        border: 1px solid rgb(206, 192, 137);
+}
+
+
+        .meny-button:hover, .boka-button:hover {
+                transform: scale(1.5); 
+            }  
+
+.picture-container {
+        background-image: url('./../images/coffeeimage.png') ;
+        background-size: contain;
+        width:69vw;
+        height: 90vh;
+        margin: 5px;
+}
+
