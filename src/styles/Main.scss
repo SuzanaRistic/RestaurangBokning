@@ -1,13 +1,14 @@
-div{
+div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 2rem 0 0 2rem;
 }
 
 .whiteContainer{
     width: 60vw;
-    height: 40vh;
-    background-color: #efede9;
+    height: 70vh;
+    background-color: #EFEDE9;
     display: flex;
     justify-content: center;
 }
