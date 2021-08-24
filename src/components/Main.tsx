@@ -4,7 +4,8 @@ import '../styles/Main.scss';
 function Main() {
     return (
         <div className="whiteContainerWrap">
-        <div className="whiteContainer"> </div>  
+        <div className="whiteContainer">
+        </div>  
         </div>
 
     )

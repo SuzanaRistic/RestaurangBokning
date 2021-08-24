@@ -9,6 +9,6 @@ let bookingSchema = new Schema({
     booking_reference: String,
     message: String,
     date: Date,
-    time: Date, 
+    time: String, 
 },{ collection : 'Bookings' })
 module.exports = mongoose.model('Booking', bookingSchema)
