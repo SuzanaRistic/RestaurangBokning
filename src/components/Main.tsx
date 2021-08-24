@@ -3,7 +3,7 @@ import '../styles/Main.scss';
 
 function Main() {
     return (
-        <div>
+        <div className="whiteContainerWrap">
         <div className="whiteContainer"> </div>  
         </div>
 
