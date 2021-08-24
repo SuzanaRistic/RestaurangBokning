@@ -1,3 +1,4 @@
+import Footer from './components/Footer'
 import { Route,BrowserRouter as Router, Switch } from 'react-router-dom';
 import Booking from './components/pages/Booking';
 import Landing from './components/pages/Landing';
@@ -23,7 +24,8 @@ function App() {
         </Route>
       </Switch>
     </Router>
-    
+    <Footer></Footer>
+
   );
 }
 

@@ -1,4 +1,6 @@
 import React from 'react'
+import './../../styles/Landing.scss'
+
 import Header from '../Header'
 
 function Landing() {
