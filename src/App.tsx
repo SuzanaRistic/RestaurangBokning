@@ -8,7 +8,7 @@ import './styles/App.scss'
 function App() {
 
   return (
-
+    <>
     <Router>
       <Switch>
         <Route exact path="/">
@@ -23,7 +23,7 @@ function App() {
       </Switch>
     </Router>
     <Footer></Footer>
-
+  </>
   );
 }
 
