@@ -1,4 +1,4 @@
-import React, { createRef, useRef, useState } from 'react'
+import React, { createRef, useState } from 'react'
 import './../styles/Booking.scss'
 import button from './../images/bekfräftaknapp.svg'
 import IBooking from '../interfaces/IBooking'
@@ -14,14 +14,26 @@ function BookingForm() {
     const phoneRef = createRef<HTMLInputElement>();
     const emailRef = createRef<HTMLInputElement>();
     const messageRef = createRef<HTMLTextAreaElement>();
-
+    function sendBooking () {
+        // setBooking({
+        //     firstname: firstNameRef.current?.value || ' ',
+        //     lastname: lastNameRef.current?.value || ' ',
+        //     email: firstNameRef.current?.value || ' ',
+        //     phonenumber: firstNameRef.current?.value || ' ',
+        //     time: firstNameRef.current?.value || ' ',
+        //     booking_reference: ' blabla',
+        //     guests: Number(guestsRef.current?.value) || 1,
+        //     date: new Date(dateRef.current?.value) ||new Date('2020-03-20'),
+        //     message: messageRef.current?.value || ' '
+        // })
+    }
     return (
         <>
         { showFirst &&  
-        <div className="white-back" >
+        <div className="white-container" >
 
             <label htmlFor="guests">Antal Gäster</label>
-            <select name="guests" id="guests" ref={guestsRef} >
+            <select name="guests" id="guests" ref={guestsRef}  required>
                 <option value='1' >1</option>
                 <option value='2' >2</option>
                 <option value='3' >3</option>
@@ -38,7 +50,7 @@ function BookingForm() {
             <div className="date-time-wrap">
                 <div>
                     <label htmlFor="date">Datum</label>
-                    <input ref={dateRef} type="date" name="date" id="date" />
+                    <input ref={dateRef} type="date" name="date" id="date" required/>
                 </div>
                 <div>
                     <label htmlFor="tid">Tid</label>
@@ -52,23 +64,23 @@ function BookingForm() {
             </button> 
         </div> }
         {!showFirst && 
-         <div className="white-back">
+         <div className="white-container">
          <label htmlFor="firstname">Förnamn</label>
-                 <input type="text" name="firstname" ref={firstNameRef}/>
+                 <input type="text" name="firstname" ref={firstNameRef} required/>
  
                  <label htmlFor="lastname">Efternamn</label>
-                 <input type="text" name="lastname" ref={lastNameRef}/>
+                 <input type="text" name="lastname" ref={lastNameRef} required/>
  
                  <label htmlFor="email">Email</label>
-                 <input type="email" name="email" ref={emailRef}/>
+                 <input type="email" name="email" ref={emailRef} required/>
  
                  <label htmlFor="telefon">Telefon</label>
-                 <input type="tel" name="telefon" ref={phoneRef}/>
+                 <input type="tel" name="telefon" ref={phoneRef} required/>
  
                  <label htmlFor="message">Allergener/Önskemål</label>
-                 <textarea rows={4} name="message" ref={messageRef}/>
+                 <textarea rows={4} name="message" ref={messageRef} required/>
 
-                <button className="confirm-btn" onClick={(e)=>{e.preventDefault();}}>
+                <button className="confirm-btn" onClick={sendBooking}>
                 <img src={button} alt="" />
                 </button> 
          </div>
