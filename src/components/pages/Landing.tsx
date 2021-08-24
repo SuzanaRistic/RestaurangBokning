@@ -1,10 +1,13 @@
 import React from 'react'
 import './../../styles/Landing.scss'
 
+import Header from '../Header'
+
 function Landing() {
     return (
-        <body>
-        </body>
+        <div>
+            <Header title="The Lazy Bee"></Header>
+        </div>
     )
 }
 
