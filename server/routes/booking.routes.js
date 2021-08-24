@@ -27,19 +27,9 @@ router.route('/').post((req, res, next) => {
     })
 });
 
-router.route('/edit/:id').get((req, res, next) => {
-    booking.findById(req.params.id, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
-})
 
-
-router.route('/update/:id').put((req, res, next) => {
-    booking.findByIdAndUpdate(req.params.id, {
+router.route('/update/:booking_reference').put((req, res, next) => {
+    booking.updateOne({booking_reference: req.params.booking_reference}, {
         $set: req.body
     }, (error, data) => {
         if (error) {
