@@ -1,4 +1,4 @@
-let mongoose = require('mongoose'),
+let
     express = require('express'),
     router = express.Router();
 
@@ -52,7 +52,7 @@ router.route('/update/:id').put((req, res, next) => {
 })
 
 router.route('/delete/:booking_reference').delete((req, res, next) => {
-    booking.deleteOne({booking_reference : req.params.id}, (error, data) => {
+    booking.deleteOne({booking_reference : req.params.booking_reference}, (error, data) => {
         if (error) {
             console.log(error)
             return next(error);
