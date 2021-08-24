@@ -3,19 +3,20 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     font-family: 'Spectral', serif;
     font-weight: 300;
     color: #CDBE8F;
+    height: 400px;
 
     .logo {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+
         a {
             width: 7.5%;
-            z-index: 1;
+            z-index: 2;
             padding: 2em;
 
         }
@@ -24,12 +25,14 @@ header {
         }
     }
     .hero {
-        position: fixed;
-        top: 4em;
+        position: relative;
+        margin-top: -80px;
+        background-image: url('./../images/hero.png') ;
+        height: 400px;
         .title {
             font-size: 500%;
             position: absolute;
-            top: 30%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
@@ -39,6 +42,7 @@ header {
         img{
             vertical-align: middle;
             position: relative;
+            z-index: -1;
 
         }
     }

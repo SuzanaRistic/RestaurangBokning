@@ -4,8 +4,6 @@ footer {
     font-family: 'Chivo', sans-serif;
     font-size: 20px;
     height: 300px;
-    position: absolute;
-    bottom:0;
     width: 100%;
     display:flex;
     flex-direction: row;
@@ -13,6 +11,7 @@ footer {
     text-align: center;
     justify-content: center;
     line-height: 40px;
+    margin-top: 50px;
 }
 
 .where-div, .when-div, .info-div{
