@@ -4,13 +4,11 @@ import Booking from './components/pages/Booking';
 import Landing from './components/pages/Landing';
 import Menu from './components/pages/Menu';
 import './styles/App.scss'
-import Test from './Test';
-
 
 function App() {
 
   return (
-
+<>
     <Router>
       <Switch>
         <Route exact path="/">
@@ -25,7 +23,7 @@ function App() {
       </Switch>
     </Router>
     <Footer></Footer>
-
+</>
   );
 }
 
