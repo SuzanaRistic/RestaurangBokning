@@ -1,0 +1,46 @@
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Spectral', serif;
+    font-weight: 300;
+    color: #CDBE8F;
+
+    .logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        a {
+            width: 7.5%;
+            z-index: 1;
+            padding: 2em;
+
+        }
+        img {
+            width: 100%;
+        }
+    }
+    .hero {
+        position: fixed;
+        top: 4em;
+        .title {
+            font-size: 500%;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+
+
+        }
+        img{
+            vertical-align: middle;
+            position: relative;
+
+        }
+    }
+   
+}
