@@ -1,0 +1,47 @@
+.white-back {
+    width: 80%;
+    background-color: #EFEDE9;
+    padding: 2rem;
+    color: #B7AA81;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 250%;
+        label {
+            padding: 1em;
+        }
+        select {
+            
+            padding: 1em;
+            font-family: inherit;
+        }
+        input, textarea {
+            font-family: inherit;
+            padding: 8px;
+            border: 3px solid#B7AA81;
+            border-radius: 5px;
+            resize: none;
+        }
+        .date-time-wrap{
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        .confirm-btn {
+            margin: 10px;
+            border: none;
+            background-color: none;
+            img {
+                width: 100px;
+            }
+            img:hover {
+                animation: spin 4s linear infinite;
+            }
+        }
+        
+    
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
