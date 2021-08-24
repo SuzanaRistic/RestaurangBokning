@@ -7,7 +7,6 @@ function Menu() {
         <>
 
             <Header title="Meny"></Header>
-
             <Main></Main>
         </>
     )
