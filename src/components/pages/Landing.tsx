@@ -1,10 +1,10 @@
 import React from 'react'
+import './../../styles/Landing.scss'
 
 function Landing() {
     return (
-        <div>
-            
-        </div>
+        <body>
+        </body>
     )
 }
 

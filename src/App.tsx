@@ -1,3 +1,5 @@
+import Landing from './components/pages/Landing'
+import Footer from './components/Footer'
 import './styles/App.scss'
 
 
@@ -5,8 +7,8 @@ function App() {
 
   return (
     <div>
-        Hej
-        <img src='./images/lazy-logo-white.svg' alt="" />
+        <Landing></Landing>
+        <Footer></Footer>
     </div>
   );
 }
