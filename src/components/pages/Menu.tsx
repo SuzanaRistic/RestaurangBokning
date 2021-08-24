@@ -1,10 +1,15 @@
 import React from 'react'
+import Header from '../Header'
+import Main from '../Main'
 
 function Menu() {
     return (
-        <div>
-            
-        </div>
+        <>
+
+            <Header title="Meny"></Header>
+
+            <Main></Main>
+        </>
     )
 }
 

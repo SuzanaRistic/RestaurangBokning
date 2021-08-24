@@ -1,0 +1,13 @@
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.whiteContainer{
+    width: 60vw;
+    height: 40vh;
+    background-color: #EFEDE9;
+    display: flex;
+    justify-content: center;
+}
