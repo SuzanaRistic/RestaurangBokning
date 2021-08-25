@@ -1,17 +1,20 @@
 import React from 'react'
 import '../styles/Header.scss'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import logo from './../images/logo-with-background.svg'
 interface IHeaderProps {
     title: string
 }
 function Header(props: IHeaderProps) {
+    let history = useHistory();
+
+    function handleClick() {
+        history.push("/");
+    }
     return (
         <header>
             <div className="logo">
-                <Link to="/">
-                    <img src={logo} alt="logo" />
-                </Link>
+                <img src={logo} alt="logo"   onClick={() => { handleClick() }}/>
             </div>
             <div className="hero">
                 <span className="title">{props.title}</span>

@@ -31,9 +31,10 @@ body {
         
 }
 
-hr {
-        border: 1px solid rgb(206, 192, 137);
-}
+        hr {
+                width: 90%;
+                border: 1px solid rgb(206, 192, 137);
+        }
 
 
         .meny-button:hover, .boka-button:hover {
@@ -44,7 +45,7 @@ hr {
         background-image: url('./../images/coffeeimage.png') ;
         background-size: contain;
         width:69vw;
-        height: 90vh;
+        height: 70vh;
         margin: 5px;
 }
 
