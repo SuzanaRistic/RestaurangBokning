@@ -1,10 +1,14 @@
-import React, { createRef, useState } from 'react'
+import React, { createRef, useEffect, useState } from 'react'
 import './../styles/Booking.scss'
 import button from './../images/bekfräftaknapp.svg'
 import IBooking from '../interfaces/IBooking'
+import { useHistory } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 function BookingForm() {
+    let history = useHistory();
     const [showFirst, setShowFirst] = useState(true);
     const [booking, setBooking] = useState<IBooking>()
     const guestsRef = createRef<HTMLSelectElement>();
@@ -14,23 +18,26 @@ function BookingForm() {
     const phoneRef = createRef<HTMLInputElement>();
     const emailRef = createRef<HTMLInputElement>();
     const messageRef = createRef<HTMLTextAreaElement>();
-    function sendBooking () {
-        // setBooking({
-        //     firstname: firstNameRef.current?.value || ' ',
-        //     lastname: lastNameRef.current?.value || ' ',
-        //     email: firstNameRef.current?.value || ' ',
-        //     phonenumber: firstNameRef.current?.value || ' ',
-        //     time: firstNameRef.current?.value || ' ',
-        //     booking_reference: ' blabla',
-        //     guests: Number(guestsRef.current?.value) || 1,
-        //     date: new Date(dateRef.current?.value) ||new Date('2020-03-20'),
-        //     message: messageRef.current?.value || ' '
-        // })
+    const booking_ref = uuidv4();
+   
+    function SendBooking () {
+        setBooking({
+            firstname: firstNameRef.current?.value || ' ',
+            lastname: lastNameRef.current?.value || ' ',
+            email: emailRef.current?.value || ' ',
+            phonenumber: phoneRef.current?.value || ' ',
+            time: firstNameRef.current?.value || ' ',
+            booking_reference: booking_ref,
+            guests: Number(guestsRef.current?.value) || 1,
+            date:  (dateRef.current?.value)?.toString() || Date.now().toString(),
+            message: messageRef.current?.value || ' '
+        })
+        history.push(`/bokningsbekraftelse/${booking_ref} `)
     }
     return (
         <>
         { showFirst &&  
-        <div className="white-container" >
+        <div className="white-container-booking" >
 
             <label htmlFor="guests">Antal Gäster</label>
             <select name="guests" id="guests" ref={guestsRef}  required>
@@ -64,7 +71,7 @@ function BookingForm() {
             </button> 
         </div> }
         {!showFirst && 
-         <div className="white-container">
+         <div className="white-container-booking">
          <label htmlFor="firstname">Förnamn</label>
                  <input type="text" name="firstname" ref={firstNameRef} required/>
  
@@ -80,9 +87,10 @@ function BookingForm() {
                  <label htmlFor="message">Allergener/Önskemål</label>
                  <textarea rows={4} name="message" ref={messageRef} required/>
 
-                <button className="confirm-btn" onClick={sendBooking}>
-                <img src={button} alt="" />
+                <button className="confirm-btn" onClick={SendBooking}>
+                    <img src={button} alt=""  />
                 </button> 
+                
          </div>
      
         }

@@ -8,7 +8,7 @@ let bookingSchema = new Schema({
     guests: Number,
     booking_reference: String,
     message: String,
-    date: Date,
+    date: String,
     time: String, 
 },{ collection : 'Bookings' })
 module.exports = mongoose.model('Booking', bookingSchema)

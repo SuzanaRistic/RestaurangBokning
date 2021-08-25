@@ -4,6 +4,7 @@ import Booking from './components/pages/Booking';
 import Landing from './components/pages/Landing';
 import Menu from './components/pages/Menu';
 import './styles/App.scss'
+import Confirmation from './components/pages/Confirmation';
 
 function App() {
 
@@ -16,6 +17,9 @@ function App() {
           </Route>
           <Route path="/meny">
             <Menu />
+          </Route>
+          <Route path="/bokningsbekraftelse/:ref">
+            <Confirmation></Confirmation>
           </Route>
           <Route path="/boka">
             <Booking />
