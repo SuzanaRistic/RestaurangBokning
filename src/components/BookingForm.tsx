@@ -9,7 +9,6 @@ function BookingForm() {
     const [showFirst, setShowFirst] = useState(true);
     const [booking, setBooking] = useState<IBooking>();
     const [bookingList, setBookingList] = useState<IBooking[]>();
-    const [requestedBooking, setRequestedBooking] = useState<IBooking>()
     const guestsRef = createRef<HTMLSelectElement>();
     const dateRef = createRef<HTMLInputElement>();
     const firstNameRef = createRef<HTMLInputElement>();
@@ -17,9 +16,16 @@ function BookingForm() {
     const phoneRef = createRef<HTMLInputElement>();
     const emailRef = createRef<HTMLInputElement>();
     const messageRef = createRef<HTMLTextAreaElement>();
+    const [requestedBooking, setRequestedBooking] = useState({
+        guests: Number(guestsRef.current?.value) || 1,
+        date: (dateRef.current?.value)?.toString() || Date.now().toString()
+    });
+    const [guests, setGuests] = useState({ 
+        guestsForRequestedDate: 0, guestsTOne: 0, guestsTTwo: 0 })
+
+
 
     function sendBooking() {
-
         setBooking({
             firstname: firstNameRef.current?.value || ' ',
             lastname: lastNameRef.current?.value || ' ',
@@ -38,32 +44,27 @@ function BookingForm() {
         axios.get('http://localhost:4000/bookings')
             .then((res) => {
                 setBookingList(res.data)
+                const totalNumberOfGuests = bookingList?.map(totalNumberOfGuests => (totalNumberOfGuests.guests))
+                .reduce((a, b) => a + b, 0);
+                setGuests({guestsForRequestedDate:Number(totalNumberOfGuests), guestsTOne: 0, guestsTTwo:0})
+                console.log(guests.guestsForRequestedDate);
             }).catch((error) => {
                 console.log(error)
             });
-        console.log(booking);
+
+        console.log(bookingList);
     }, [])
 
     //store requested date and number of guests in variables 
-    function sendTime() {
+    function sendRequest() {
         setRequestedBooking({
-            firstname: ' ',
-            lastname: ' ',
-            email: ' ',
-            phonenumber: ' ',
-            time: ' ',
-            booking_reference: ' blabla',
             guests: Number(guestsRef.current?.value) || 1,
             date: (dateRef.current?.value)?.toString() || Date.now().toString(),
-            message: messageRef.current?.value || ' '
         })
-        console.log("Number of guests: ", requestedBooking?.guests , "Date requested: ", requestedBooking?.date);
+        console.log(requestedBooking);
+        console.log("Number of guests: ", requestedBooking?.guests, "Date requested: ", requestedBooking?.date);
     }
 
-
-//     let totalNumberOfGuests = bookingList?.map(totalNumberOfGuests => (totalNumberOfGuests.guests))
-//     .reduce((a, b) => a + b, 0);
-//      console.log(totalNumberOfGuests);
 
     return (
         <>
@@ -90,7 +91,7 @@ function BookingForm() {
                         <div>
                             <label htmlFor="date">Datum</label>
                             <input ref={dateRef} type="date" name="date" id="date" required />
-                            
+
                         </div>
                         <div>
                             <label htmlFor="tid">Tid</label>
@@ -99,7 +100,7 @@ function BookingForm() {
                             <button >21:00</button>
                         </div>
                     </div>
-                    <button className="confirm-btn" onClick={sendTime}>
+                    <button className="confirm-btn" onClick={sendRequest}>
                         {/* {() => { sendTime(); setShowFirst(false) }} */}
                         <img src={button} alt="" />
                     </button>
