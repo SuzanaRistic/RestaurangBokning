@@ -7,7 +7,9 @@ import axios from 'axios';
 
 function BookingForm() {
     const [showFirst, setShowFirst] = useState(true);
-    const [booking, setBooking] = useState<IBooking>()
+    const [booking, setBooking] = useState<IBooking>();
+    const [bookingList, setBookingList] = useState<IBooking[]>();
+    const [requestedBooking, setRequestedBooking] = useState<IBooking>()
     const guestsRef = createRef<HTMLSelectElement>();
     const dateRef = createRef<HTMLInputElement>();
     const firstNameRef = createRef<HTMLInputElement>();
@@ -31,10 +33,20 @@ function BookingForm() {
         })
     }
 
+    //get the bookings from the database 
+    useEffect(() => {
+        axios.get('http://localhost:4000/bookings')
+            .then((res) => {
+                setBookingList(res.data)
+            }).catch((error) => {
+                console.log(error)
+            });
+        console.log(booking);
+    }, [])
 
-
+    //store requested date and number of guests in variables 
     function sendTime() {
-        setBooking({
+        setRequestedBooking({
             firstname: ' ',
             lastname: ' ',
             email: ' ',
@@ -45,34 +57,21 @@ function BookingForm() {
             date: (dateRef.current?.value)?.toString() || Date.now().toString(),
             message: messageRef.current?.value || ' '
         })
-
-        const numberOfGuests = booking?.guests;
-        const bookedDate = booking?.date
-
-        console.log(numberOfGuests);
-        console.log(bookedDate);
-
-
-
-        axios.get('http://localhost:4000/bookings')
-            .then((res) => {
-                console.log(res.data)
-            }).catch((error) => {
-                console.log(error)
-            });
-
-
-
+        console.log("Number of guests: ", requestedBooking?.guests , "Date requested: ", requestedBooking?.date);
     }
 
 
+//     let totalNumberOfGuests = bookingList?.map(totalNumberOfGuests => (totalNumberOfGuests.guests))
+//     .reduce((a, b) => a + b, 0);
+//      console.log(totalNumberOfGuests);
 
     return (
         <>
             {showFirst &&
                 <div className="white-container" >
-
                     <label htmlFor="guests">Antal Gäster</label>
+                    <p>Önskat datum: {requestedBooking?.date}</p>
+                    <p>Önskat antal gäster: {requestedBooking?.guests}</p>
                     <select name="guests" id="guests" ref={guestsRef} required>
                         <option value='1' >1</option>
                         <option value='2' >2</option>
@@ -91,6 +90,7 @@ function BookingForm() {
                         <div>
                             <label htmlFor="date">Datum</label>
                             <input ref={dateRef} type="date" name="date" id="date" required />
+                            
                         </div>
                         <div>
                             <label htmlFor="tid">Tid</label>
