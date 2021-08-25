@@ -5,7 +5,7 @@ export default interface IBooking {
 	email: string;
 	guests: number;
 	time: string;
-	date: Date;
+	date: string;
 	booking_reference: string;
 	message: string;
 }
