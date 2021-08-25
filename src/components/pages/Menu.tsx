@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../Header'
-import button from '/Users/suzanaristic/Desktop/Restaurang/RestaurangBokning/src/images/bokabordknapp.png'
+import bookbutton from '/Users/suzanaristic/Desktop/Restaurang/RestaurangBokning/src/images/bokaknapp.png'
 import decoflower from '/Users/suzanaristic/Desktop/Restaurang/RestaurangBokning/src/images/bulletpoint 1.png'
 import './../../styles/Menu.scss'
 import { Link } from 'react-router-dom'
@@ -51,7 +51,7 @@ function Menu() {
         <p className="food-description">Grillad italiensk bröd med smör, tomat, mozzarela, pesto<br></br>
         •Välj protein: kyckling, lax, tonfisk, veggie</p>
         </div>
-        <Link to="/boka"><button className="confirm-btn"><img src={button} alt="" /></button></Link>
+        <Link to="/boka"><button className="book-btn"><img src={bookbutton} alt="" /></button></Link>
         </div>  
         </div>
 
