@@ -102,33 +102,67 @@ function BookingForm() {
                         <div>
                             <label htmlFor="date">Datum</label>
                             <input ref={dateRef} type="date" name="date" id="date" required onChange={sendRequest} />
-                            {guests.guestsForRequestedDate + requestedBooking.guests > 180 || guests.guestsTOne + requestedBooking.guests > 90 || guests.guestsTTwo + requestedBooking.guests > 90 ? <p>Sorry, we are fully booked today</p> : <p>Pick an available time slot</p>}
-
                         </div>
                         <div>
                             <label htmlFor="tid">Tid</label>
-                            {toggleTimeBtns &&
-                                <div className="time-btns">
+                            {guests.guestsForRequestedDate + requestedBooking.guests > 5 ?
+                                <>
+                                    <div className="time-btns">
+                                        <button className="time-btn-disabled" disabled>18:00</button>
+                                        <button className="time-btn-disabled" disabled>21:00</button>
+                                    </div>
+                                    <p>Sorry, we are fully booked today</p>
+                                </>
 
-                                    <button className="time-btn-clicked" >18:00</button>
-                                    <button className="time-btn" onClick={() => { setToggleTimeBtns(false); setTime('21:00') }} >21:00</button>
-                                </div>
+                                : guests.guestsTOne + requestedBooking.guests > 90
+                                    ?
+                                    <>
+                                        <div className="time-btns">
+                                            <button className="time-btn-disabled" disabled>18:00</button>
+                                            <button className="time-btn-clicked" onClick={() => { setTime('21:00') }} >21:00</button>
+                                        </div>
+                                        <p>Only 21:00 is available on this night</p>
+                                    </>
+                                    : guests.guestsTTwo + requestedBooking.guests > 90 ?
+                                        <>
+                                            <div className="time-btns">
+                                                <button className="time-btn-clicked" onClick={() => { setTime('18:00') }} > 18:00</button>
+                                                <button className="time-btn-disabled" disabled >21:00</button>
+                                            </div>
+                                            <p>Only 18:00 is available on this night</p>
+                                        </>
+                                        :
+                                        toggleTimeBtns ?
+                                            <>
+                                                <div className="time-btns">
+                                                    <button className="time-btn-clicked" >18:00</button>
+                                                    <button className="time-btn" onClick={() => { setToggleTimeBtns(false); setTime('21:00') }} >21:00</button>
+                                                </div>
+                                                <p>Pick an available time slot</p>
+                                            </>
+                                            :
+                                            <>
+                                                <div className="time-btns">
+                                                    <button className="time-btn" onClick={() => { setToggleTimeBtns(true); setTime('18:00') }} > 18:00</button>
+                                                    <button className="time-btn-clicked"  >21:00</button>
+                                                </div>
+                                                <p>Pick an available time slot</p>
+                                            </>
+
                             }
-                            {!toggleTimeBtns &&
-                                <div className="time-btns">
-                                    <button className="time-btn" onClick={() => { setToggleTimeBtns(true); setTime('18:00') }} > 18:00</button>
-                                    <button className="time-btn-clicked"  >21:00</button>
-                                </div>
-                            }
+
+
+
 
                         </div>
                     </div>
                     <button className="confirm-btn" onClick={(e) => { e.preventDefault(); sendFirstPart(); }}>
                         <img src={gavidare} alt="" />
                     </button>
-                </div>}
+                </div >}
 
-            {!showFirst &&
+            {
+                !showFirst &&
                 <div className="white-container-booking">
                     <div className="booking-info-container">
                         <p>Antal: <br></br> {firstPart.guests}</p>
