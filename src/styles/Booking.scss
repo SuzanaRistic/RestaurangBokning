@@ -11,7 +11,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: 200%;
+        font-size: 150%;
         form {
             display: flex;
             flex-direction: column;
@@ -69,6 +69,10 @@
             }
             
         }
+
+        .invalid-input {
+            font-size: 60%;
+        }
         .confirm-btn {
             margin: 10px;
             border: none;
@@ -84,7 +88,7 @@
             background-color: #B7AA81;
             flex-direction: row;
             justify-content: space-evenly;
-            font-size: 30%;
+            font-size: 150%;
             p {
                 text-align: center;
                 color: white;

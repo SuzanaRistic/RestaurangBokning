@@ -9,6 +9,7 @@ import IBooking from '../interfaces/IBooking';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import "yup-phone";
 
 
 interface IGuestComponentProps {
@@ -28,7 +29,7 @@ const GuestComponent=(props: IGuestComponentProps)=> {
     const phoneRef = createRef<HTMLInputElement>();
     const emailRef = createRef<HTMLInputElement>();
     const messageRef = createRef<HTMLTextAreaElement>();
-    const phoneValid = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+    const phoneValid = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
     const formik = useFormik({
         initialValues: {
             firstname: '',
@@ -38,9 +39,9 @@ const GuestComponent=(props: IGuestComponentProps)=> {
             message: '',
         },
         validationSchema: yup.object({
-            firstname:yup.string().max(15,'Firstname should not exceed 15 characters.').
+            firstname:yup.string().max(15,'Firstname should not exceed 15 characters.').matches(/^[aA-zZ\s]+$/, 'Only alphabets are allowed in this field.').
             required('Please enter your firstname.'),
-            lastname:yup.string().max(15,'Lastname should not exceed 15 characters.').
+            lastname:yup.string().max(15,'Lastname should not exceed 15 characters.').matches(/^[aA-zZ\s]+$/, 'Only alphabets are allowed in this field.').
             required('Please enter your lastname.'),
             email:yup.string().email('Invalid email address.').
             required('Please enter your email.'),
@@ -83,29 +84,29 @@ const GuestComponent=(props: IGuestComponentProps)=> {
 return (
     <form onSubmit= {formik.handleSubmit}>
     <label htmlFor="firstname">Förnamn</label>
-    <input type="text" {...formik.getFieldProps("firstname")} ref={firstNameRef}/>
-        {formik.touched.firstname && formik.errors.firstname ? <span style={{color:'red'}}>{formik.errors.firstname}</span> : null}
+    <input type="text" {...formik.getFieldProps("firstname")} ref={firstNameRef} required/>
+        <div className="invalid-input">{formik.touched.firstname && formik.errors.firstname ? <span style={{color:'red'}}>{formik.errors.firstname}</span> : null}</div>
 
      <label htmlFor="lastname">Efternamn</label>
-     <input type="text" {...formik.getFieldProps("lastname")} ref={lastNameRef} />
-        {formik.touched.lastname && formik.errors.lastname ? <span style={{color: 'red'}}>{formik.errors.lastname}</span> : null }
+     <input type="text" {...formik.getFieldProps("lastname")} ref={lastNameRef} required/>
+     <div className="invalid-input">{formik.touched.lastname && formik.errors.lastname ? <span style={{color: 'red'}}>{formik.errors.lastname}</span> : null }</div>
 
      <label htmlFor="email">Email</label>
-     <input type="email" {...formik.getFieldProps("email")} ref={emailRef} />
-     {formik.touched.email && formik.errors.email ? <span style={{color: 'red'}}>{formik.errors.email}</span> : null }
+     <input type="email" {...formik.getFieldProps("email")} ref={emailRef} required/>
+     <div className="invalid-input">{formik.touched.email && formik.errors.email ? <span style={{color: 'red'}}>{formik.errors.email}</span> : null }</div>
 
      <label htmlFor="phonenumber">Telefon</label>
-     <input type="tel" {...formik.getFieldProps("phonenumber")} ref={phoneRef} />
-     {formik.touched.phonenumber && formik.errors.phonenumber ? <span style={{color: 'red'}}>{formik.errors.phonenumber}</span> : null }
+     <input type="tel" {...formik.getFieldProps("phonenumber")} ref={phoneRef} required/>
+     <div className="invalid-input">{formik.touched.phonenumber && formik.errors.phonenumber ? <span style={{color: 'red'}}>{formik.errors.phonenumber}</span> : null }</div>
 
 
      <label htmlFor="message">Allergener/Önskemål</label>
      <textarea rows={4} {...formik.getFieldProps("message")} ref={messageRef} />
-     {formik.touched.message && formik.errors.message ? <span style={{color: 'red'}}>{formik.errors.message}</span> : null }
+     <div className="invalid-input">{formik.touched.message && formik.errors.message ? <span style={{color: 'red'}}>{formik.errors.message}</span> : null }</div>
 
 
 
-    <button className="confirm-btn" onClick={SendBooking}>
+    <button className="confirm-btn" onClick={SendBooking} disabled={!(formik.isValid && formik.dirty)}>
         <img src={button} alt=""  />
     </button> 
     </form>
