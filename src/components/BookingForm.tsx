@@ -1,22 +1,17 @@
-import React, { createRef, useEffect, useState } from 'react'
+import React, { createRef, useState } from 'react'
 import './../styles/Booking.scss'
 import gavidare from './../images/gå vidare med bokning knapp.svg'
-import button from './../images/bekfräftaknapp.svg'
 import IBooking from '../interfaces/IBooking'
-import { useHistory } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import GuestComponent from './GuestForm'
 
 
 
 function BookingForm() {
-    let history = useHistory();
 
     const [time, setTime] = useState('18:00');
     const [toggleTimeBtns, setToggleTimeBtns] = useState(true);
     const [showFirst, setShowFirst] = useState(true);
-    const [booking, setBooking] = useState<IBooking>();
     const [bookingList, setBookingList] = useState<IBooking[]>();
     const [firstPart, setFirstPart] = useState({
         guests: 1,
@@ -34,12 +29,6 @@ function BookingForm() {
 
     const guestsRef = createRef<HTMLSelectElement>();
     const dateRef = createRef<HTMLInputElement>();
-    const firstNameRef = createRef<HTMLInputElement>();
-    const lastNameRef = createRef<HTMLInputElement>();
-    const phoneRef = createRef<HTMLInputElement>();
-    const emailRef = createRef<HTMLInputElement>();
-    const messageRef = createRef<HTMLTextAreaElement>();
-    const booking_ref = uuidv4();
 
     function sendFirstPart() {
         setFirstPart({
@@ -65,23 +54,29 @@ function BookingForm() {
         axios.get('http://localhost:4000/bookings')
             .then((res) => {
                 setBookingList(res.data)
-                const totalNumberOfGuestsList = bookingList?.filter(totalGuests => (totalGuests.date === requestedBooking?.date)).map(filteredGuests => (filteredGuests.guests));
+                const totalNumberOfGuestsAndTimeList = bookingList?.filter(totalGuests => (totalGuests.date === requestedBooking?.date)).map(filteredGuests => ({ time: filteredGuests.time, guests: filteredGuests.guests }));
+                console.log(totalNumberOfGuestsAndTimeList);
+
+                const totalNumberOfGuestsList = totalNumberOfGuestsAndTimeList?.map(filterGuests => (filterGuests.guests));
+                console.log(totalNumberOfGuestsList);
+
+
                 const totalNumberOfGuestsForRequestedDate = totalNumberOfGuestsList?.reduce((a, b) => a + b, 0);
-                setGuests({ guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0, guestsTOne: 0, guestsTTwo: 0 })
-                console.log("total number of guests that have already booked: ", totalNumberOfGuestsForRequestedDate);
 
 
-                const timeSlotOne = bookingList?.filter(bookingList=> bookingList.includes('18.00'));
-                console.log(timeSlotOne);
+
+                const guestsForTimeSlotOne = totalNumberOfGuestsAndTimeList?.filter(totalNumberOfGuestsAndTimeListFiltered => totalNumberOfGuestsAndTimeListFiltered.time === ('18:00')).map(filterSlotOne => (filterSlotOne.guests)).reduce((a, b) => a + b, 0);
+                const guestsForTimeSlotTwo = totalNumberOfGuestsAndTimeList?.filter(totalNumberOfGuestsAndTimeListFiltered => totalNumberOfGuestsAndTimeListFiltered.time === ('21:00')).map(filterSlotTwo => (filterSlotTwo.guests)).reduce((a, b) => a + b, 0);
+                console.log("T1: ", guestsForTimeSlotOne, "T2: ", guestsForTimeSlotTwo);
+
+                setGuests({ guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0, guestsTOne: guestsForTimeSlotOne || 0, guestsTTwo: guestsForTimeSlotTwo || 0 })
+                console.log("total number of guests that have already booked: ", totalNumberOfGuestsForRequestedDate, "guestsT1: ", guestsForTimeSlotOne, "guestsT2: ", guestsForTimeSlotTwo);
+
             }).catch((error) => {
                 console.log(error)
             });
     }
 
-    //Get the time slots from the database
-    function timeSlots() {
-
-    }
 
     return (
         <>
@@ -132,20 +127,20 @@ function BookingForm() {
                         <img src={gavidare} alt="" />
                     </button>
                 </div>}
-            
-        {!showFirst && 
-         <div className="white-container-booking">
-             <div className="booking-info-container">
-                 <p>Antal: <br></br> {firstPart.guests}</p>
-                 <p>Datum: <br></br> {firstPart.date}</p>
-                 <p>Tid: <br></br> {firstPart.time}</p>
 
-             </div>
-             <GuestComponent time={firstPart.time} date={firstPart.date} guests={firstPart.guests}></GuestComponent>
-         </div>
-     
-        }
-        </>        
+            {!showFirst &&
+                <div className="white-container-booking">
+                    <div className="booking-info-container">
+                        <p>Antal: <br></br> {firstPart.guests}</p>
+                        <p>Datum: <br></br> {firstPart.date}</p>
+                        <p>Tid: <br></br> {firstPart.time}</p>
+
+                    </div>
+                    <GuestComponent time={firstPart.time} date={firstPart.date} guests={firstPart.guests}></GuestComponent>
+                </div>
+
+            }
+        </>
 
     )
 }
