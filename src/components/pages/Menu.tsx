@@ -51,7 +51,7 @@ function Menu() {
         <p className="food-description">Grillad italiensk bröd med smör, tomat, mozzarela, pesto<br></br>
         •Välj protein: kyckling, lax, tonfisk, veggie</p>
         </div>
-        <Link to="/boka"><button className="confirm-btn"><img src={button} alt="" /></button></Link>
+        <Link to="/boka"><button className="book-btn"><img src={bookbutton} alt="" /></button></Link>
         </div>  
         </div>
 
