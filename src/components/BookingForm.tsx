@@ -10,13 +10,15 @@ import axios from 'axios';
 
 function BookingForm() {
     let history = useHistory();
-    const [toggleTime, setToggleTime] = useState(true);
+
+    const [time, setTime] = useState('18:00');
+    const [toggleTimeBtns, setToggleTimeBtns] = useState(true);
     const [showFirst, setShowFirst] = useState(true);
     const [booking, setBooking] = useState<IBooking>()
     const [firstPart, setFirstPart] = useState({
         guests: 1,
-        time: 'hej',
-        date: 'hej'
+        time: '',
+        date: ''
     })
 
 
@@ -33,7 +35,7 @@ function BookingForm() {
         setFirstPart({
             guests: Number(guestsRef.current?.value),
             date:  (dateRef.current?.value)?.toString() || '2021-09-29',
-            time: '18:00'
+            time: time
         })
         setShowFirst(false)
     }
@@ -92,15 +94,15 @@ function BookingForm() {
                 </div>
                 <div>
                     <label htmlFor="tid">Tid</label>
-                    {toggleTime && 
+                    {toggleTimeBtns && 
                     <div className="time-btns">
                     <button className="time-btn-clicked" >18:00</button>
-                    <button  className="time-btn" onClick={()=>{setToggleTime(false)}} >21:00</button>
+                    <button className="time-btn" onClick={()=>{setToggleTimeBtns(false); setTime('21:00')}} >21:00</button>
                     </div>
                     }
-                    {!toggleTime && 
+                    {!toggleTimeBtns && 
                     <div className="time-btns">
-                    <button className="time-btn" onClick={()=>{setToggleTime(true)}} > 18:00</button>
+                    <button className="time-btn" onClick={()=>{setToggleTimeBtns(true); setTime('18:00')}} > 18:00</button>
                     <button  className="time-btn-clicked"  >21:00</button>
                     </div>
                     }
