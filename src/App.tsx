@@ -5,6 +5,7 @@ import Landing from './components/pages/Landing';
 import Menu from './components/pages/Menu';
 import './styles/App.scss'
 import Confirmation from './components/pages/Confirmation';
+import Cancel from './components/pages/Cancel';
 
 function App() {
 
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/boka">
             <Booking />
+          </Route>
+          <Route path="/avboka/:ref">
+            <Cancel/>
           </Route>
         </Switch>
       </Router>

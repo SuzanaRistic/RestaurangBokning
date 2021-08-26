@@ -1,13 +1,15 @@
-import React from 'react'
-import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import React, { useState } from 'react'
+import { useHistory, useParams } from 'react-router-dom';
 import Header from '../Header'
 import './../../styles/confirmation.scss'
-interface IParams {
+import logo from './../../images/logo-with-background.svg'
+export interface IParams {
 	ref: string;
 }
 function Confirmation() {
+    const history = useHistory();
     const { ref } = useParams<IParams>();
-    const namn = 'Gästnamn'
     return (
         <>
             <Header title="Tack!"></Header>
@@ -16,8 +18,14 @@ function Confirmation() {
                     <p>Tack så mycket för din bokning hos The Lazy Bee!</p>
                     <p>Din bokningsreferens är: {ref}</p>
                     <p>Välkommen!</p>
+                    <img src={logo} alt="logo"></img>
+                    <button onClick={() => {history.push(`/avboka/${ref}`)}}> Avboka Här!</button>
+
                 </div>
             </div>
+           
+            
+            
         </>
     )
 }
