@@ -50,33 +50,23 @@ function BookingForm() {
         console.log("Number of guests: ", requestedBooking?.guests, "Date requested: ", requestedBooking?.date);
 
 
-        //get the bookings from the database 
+    //get the number of guests and time for requested booking from the database 
         axios.get('http://localhost:4000/bookings')
             .then((res) => {
                 setBookingList(res.data)
+
                 const totalNumberOfGuestsAndTimeList = bookingList?.filter(totalGuests => (totalGuests.date === requestedBooking?.date)).map(filteredGuests => ({ time: filteredGuests.time, guests: filteredGuests.guests }));
-                console.log(totalNumberOfGuestsAndTimeList);
-
                 const totalNumberOfGuestsList = totalNumberOfGuestsAndTimeList?.map(filterGuests => (filterGuests.guests));
-                console.log(totalNumberOfGuestsList);
-
-
                 const totalNumberOfGuestsForRequestedDate = totalNumberOfGuestsList?.reduce((a, b) => a + b, 0);
-
-
-
                 const guestsForTimeSlotOne = totalNumberOfGuestsAndTimeList?.filter(totalNumberOfGuestsAndTimeListFiltered => totalNumberOfGuestsAndTimeListFiltered.time === ('18:00')).map(filterSlotOne => (filterSlotOne.guests)).reduce((a, b) => a + b, 0);
                 const guestsForTimeSlotTwo = totalNumberOfGuestsAndTimeList?.filter(totalNumberOfGuestsAndTimeListFiltered => totalNumberOfGuestsAndTimeListFiltered.time === ('21:00')).map(filterSlotTwo => (filterSlotTwo.guests)).reduce((a, b) => a + b, 0);
-                console.log("T1: ", guestsForTimeSlotOne, "T2: ", guestsForTimeSlotTwo);
 
                 setGuests({ guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0, guestsTOne: guestsForTimeSlotOne || 0, guestsTTwo: guestsForTimeSlotTwo || 0 })
-                console.log("total number of guests that have already booked: ", totalNumberOfGuestsForRequestedDate, "guestsT1: ", guestsForTimeSlotOne, "guestsT2: ", guestsForTimeSlotTwo);
 
             }).catch((error) => {
                 console.log(error)
             });
     }
-
 
     return (
         <>
@@ -114,8 +104,9 @@ function BookingForm() {
                                     <p>Sorry, we are fully booked today</p>
                                 </>
 
-                                : guests.guestsTOne + requestedBooking.guests > 90
+                                : guests.guestsTOne + requestedBooking.guests > 5
                                     ?
+
                                     <>
                                         <div className="time-btns">
                                             <button className="time-btn-disabled" disabled>18:00</button>
