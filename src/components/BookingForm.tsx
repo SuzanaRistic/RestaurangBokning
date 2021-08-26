@@ -6,6 +6,7 @@ import IBooking from '../interfaces/IBooking'
 import { useHistory } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
+import GuestComponent from './GuestForm'
 
 
 
@@ -53,33 +54,8 @@ function BookingForm() {
         })
         setShowFirst(false)
     }
-    function SendBooking () {
-        setBooking({
-            guests: firstPart.guests,
-            firstname: firstNameRef.current?.value || ' ',
-            lastname: lastNameRef.current?.value || ' ',
-            email: emailRef.current?.value || ' ',
-            phonenumber: phoneRef.current?.value || ' ',
-            time: firstPart.time,
-            booking_reference: booking_ref,
-            date:  firstPart.date,
-            message: messageRef.current?.value || ' '
-        })
-        
-    }
-    useEffect(() => {
-        if (booking) {
-            axios.post('http://localhost:4000/bookings', booking )
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-            history.push(`/bokningsbekraftelse/${booking.booking_reference}`)
-        } 
-        
-    }, [booking])
+    
+
 
     //store requested date and number of guests in variables 
     function sendRequest() {
@@ -162,32 +138,18 @@ function BookingForm() {
                  <p>Tid: <br></br> {firstPart.time}</p>
 
              </div>
-         <label htmlFor="firstname">Förnamn</label>
-                 <input type="text" name="firstname" ref={firstNameRef} required/>
- 
-                 <label htmlFor="lastname">Efternamn</label>
-                 <input type="text" name="lastname" ref={lastNameRef} required/>
- 
-                 <label htmlFor="email">Email</label>
-                 <input type="email" name="email" ref={emailRef} required/>
- 
-                 <label htmlFor="telefon">Telefon</label>
-                 <input type="tel" name="telefon" ref={phoneRef} required/>
- 
-                 <label htmlFor="message">Allergener/Önskemål</label>
-                 <textarea rows={4} name="message" ref={messageRef} required/>
+             <GuestComponent time={firstPart.time} date={firstPart.date} guests={firstPart.guests}></GuestComponent>
 
-                <button className="confirm-btn" onClick={SendBooking}>
-                    <img src={button} alt=""  />
-                </button> 
-                
+
          </div>
      
         }
-        </>
+        </>        
 
     )
+
 }
+
 
 export default BookingForm
 
