@@ -126,7 +126,7 @@ function BookingForm() {
                     
                 </div>
             </div>
-            <button className="confirm-btn" onClick={(e)=>{e.preventDefault(); sendFirstPart(); sendTime(); }}>
+            <button className="confirm-btn" onClick={(e)=>{e.preventDefault(); sendFirstPart(); sendRequest(); }}>
                 <img src={gavidare} alt="" />
             </button> 
         </div> }
