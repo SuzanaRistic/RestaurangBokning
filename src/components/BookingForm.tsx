@@ -20,8 +20,9 @@ function BookingForm() {
         guests: Number(guestsRef.current?.value) || 1,
         date: (dateRef.current?.value)?.toString() || Date.now().toString()
     });
-    const [guests, setGuests] = useState({ 
-        guestsForRequestedDate: 0, guestsTOne: 0, guestsTTwo: 0 })
+    const [guests, setGuests] = useState({
+        guestsForRequestedDate: 0, guestsTOne: 0, guestsTTwo: 0
+    })
 
 
 
@@ -39,21 +40,7 @@ function BookingForm() {
         })
     }
 
-    //get the bookings from the database 
-    useEffect(() => {
-        axios.get('http://localhost:4000/bookings')
-            .then((res) => {
-                setBookingList(res.data)
-                const totalNumberOfGuests = bookingList?.map(totalNumberOfGuests => (totalNumberOfGuests.guests))
-                .reduce((a, b) => a + b, 0);
-                setGuests({guestsForRequestedDate:Number(totalNumberOfGuests), guestsTOne: 0, guestsTTwo:0})
-                console.log(guests.guestsForRequestedDate);
-            }).catch((error) => {
-                console.log(error)
-            });
 
-        console.log(bookingList);
-    }, [])
 
     //store requested date and number of guests in variables 
     function sendRequest() {
@@ -63,6 +50,19 @@ function BookingForm() {
         })
         console.log(requestedBooking);
         console.log("Number of guests: ", requestedBooking?.guests, "Date requested: ", requestedBooking?.date);
+
+
+        //get the bookings from the database 
+        axios.get('http://localhost:4000/bookings')
+            .then((res) => {
+                setBookingList(res.data)
+                const totalNumberOfGuestsList = bookingList?.filter(totalGuests => (totalGuests.date === requestedBooking?.date)).map(filteredGuests => (filteredGuests.guests));
+                const totalNumberOfGuestsForRequestedDate = totalNumberOfGuestsList?.reduce((a, b) => a + b, 0);
+                setGuests({ guestsForRequestedDate: Number(totalNumberOfGuestsForRequestedDate), guestsTOne: 0, guestsTTwo: 0 })
+                console.log("total number of guests that have already booked: ", totalNumberOfGuestsForRequestedDate);
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 
 
@@ -91,7 +91,7 @@ function BookingForm() {
                         <div>
                             <label htmlFor="date">Datum</label>
                             <input ref={dateRef} type="date" name="date" id="date" required />
-
+                            {requestedBooking.guests > 90}{<h2>Sorry, we are fully booked today</h2>}
                         </div>
                         <div>
                             <label htmlFor="tid">Tid</label>
