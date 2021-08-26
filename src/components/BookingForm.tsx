@@ -99,9 +99,18 @@ function BookingForm() {
                 const totalNumberOfGuestsForRequestedDate = totalNumberOfGuestsList?.reduce((a, b) => a + b, 0);
                 setGuests({ guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0, guestsTOne: 0, guestsTTwo: 0 })
                 console.log("total number of guests that have already booked: ", totalNumberOfGuestsForRequestedDate);
+
+
+                const timeSlotOne = bookingList?.filter(bookingList=> bookingList.includes('18.00'));
+                console.log(timeSlotOne);
             }).catch((error) => {
                 console.log(error)
             });
+    }
+
+    //Get the time slots from the database
+    function timeSlots() {
+
     }
 
     return (
@@ -128,7 +137,7 @@ function BookingForm() {
                         <div>
                             <label htmlFor="date">Datum</label>
                             <input ref={dateRef} type="date" name="date" id="date" required onChange={sendRequest} />
-                            {guests.guestsForRequestedDate + requestedBooking.guests  >10 ? <p>Sorry, we are fully booked today</p> : <p>Welcome</p>}
+                            {guests.guestsForRequestedDate + requestedBooking.guests > 180 || guests.guestsTOne + requestedBooking.guests > 90 || guests.guestsTTwo + requestedBooking.guests > 90 ? <p>Sorry, we are fully booked today</p> : <p>Pick an available time slot</p>}
 
                         </div>
                         <div>
