@@ -13,8 +13,7 @@ function Confirmation() {
             <Header title="Tack!"></Header>
             <div className="white-container-wrapper">
                 <div className="white-container" style={{height: '80vh'}}>
-                    <p>Tack {namn},  för din bokning hos The Lazy Bee!</p>
-                    <p>Du har ett bord den {} kl {}, för {} personer</p>
+                    <p>Tack så mycket för din bokning hos The Lazy Bee!</p>
                     <p>Din bokningsreferens är: {ref}</p>
                     <p>Välkommen!</p>
                 </div>

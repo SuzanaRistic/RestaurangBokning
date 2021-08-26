@@ -7,7 +7,7 @@
     background-color: white;
     z-index: 1;
       color: #B7AA81;
-      
+       
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -29,6 +29,30 @@
         .date-time-wrap{
             flex-direction: row;
             align-items: flex-start;
+            .time-btns{
+                flex-direction: row;
+                .time-btn {
+                    margin: 10px;
+                    padding: 15px;
+                    border: 2px solid #B7AA81;
+                    background-color: #fff;
+                    color: #B7AA81;
+                    border-radius: 10px;
+                    font-family: inherit;
+                    font-size: 50%;
+                }
+                .time-btn-clicked {
+                    margin: 10px;
+                    padding: 15px;
+                    border: 2px solid #B7AA81;
+                    background-color: #B7AA81;
+                    color: #fff;
+                    border-radius: 10px;
+                    font-family: inherit;
+                    font-size: 50%;
+                }
+            }
+            
         }
         .confirm-btn {
             margin: 10px;
@@ -39,6 +63,17 @@
             }
             img:hover {
                 animation: spin 4s linear infinite;
+            }
+        }
+        .booking-info-container {
+            background-color: #B7AA81;
+            flex-direction: row;
+            justify-content: space-evenly;
+            font-size: 50%;
+            p {
+                text-align: center;
+                color: white;
+
             }
         }
         
