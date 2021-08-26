@@ -105,7 +105,7 @@ function BookingForm() {
                         </div>
                         <div>
                             <label htmlFor="tid">Tid</label>
-                            {guests.guestsForRequestedDate + requestedBooking.guests > 5 ?
+                            {guests.guestsForRequestedDate + requestedBooking.guests > 90 ?
                                 <>
                                     <div className="time-btns">
                                         <button className="time-btn-disabled" disabled>18:00</button>
@@ -148,11 +148,7 @@ function BookingForm() {
                                                 </div>
                                                 <p>Pick an available time slot</p>
                                             </>
-
                             }
-
-
-
 
                         </div>
                     </div>
