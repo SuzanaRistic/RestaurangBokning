@@ -41,7 +41,7 @@ router.route('/update/:booking_reference').put((req, res, next) => {
     })
 })
 
-router.route('/delete/:booking_reference').delete((req, res, next) => {
+router.route('/avboka/:booking_reference').delete((req, res, next) => {
     booking.deleteOne({booking_reference : req.params.booking_reference}, (error, data) => {
         if (error) {
             console.log(error)
