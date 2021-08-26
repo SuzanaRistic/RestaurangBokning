@@ -216,7 +216,7 @@ function BookingForm() {
             onClick={(e) => {
               e.preventDefault();
               sendFirstPart();
-            }}
+            } } disabled={!firstPart.date && !firstPart.guests && !firstPart.time}
           >
             <img src={gavidare} alt="" />
           </button>
