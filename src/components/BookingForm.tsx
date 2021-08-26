@@ -1,5 +1,6 @@
 import React, { createRef, useEffect, useState } from 'react'
 import './../styles/Booking.scss'
+import gavidare from './../images/gå vidare med bokning knapp.svg'
 import button from './../images/bekfräftaknapp.svg'
 import IBooking from '../interfaces/IBooking'
 import { useHistory } from 'react-router-dom';
@@ -110,7 +111,7 @@ function BookingForm() {
                 </div>
             </div>
             <button className="confirm-btn" onClick={(e)=>{e.preventDefault(); sendFirstPart(); }}>
-                <img src={button} alt="" />
+                <img src={gavidare} alt="" />
             </button> 
         </div> }
         {!showFirst && 
