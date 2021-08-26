@@ -31,7 +31,8 @@ header {
     .hero {
         position: relative;
         margin-top: -80px;
-        background-image: url('./../images/hero.png') ;
+        background-color: grey;
+       //background-image: url('./../images/hero.png') ;
         height: 400px;
         .title {
             font-size: 500%;

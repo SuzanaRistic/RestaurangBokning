@@ -2,5 +2,16 @@ div {
     p {
         color: rgb(18, 18, 18);
         font-size: 150%;
+        a {
+            color: inherit;
+        }
+    }
+    button {
+        margin: 1em;
+        background-color: transparent;
+        border: 1px solid #B7AA81;
+        font-family: inherit;
+        font-size: 150%;
+        padding: 1em;
     }
 }

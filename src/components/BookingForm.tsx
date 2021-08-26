@@ -1,5 +1,6 @@
 import React, { createRef, useEffect, useState } from 'react'
 import './../styles/Booking.scss'
+import gavidare from './../images/gå vidare med bokning knapp.svg'
 import button from './../images/bekfräftaknapp.svg'
 import IBooking from '../interfaces/IBooking'
 import { useHistory } from 'react-router-dom';
@@ -15,11 +16,20 @@ function BookingForm() {
     const [time, setTime] = useState('18:00');
     const [toggleTimeBtns, setToggleTimeBtns] = useState(true);
     const [showFirst, setShowFirst] = useState(true);
-    const [booking, setBooking] = useState<IBooking>()
+    const [booking, setBooking] = useState<IBooking>();
+    const [bookingList, setBookingList] = useState<IBooking[]>();
     const [firstPart, setFirstPart] = useState({
         guests: 1,
         time: '',
         date: ''
+    })
+    
+    const [requestedBooking, setRequestedBooking] = useState({
+        guests: 1,
+        date: ''
+    });
+    const [guests, setGuests] = useState({
+        guestsForRequestedDate: 0, guestsTOne: 0, guestsTTwo: 0
     })
 
 
@@ -30,7 +40,11 @@ function BookingForm() {
     const phoneRef = createRef<HTMLInputElement>();
     const emailRef = createRef<HTMLInputElement>();
     const messageRef = createRef<HTMLTextAreaElement>();
-    const booking_ref = uuidv4();
+    
+
+
+
+     const booking_ref = uuidv4();
    
     function sendFirstPart () {
         setFirstPart({
@@ -42,6 +56,30 @@ function BookingForm() {
     }
     
 
+
+    //store requested date and number of guests in variables 
+    function sendRequest() {
+        setRequestedBooking({
+            guests: Number(guestsRef.current?.value) || 1,
+            date: (dateRef.current?.value)?.toString() || Date.now().toString(),
+        })
+        console.log(requestedBooking);
+        console.log("Number of guests: ", requestedBooking?.guests, "Date requested: ", requestedBooking?.date);
+
+
+        //get the bookings from the database 
+        axios.get('http://localhost:4000/bookings')
+            .then((res) => {
+                setBookingList(res.data)
+                const totalNumberOfGuestsList = bookingList?.filter(totalGuests => (totalGuests.date === requestedBooking?.date)).map(filteredGuests => (filteredGuests.guests));
+                const totalNumberOfGuestsForRequestedDate = totalNumberOfGuestsList?.reduce((a, b) => a + b, 0);
+                setGuests({ guestsForRequestedDate: Number(totalNumberOfGuestsForRequestedDate), guestsTOne: 0, guestsTTwo: 0 })
+                console.log("total number of guests that have already booked: ", totalNumberOfGuestsForRequestedDate);
+            }).catch((error) => {
+                console.log(error)
+            });
+    }
+   
 
     return (
         <>
@@ -67,11 +105,14 @@ function BookingForm() {
                 <div>
                     <label htmlFor="date">Datum</label>
                     <input ref={dateRef} type="date" name="date" id="date" required/>
+                    {requestedBooking.guests > 90}{<h2>Sorry, we are fully booked today</h2>}
+
                 </div>
                 <div>
                     <label htmlFor="tid">Tid</label>
                     {toggleTimeBtns && 
                     <div className="time-btns">
+                    
                     <button className="time-btn-clicked" >18:00</button>
                     <button className="time-btn" onClick={()=>{setToggleTimeBtns(false); setTime('21:00')}} >21:00</button>
                     </div>
@@ -85,8 +126,8 @@ function BookingForm() {
                     
                 </div>
             </div>
-            <button className="confirm-btn" onClick={(e)=>{e.preventDefault(); sendFirstPart(); }}>
-                <img src={button} alt="" />
+            <button className="confirm-btn" onClick={(e)=>{e.preventDefault(); sendFirstPart(); sendTime(); }}>
+                <img src={gavidare} alt="" />
             </button> 
         </div> }
         {!showFirst && 
@@ -104,9 +145,11 @@ function BookingForm() {
      
         }
         </>        
+
     )
 
 }
 
 
 export default BookingForm
+
