@@ -1,22 +1,17 @@
-import React, { createRef, useEffect, useState } from 'react'
+import React, { createRef, useState } from 'react'
 import './../styles/Booking.scss'
 import gavidare from './../images/gå vidare med bokning knapp.svg'
-import button from './../images/bekfräftaknapp.svg'
 import IBooking from '../interfaces/IBooking'
-import { useHistory } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import GuestComponent from './GuestForm'
 
 
 
 function BookingForm() {
-    let history = useHistory();
 
     const [time, setTime] = useState('18:00');
     const [toggleTimeBtns, setToggleTimeBtns] = useState(true);
     const [showFirst, setShowFirst] = useState(true);
-    const [booking, setBooking] = useState<IBooking>();
     const [bookingList, setBookingList] = useState<IBooking[]>();
     const [firstPart, setFirstPart] = useState({
         guests: 1,
@@ -34,12 +29,6 @@ function BookingForm() {
 
     const guestsRef = createRef<HTMLSelectElement>();
     const dateRef = createRef<HTMLInputElement>();
-    const firstNameRef = createRef<HTMLInputElement>();
-    const lastNameRef = createRef<HTMLInputElement>();
-    const phoneRef = createRef<HTMLInputElement>();
-    const emailRef = createRef<HTMLInputElement>();
-    const messageRef = createRef<HTMLTextAreaElement>();
-    const booking_ref = uuidv4();
 
     function sendFirstPart() {
         setFirstPart({
