@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../Header'
-import button from './../../images/bokabordknapp.png'
+import bookbutton from '/Users/suzanaristic/Desktop/Restaurang/RestaurangBokning/src/images/bokaknapp.png'
 import decoflower from './../../images/bulletpoint 1.png'
 import './../../styles/Menu.scss'
 import { Link } from 'react-router-dom'
