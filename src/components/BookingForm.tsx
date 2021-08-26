@@ -17,7 +17,6 @@ function BookingForm() {
     const [showFirst, setShowFirst] = useState(true);
     const [booking, setBooking] = useState<IBooking>();
     const [bookingList, setBookingList] = useState<IBooking[]>();
-    const [booking, setBooking] = useState<IBooking>()
     const [firstPart, setFirstPart] = useState({
         guests: 1,
         time: '',
