@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import "./../styles/Booking.scss";
 import gavidare from "./../images/gå vidare med bokning knapp.svg";
 import IBooking from "../interfaces/IBooking";
@@ -38,62 +38,64 @@ function BookingForm() {
     setShowFirst(false);
   }
 
+  useEffect(() => {
+    axios.get('http://localhost:4000/bookings')
+    .then((res) => {
+        console.log(res.data)
+        setBookingList(res.data)
+    }).catch((error) => {
+        console.log(error)
+    });
+    }, [])
   //store requested date and number of guests in variables
   function sendRequest() {
     setRequestedBooking({
-      guests: Number(guestsRef.current?.value) || 1,
-      date: dateRef.current?.value?.toString() || Date.now().toString(),
+      guests: Number(guestsRef.current?.value) ,
+      date: dateRef.current?.value?.toString() || '',
     });
-    console.log(requestedBooking);
-    console.log(
-      "Number of guests: ",
-      requestedBooking?.guests,
-      "Date requested: ",
-      requestedBooking?.date
-    );
-
-    //get the number of guests and time for requested booking from the database
-    axios
-      .get("http://localhost:4000/bookings")
-      .then((res) => {
-        setBookingList(res.data);
-
-        const totalNumberOfGuestsAndTimeList = bookingList
-          ?.filter((totalGuests) => totalGuests.date === requestedBooking?.date)
-          .map((filteredGuests) => ({
-            time: filteredGuests.time,
-            guests: filteredGuests.guests,
-          }));
-        const totalNumberOfGuestsList = totalNumberOfGuestsAndTimeList?.map(
-          (filterGuests) => filterGuests.guests
-        );
-        const totalNumberOfGuestsForRequestedDate =
-          totalNumberOfGuestsList?.reduce((a, b) => a + b, 0);
-        const guestsForTimeSlotOne = totalNumberOfGuestsAndTimeList
-          ?.filter(
-            (totalNumberOfGuestsAndTimeListFiltered) =>
-              totalNumberOfGuestsAndTimeListFiltered.time === "18:00"
-          )
-          .map((filterSlotOne) => filterSlotOne.guests)
-          .reduce((a, b) => a + b, 0);
-        const guestsForTimeSlotTwo = totalNumberOfGuestsAndTimeList
-          ?.filter(
-            (totalNumberOfGuestsAndTimeListFiltered) =>
-              totalNumberOfGuestsAndTimeListFiltered.time === "21:00"
-          )
-          .map((filterSlotTwo) => filterSlotTwo.guests)
-          .reduce((a, b) => a + b, 0);
-
-        setGuests({
-          guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0,
-          guestsTOne: guestsForTimeSlotOne || 0,
-          guestsTTwo: guestsForTimeSlotTwo || 0,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+    
+    }
+    useEffect(() => {
+        console.log(
+            "Number of guests: ",
+            requestedBooking?.guests,
+            "Date requested: ",
+            requestedBooking?.date
+          );
+      
+          //get the number of guests and time for requested booking from the database
+              const totalNumberOfGuestsAndTimeList = bookingList
+                ?.filter((totalGuests) => totalGuests.date === requestedBooking?.date)
+                .map((filteredGuests) => ({
+                  time: filteredGuests.time,
+                  guests: filteredGuests.guests,
+                }));
+              const totalNumberOfGuestsList = totalNumberOfGuestsAndTimeList?.map(
+                (filterGuests) => filterGuests.guests
+              );
+              const totalNumberOfGuestsForRequestedDate =
+                totalNumberOfGuestsList?.reduce((a, b) => a + b, 0);
+              const guestsForTimeSlotOne = totalNumberOfGuestsAndTimeList
+                ?.filter(
+                  (totalNumberOfGuestsAndTimeListFiltered) =>
+                    totalNumberOfGuestsAndTimeListFiltered.time === "18:00"
+                )
+                .map((filterSlotOne) => filterSlotOne.guests)
+                .reduce((a, b) => a + b, 0);
+              const guestsForTimeSlotTwo = totalNumberOfGuestsAndTimeList
+                ?.filter(
+                  (totalNumberOfGuestsAndTimeListFiltered) =>
+                    totalNumberOfGuestsAndTimeListFiltered.time === "21:00"
+                )
+                .map((filterSlotTwo) => filterSlotTwo.guests)
+                .reduce((a, b) => a + b, 0);
+      
+              setGuests({
+                guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0,
+                guestsTOne: guestsForTimeSlotOne || 0,
+                guestsTTwo: guestsForTimeSlotTwo || 0,
+              });
+    }, [requestedBooking])
 
   return (
     <>

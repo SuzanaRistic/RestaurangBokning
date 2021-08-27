@@ -1,10 +1,8 @@
 import {useFormik} from 'formik' ;
 import * as yup from 'yup';
-import BookingForm from './BookingForm';
 import './../styles/Booking.scss'
 import { createRef, useEffect, useState } from 'react';
 import button from './../images/bekfräftaknapp.svg'
-import ISendBookingProps from './BookingForm'
 import IBooking from '../interfaces/IBooking';
 import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
