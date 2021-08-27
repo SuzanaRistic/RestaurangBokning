@@ -6,6 +6,7 @@ import axios from "axios";
 import GuestComponent from "./GuestForm";
 
 function BookingForm() {
+
   const [time, setTime] = useState("18:00");
   const [toggleTimeBtns, setToggleTimeBtns] = useState(true);
   const [showFirst, setShowFirst] = useState(true);
@@ -58,7 +59,6 @@ function BookingForm() {
       date: dateRef.current?.value?.toString() || "",
     });
   }
-  var buttonHtml;
 
   useEffect(() => {
     console.log(
@@ -103,88 +103,66 @@ function BookingForm() {
       guestsTTwo: guestsForTimeSlotTwo || 0,
     });
 
-    // var buttonHtml;
     if (guests.guestsForRequestedDate + requestedBooking.guests > 180) {
-      setButtonVariable(
-        <>
-          <div className="time-btns">
-            <button className="time-btn-disabled" disabled>
-              18:00
-            </button>
-            <button className="time-btn-disabled" disabled>
-              21:00
-            </button>
-          </div>
-          <p>Sorry, we are fully booked today</p>
-        </>
-      );
+        setTime("");
+        setButtonVariable(
+            <>
+            <div className="time-btns">
+                {/* <button className="time-btn-disabled" disabled>
+                18:00
+                </button>
+                <button className="time-btn-disabled" disabled>
+                21:00
+                </button> */}
+            </div>
+            <p>Sorry, we are fully booked today</p>
+            </>
+        );
     } else if (guests.guestsTOne + requestedBooking.guests > 90) {
       setTime("21:00");
       setButtonVariable(
-        <>
-          <div className="time-btns">
-            <button className="time-btn-disabled" disabled>
-              18:00
-            </button>
-            <button className="time-btn-clicked">21:00</button>
-          </div>
-          <p>Only 21:00 is available on this night</p>
-        </>
+            <>
+            <div className="time-btns">
+                {/* <button className="time-btn-disabled" disabled>
+                18:00
+                </button> */}
+                <button className="time-btn-clicked">21:00</button>
+            </div>
+            <p>Only 21:00 is available on this night</p>
+            </>
       );
     } else if (guests.guestsTTwo + requestedBooking.guests > 90) {
       setTime("18:00");
-
       setButtonVariable(
-        <>
-          <div className="time-btns">
-            <button className="time-btn-clicked"> 18:00</button>
-            <button className="time-btn-disabled" disabled>
-              21:00
-            </button>
-          </div>
-          <p>Only 18:00 is available on this night</p>
-        </>
+            <>
+            <div className="time-btns">
+                <button className="time-btn-clicked"> 18:00</button>
+                {/* <button className="time-btn-disabled" disabled>
+                21:00
+                </button> */}
+            </div>
+            <p>Only 18:00 is available on this night</p>
+            </>
       );
     } else {
-      if (toggleTimeBtns) {
         setButtonVariable(
-          <>
+           <>
             <div className="time-btns">
-              <button className="time-btn-clicked">18:00</button>
-              <button
-                className="time-btn"
-                onClick={() => {
-                  setToggleTimeBtns(false);
-                  setTime("21:00");
-                }}
-              >
-                21:00
-              </button>
-            </div>
-            <p>Pick an available time slot</p>
-          </>
+                  <button className="time-btn" onClick={()=> {setTime('18:00')} }>18:00</button>
+                  <button className="time-btn" onClick={()=> {setTime('21:00')} } >21:00</button>
+                </div>
+                <p>Pick an available time slot</p>
+            </> 
+             
         );
-      } else {
-        setButtonVariable(
-          <>
-            <div className="time-btns">
-              <button
-                className="time-btn"
-                onClick={() => {
-                  setToggleTimeBtns(true);
-                  setTime("18:00");
-                }}
-              >
-                18:00
-              </button>
-              <button className="time-btn-clicked">21:00</button>
-            </div>
-            <p>Pick an available time slot</p>
-          </>
-        );
-      }
-    }
+      } 
 
+    
+    setDateGuestTimeInfo({
+        guests: Number(guestsRef.current?.value) || 0,
+        date: dateRef.current?.value?.toString() || "",
+        time: time,
+      });
   }, [requestedBooking]);
 
   return (
