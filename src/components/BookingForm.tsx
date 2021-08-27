@@ -1,4 +1,4 @@
-import React, { createRef, useEffect, useState } from "react";
+import React, {createRef, useEffect, useState} from "react";
 import "./../styles/Booking.scss";
 import gavidare from "./../images/gå vidare med bokning knapp.svg";
 import IBooking from "../interfaces/IBooking";
@@ -26,6 +26,8 @@ function BookingForm() {
     guestsTTwo: 0,
   });
 
+  const [buttonVariable, setButtonVariable] = useState(<div></div>);
+
   const guestsRef = createRef<HTMLSelectElement>();
   const dateRef = createRef<HTMLInputElement>();
 
@@ -39,63 +41,150 @@ function BookingForm() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:4000/bookings')
-    .then((res) => {
-        console.log(res.data)
-        setBookingList(res.data)
-    }).catch((error) => {
-        console.log(error)
-    });
-    }, [])
+    axios
+      .get("http://localhost:4000/bookings")
+      .then((res) => {
+        console.log(res.data);
+        setBookingList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   //store requested date and number of guests in variables
   function sendRequest() {
     setRequestedBooking({
-      guests: Number(guestsRef.current?.value) ,
-      date: dateRef.current?.value?.toString() || '',
+      guests: Number(guestsRef.current?.value),
+      date: dateRef.current?.value?.toString() || "",
     });
-    
+  }
+  var buttonHtml;
+
+  useEffect(() => {
+    console.log(
+      "Number of guests: ",
+      requestedBooking?.guests,
+      "Date requested: ",
+      requestedBooking?.date
+    );
+
+    //get the number of guests and time for requested booking from the database
+    const totalNumberOfGuestsAndTimeList = bookingList
+      ?.filter((totalGuests) => totalGuests.date === requestedBooking?.date)
+      .map((filteredGuests) => ({
+        time: filteredGuests.time,
+        guests: filteredGuests.guests,
+      }));
+    const totalNumberOfGuestsList = totalNumberOfGuestsAndTimeList?.map(
+      (filterGuests) => filterGuests.guests
+    );
+    const totalNumberOfGuestsForRequestedDate = totalNumberOfGuestsList?.reduce(
+      (a, b) => a + b,
+      0
+    );
+    const guestsForTimeSlotOne = totalNumberOfGuestsAndTimeList
+      ?.filter(
+        (totalNumberOfGuestsAndTimeListFiltered) =>
+          totalNumberOfGuestsAndTimeListFiltered.time === "18:00"
+      )
+      .map((filterSlotOne) => filterSlotOne.guests)
+      .reduce((a, b) => a + b, 0);
+    const guestsForTimeSlotTwo = totalNumberOfGuestsAndTimeList
+      ?.filter(
+        (totalNumberOfGuestsAndTimeListFiltered) =>
+          totalNumberOfGuestsAndTimeListFiltered.time === "21:00"
+      )
+      .map((filterSlotTwo) => filterSlotTwo.guests)
+      .reduce((a, b) => a + b, 0);
+
+    setGuests({
+      guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0,
+      guestsTOne: guestsForTimeSlotOne || 0,
+      guestsTTwo: guestsForTimeSlotTwo || 0,
+    });
+
+    // var buttonHtml;
+    if (guests.guestsForRequestedDate + requestedBooking.guests > 180) {
+      setButtonVariable(
+        <>
+          <div className="time-btns">
+            <button className="time-btn-disabled" disabled>
+              18:00
+            </button>
+            <button className="time-btn-disabled" disabled>
+              21:00
+            </button>
+          </div>
+          <p>Sorry, we are fully booked today</p>
+        </>
+      );
+    } else if (guests.guestsTOne + requestedBooking.guests > 90) {
+      setTime("21:00");
+      setButtonVariable(
+        <>
+          <div className="time-btns">
+            <button className="time-btn-disabled" disabled>
+              18:00
+            </button>
+            <button className="time-btn-clicked">21:00</button>
+          </div>
+          <p>Only 21:00 is available on this night</p>
+        </>
+      );
+    } else if (guests.guestsTTwo + requestedBooking.guests > 90) {
+      setTime("18:00");
+
+      setButtonVariable(
+        <>
+          <div className="time-btns">
+            <button className="time-btn-clicked"> 18:00</button>
+            <button className="time-btn-disabled" disabled>
+              21:00
+            </button>
+          </div>
+          <p>Only 18:00 is available on this night</p>
+        </>
+      );
+    } else {
+      if (toggleTimeBtns) {
+        setButtonVariable(
+          <>
+            <div className="time-btns">
+              <button className="time-btn-clicked">18:00</button>
+              <button
+                className="time-btn"
+                onClick={() => {
+                  setToggleTimeBtns(false);
+                  setTime("21:00");
+                }}
+              >
+                21:00
+              </button>
+            </div>
+            <p>Pick an available time slot</p>
+          </>
+        );
+      } else {
+        setButtonVariable(
+          <>
+            <div className="time-btns">
+              <button
+                className="time-btn"
+                onClick={() => {
+                  setToggleTimeBtns(true);
+                  setTime("18:00");
+                }}
+              >
+                18:00
+              </button>
+              <button className="time-btn-clicked">21:00</button>
+            </div>
+            <p>Pick an available time slot</p>
+          </>
+        );
+      }
     }
-    useEffect(() => {
-        console.log(
-            "Number of guests: ",
-            requestedBooking?.guests,
-            "Date requested: ",
-            requestedBooking?.date
-          );
-      
-          //get the number of guests and time for requested booking from the database
-              const totalNumberOfGuestsAndTimeList = bookingList
-                ?.filter((totalGuests) => totalGuests.date === requestedBooking?.date)
-                .map((filteredGuests) => ({
-                  time: filteredGuests.time,
-                  guests: filteredGuests.guests,
-                }));
-              const totalNumberOfGuestsList = totalNumberOfGuestsAndTimeList?.map(
-                (filterGuests) => filterGuests.guests
-              );
-              const totalNumberOfGuestsForRequestedDate =
-                totalNumberOfGuestsList?.reduce((a, b) => a + b, 0);
-              const guestsForTimeSlotOne = totalNumberOfGuestsAndTimeList
-                ?.filter(
-                  (totalNumberOfGuestsAndTimeListFiltered) =>
-                    totalNumberOfGuestsAndTimeListFiltered.time === "18:00"
-                )
-                .map((filterSlotOne) => filterSlotOne.guests)
-                .reduce((a, b) => a + b, 0);
-              const guestsForTimeSlotTwo = totalNumberOfGuestsAndTimeList
-                ?.filter(
-                  (totalNumberOfGuestsAndTimeListFiltered) =>
-                    totalNumberOfGuestsAndTimeListFiltered.time === "21:00"
-                )
-                .map((filterSlotTwo) => filterSlotTwo.guests)
-                .reduce((a, b) => a + b, 0);
-      
-              setGuests({
-                guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0,
-                guestsTOne: guestsForTimeSlotOne || 0,
-                guestsTTwo: guestsForTimeSlotTwo || 0,
-              });
-    }, [requestedBooking])
+  }, [requestedBooking]);
 
   return (
     <>
@@ -127,90 +216,11 @@ function BookingForm() {
                 required
                 onChange={sendRequest}
               />
+              <p>Pick a date</p>
             </div>
             <div>
               <label htmlFor="tid">Tid</label>
-              {guests.guestsForRequestedDate + requestedBooking.guests > 90 ? (
-                <>
-                  <div className="time-btns">
-                    <button className="time-btn-disabled" disabled>
-                      18:00
-                    </button>
-                    <button className="time-btn-disabled" disabled>
-                      21:00
-                    </button>
-                  </div>
-                  <p>Sorry, we are fully booked today</p>
-                </>
-              ) : guests.guestsTOne + requestedBooking.guests > 5 ? (
-                <>
-                  <div className="time-btns">
-                    <button className="time-btn-disabled" disabled>
-                      18:00
-                    </button>
-                    <button
-                      className="time-btn-clicked"
-                      onClick={() => {
-                        setTime("21:00");
-                      }}
-                    >
-                      21:00
-                    </button>
-                  </div>
-                  <p>Only 21:00 is available on this night</p>
-                </>
-              ) : guests.guestsTTwo + requestedBooking.guests > 90 ? (
-                <>
-                  <div className="time-btns">
-                    <button
-                      className="time-btn-clicked"
-                      onClick={() => {
-                        setTime("18:00");
-                      }}
-                    >
-                      {" "}
-                      18:00
-                    </button>
-                    <button className="time-btn-disabled" disabled>
-                      21:00
-                    </button>
-                  </div>
-                  <p>Only 18:00 is available on this night</p>
-                </>
-              ) : toggleTimeBtns ? (
-                <>
-                  <div className="time-btns">
-                    <button className="time-btn-clicked">18:00</button>
-                    <button
-                      className="time-btn"
-                      onClick={() => {
-                        setToggleTimeBtns(false);
-                        setTime("21:00");
-                      }}
-                    >
-                      21:00
-                    </button>
-                  </div>
-                  <p>Pick an available time slot</p>
-                </>
-              ) : (
-                <>
-                  <div className="time-btns">
-                    <button
-                      className="time-btn"
-                      onClick={() => {
-                        setToggleTimeBtns(true);
-                        setTime("18:00");
-                      }}
-                    >
-                      {" "}
-                      18:00
-                    </button>
-                    <button className="time-btn-clicked">21:00</button>
-                  </div>
-                  <p>Pick an available time slot</p>
-                </>
-              )}
+              {buttonVariable}
             </div>
           </div>
           <button
@@ -218,7 +228,8 @@ function BookingForm() {
             onClick={(e) => {
               e.preventDefault();
               sendFirstPart();
-            } } disabled={!firstPart.date && !firstPart.guests && !firstPart.time}
+            }}
+            disabled={!firstPart.date && !firstPart.guests && !firstPart.time}
           >
             <img src={gavidare} alt="" />
           </button>
