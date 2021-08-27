@@ -10,8 +10,8 @@ function BookingForm() {
   const [toggleTimeBtns, setToggleTimeBtns] = useState(true);
   const [showFirst, setShowFirst] = useState(true);
   const [bookingList, setBookingList] = useState<IBooking[]>();
-  const [firstPart, setFirstPart] = useState({
-    guests: 1,
+  const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({
+    guests: 0,
     time: "",
     date: "",
   });
@@ -30,9 +30,9 @@ function BookingForm() {
   const dateRef = createRef<HTMLInputElement>();
 
   function sendFirstPart() {
-    setFirstPart({
-      guests: Number(guestsRef.current?.value),
-      date: dateRef.current?.value?.toString() || "2021-09-29",
+    setDateGuestTimeInfo({
+      guests: Number(guestsRef.current?.value) || 0,
+      date: dateRef.current?.value?.toString() || "",
       time: time,
     });
     setShowFirst(false);
@@ -94,6 +94,11 @@ function BookingForm() {
                 guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0,
                 guestsTOne: guestsForTimeSlotOne || 0,
                 guestsTTwo: guestsForTimeSlotTwo || 0,
+              });
+              setDateGuestTimeInfo({
+                guests: Number(guestsRef.current?.value) || 0,
+                date: dateRef.current?.value?.toString() || "",
+                time: time,
               });
     }, [requestedBooking])
 
@@ -213,15 +218,21 @@ function BookingForm() {
               )}
             </div>
           </div>
+          {dateGuestTimeInfo.date.length < 1 || dateGuestTimeInfo.guests < 1 || dateGuestTimeInfo.time.length < 1 ?
           <button
+            className="confirm-btn"
+          >
+            <img src={gavidare} alt="" />
+          </button> :
+           <button
             className="confirm-btn"
             onClick={(e) => {
               e.preventDefault();
               sendFirstPart();
-            } } disabled={!firstPart.date && !firstPart.guests && !firstPart.time}
+            } } disabled={false}
           >
             <img src={gavidare} alt="" />
-          </button>
+          </button>}
         </div>
       )}
 
@@ -229,19 +240,19 @@ function BookingForm() {
         <div className="white-container-booking">
           <div className="booking-info-container">
             <p>
-              Antal: <br></br> {firstPart.guests}
+              Antal: <br></br> {dateGuestTimeInfo.guests}
             </p>
             <p>
-              Datum: <br></br> {firstPart.date}
+              Datum: <br></br> {dateGuestTimeInfo.date}
             </p>
             <p>
-              Tid: <br></br> {firstPart.time}
+              Tid: <br></br> {dateGuestTimeInfo.time}
             </p>
           </div>
           <GuestComponent
-            time={firstPart.time}
-            date={firstPart.date}
-            guests={firstPart.guests}
+            time={dateGuestTimeInfo.time}
+            date={dateGuestTimeInfo.date}
+            guests={dateGuestTimeInfo.guests}
           ></GuestComponent>
         </div>
       )}
