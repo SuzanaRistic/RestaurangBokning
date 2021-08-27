@@ -83,7 +83,7 @@ return (
     <form onSubmit= {formik.handleSubmit}>
     <label htmlFor="firstname">Förnamn</label>
     <input type="text" {...formik.getFieldProps("firstname")} ref={firstNameRef} required/>
-        <div className="invalid-input">{formik.touched.firstname && formik.errors.firstname ? <span style={{color:'red'}}>{formik.errors.firstname}</span> : null}</div>
+    <div className="invalid-input">{formik.touched.firstname && formik.errors.firstname ? <span style={{color:'red'}}>{formik.errors.firstname}</span> : null}</div>
 
      <label htmlFor="lastname">Efternamn</label>
      <input type="text" {...formik.getFieldProps("lastname")} ref={lastNameRef} required/>
@@ -101,7 +101,6 @@ return (
      <label htmlFor="message">Allergener/Önskemål</label>
      <textarea rows={4} {...formik.getFieldProps("message")} ref={messageRef} />
      <div className="invalid-input">{formik.touched.message && formik.errors.message ? <span style={{color: 'red'}}>{formik.errors.message}</span> : null }</div>
-
 
 
     <button className="confirm-btn" onClick={SendBooking} disabled={!(formik.isValid && formik.dirty)}>
