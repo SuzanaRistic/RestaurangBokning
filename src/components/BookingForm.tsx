@@ -108,7 +108,6 @@ function BookingForm() {
       date: dateRef.current?.value?.toString() || "",
       time: time,
     });
-
   }, [requestedBooking]);
 
   useEffect(() => {
@@ -117,6 +116,7 @@ function BookingForm() {
         Math.ceil(requestedBooking.guests / 6) >=
       30
     ) {
+      setTime("");
       setButtonVariable(
         <>
           <div className="time-btns"></div>
@@ -211,8 +211,7 @@ function BookingForm() {
             <div>
               <label htmlFor="tid">Tid</label>
               {buttonVariable}
-              <p>Du har valt tiden: {time} </p>
-
+              {time.length > 1 && <p>Du har valt tiden: {time} </p>}
             </div>
           </div>
           {dateGuestTimeInfo.date.length < 1 ||
