@@ -81,19 +81,19 @@ const GuestComponent=(props: IGuestComponentProps)=> {
     }, [booking]);
 return (
     <form onSubmit= {formik.handleSubmit}>
-    <label htmlFor="firstname">Förnamn</label>
+    <label htmlFor="firstname">Förnamn*</label>
     <input type="text" {...formik.getFieldProps("firstname")} ref={firstNameRef} required/>
     <div className="invalid-input">{formik.touched.firstname && formik.errors.firstname ? <span style={{color:'red'}}>{formik.errors.firstname}</span> : null}</div>
 
-     <label htmlFor="lastname">Efternamn</label>
+     <label htmlFor="lastname">Efternamn*</label>
      <input type="text" {...formik.getFieldProps("lastname")} ref={lastNameRef} required/>
      <div className="invalid-input">{formik.touched.lastname && formik.errors.lastname ? <span style={{color: 'red'}}>{formik.errors.lastname}</span> : null }</div>
 
-     <label htmlFor="email">Email</label>
+     <label htmlFor="email">Email*</label>
      <input type="email" {...formik.getFieldProps("email")} ref={emailRef} required/>
      <div className="invalid-input">{formik.touched.email && formik.errors.email ? <span style={{color: 'red'}}>{formik.errors.email}</span> : null }</div>
 
-     <label htmlFor="phonenumber">Telefon</label>
+     <label htmlFor="phonenumber">Telefon*</label>
      <input type="tel" {...formik.getFieldProps("phonenumber")} ref={phoneRef} required/>
      <div className="invalid-input">{formik.touched.phonenumber && formik.errors.phonenumber ? <span style={{color: 'red'}}>{formik.errors.phonenumber}</span> : null }</div>
 
@@ -102,6 +102,7 @@ return (
      <textarea rows={4} {...formik.getFieldProps("message")} ref={messageRef} />
      <div className="invalid-input">{formik.touched.message && formik.errors.message ? <span style={{color: 'red'}}>{formik.errors.message}</span> : null }</div>
 
+    <p className="obligatory-message">*Vänligen fyll i alla obligatoriska fält</p>
 
     <button className="confirm-btn" onClick={SendBooking} disabled={!(formik.isValid && formik.dirty)}>
         <img src={button} alt=""  />

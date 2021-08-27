@@ -184,7 +184,11 @@ function BookingForm() {
         );
       }
     }
-
+setDateGuestTimeInfo({
+      guests: Number(guestsRef.current?.value) || 0,
+      date: dateRef.current?.value?.toString() || "",
+      time: time,
+    });
   }, [requestedBooking]);
 
   return (
@@ -227,6 +231,7 @@ function BookingForm() {
           {dateGuestTimeInfo.date.length < 1 || dateGuestTimeInfo.guests < 1 || dateGuestTimeInfo.time.length < 1 ?
           <button
             className="confirm-btn"
+            disabled={true}
           >
             <img src={gavidare} alt="" />
           </button> :
