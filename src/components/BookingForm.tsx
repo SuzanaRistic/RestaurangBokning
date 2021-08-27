@@ -156,6 +156,7 @@ function BookingForm() {
             </> 
              
         );
+
       } 
 
     
@@ -206,6 +207,7 @@ function BookingForm() {
           {dateGuestTimeInfo.date.length < 1 || dateGuestTimeInfo.guests < 1 || dateGuestTimeInfo.time.length < 1 ?
           <button
             className="confirm-btn"
+            disabled={true}
           >
             <img src={gavidare} alt="" />
           </button> :
