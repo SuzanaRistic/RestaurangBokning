@@ -6,8 +6,10 @@ import axios from "axios";
 import GuestComponent from "./GuestForm";
 
 function BookingForm() {
+  const now = new Date(Date.now())
+  const todayIso = now.toISOString()
+  const today = todayIso.slice(0, 10)
   const [time, setTime] = useState("18:00");
-  const [toggleTimeBtns, setToggleTimeBtns] = useState(true);
   const [showFirst, setShowFirst] = useState(true);
   const [bookingList, setBookingList] = useState<IBooking[]>();
   const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({
@@ -200,6 +202,7 @@ function BookingForm() {
               <label htmlFor="date">Datum</label>
               <input
                 ref={dateRef}
+                min={today}
                 type="date"
                 name="date"
                 id="date"
