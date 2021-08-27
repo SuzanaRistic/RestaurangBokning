@@ -104,7 +104,16 @@ function BookingForm() {
       guestsTOne: tablesForSlotOne || 0,
       guestsTTwo: tablesForSlotTwo || 0,
     });
+    
+    
+    setDateGuestTimeInfo({
+        guests: Number(guestsRef.current?.value) || 0,
+        date: dateRef.current?.value?.toString() || "",
+        time: time,
+      });
+  }, [requestedBooking]);
 
+  useEffect(() => {
     if (
       Math.ceil(guests.guestsForRequestedDate / 6) +  Math.ceil(requestedBooking.guests / 6) >=
       30
@@ -158,13 +167,7 @@ function BookingForm() {
         );
       } 
 
-    
-    setDateGuestTimeInfo({
-        guests: Number(guestsRef.current?.value) || 0,
-        date: dateRef.current?.value?.toString() || "",
-        time: time,
-      });
-  }, [requestedBooking]);
+  }, [guests])
 
   return (
     <>
