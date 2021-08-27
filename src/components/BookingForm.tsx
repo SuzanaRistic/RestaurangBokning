@@ -6,7 +6,6 @@ import axios from "axios";
 import GuestComponent from "./GuestForm";
 
 function BookingForm() {
-
   const [time, setTime] = useState("18:00");
   const [toggleTimeBtns, setToggleTimeBtns] = useState(true);
   const [showFirst, setShowFirst] = useState(true);
@@ -50,7 +49,6 @@ function BookingForm() {
         console.log(error);
       });
   }, []);
-
 
   function sendRequest() {
     setRequestedBooking({
@@ -104,25 +102,24 @@ function BookingForm() {
       guestsTOne: tablesForSlotOne || 0,
       guestsTTwo: tablesForSlotTwo || 0,
     });
-    
-    
+
     setDateGuestTimeInfo({
-        guests: Number(guestsRef.current?.value) || 0,
-        date: dateRef.current?.value?.toString() || "",
-        time: time,
-      });
+      guests: Number(guestsRef.current?.value) || 0,
+      date: dateRef.current?.value?.toString() || "",
+      time: time,
+    });
+
   }, [requestedBooking]);
 
   useEffect(() => {
     if (
-      Math.ceil(guests.guestsForRequestedDate / 6) +  Math.ceil(requestedBooking.guests / 6) >=
+      Math.ceil(guests.guestsForRequestedDate / 6) +
+        Math.ceil(requestedBooking.guests / 6) >=
       30
     ) {
       setButtonVariable(
         <>
-          <div className="time-btns">
-           
-          </div>
+          <div className="time-btns"></div>
           <p>Tyvärr så är vi fullbokade denna kväll!</p>
         </>
       );
@@ -134,12 +131,10 @@ function BookingForm() {
       setButtonVariable(
         <>
           <div className="time-btns">
-            
             <button className="time-btn">21:00</button>
           </div>
           <p>Det finns endast lediga bord kl. 21:00 denna kväll</p>
         </>
-
       );
     } else if (
       guests.guestsTTwo + Math.ceil(requestedBooking.guests / 6) >=
@@ -155,20 +150,31 @@ function BookingForm() {
         </>
       );
     } else {
-        setButtonVariable(
-           <>
-            <div className="time-btns">
-                  <button className="time-btn" onClick={()=> {setTime('18:00')} }>18:00</button>
-                  <button className="time-btn" onClick={()=> {setTime('21:00')} } >21:00</button>
-                </div>
-            <p>Välj en ledig tid för ditt besök</p>
-            </> 
-             
-        );
-
-      } 
-
-  }, [guests])
+      setButtonVariable(
+        <>
+          <div className="time-btns">
+            <button
+              className="time-btn"
+              onClick={() => {
+                setTime("18:00");
+              }}
+            >
+              18:00
+            </button>
+            <button
+              className="time-btn"
+              onClick={() => {
+                setTime("21:00");
+              }}
+            >
+              21:00
+            </button>
+          </div>
+          <p>Välj en ledig tid för ditt besök</p>
+        </>
+      );
+    }
+  }, [guests]);
 
   return (
     <>
@@ -205,25 +211,28 @@ function BookingForm() {
             <div>
               <label htmlFor="tid">Tid</label>
               {buttonVariable}
+              <p>Du har valt tiden: {time} </p>
+
             </div>
           </div>
-          {dateGuestTimeInfo.date.length < 1 || dateGuestTimeInfo.guests < 1 || dateGuestTimeInfo.time.length < 1 ?
-          <button
-            className="confirm-btn"
-            disabled={true}
-          >
-            <img src={gavidare} alt="" />
-          </button> :
-           <button
-            className="confirm-btn"
-            onClick={(e) => {
-              e.preventDefault();
-              sendFirstPart();
-            } } disabled={false}
-
-          >
-            <img src={gavidare} alt="" />
-          </button>}
+          {dateGuestTimeInfo.date.length < 1 ||
+          dateGuestTimeInfo.guests < 1 ||
+          dateGuestTimeInfo.time.length < 1 ? (
+            <button className="confirm-btn" disabled={true}>
+              <img src={gavidare} alt="" />
+            </button>
+          ) : (
+            <button
+              className="confirm-btn"
+              onClick={(e) => {
+                e.preventDefault();
+                sendFirstPart();
+              }}
+              disabled={false}
+            >
+              <img src={gavidare} alt="" />
+            </button>
+          )}
         </div>
       )}
 
