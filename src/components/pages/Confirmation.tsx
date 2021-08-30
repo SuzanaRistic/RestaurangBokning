@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom';
 import Header from '../Header'
-import './../../styles/confirmation.scss'
+import './../../styles/Confirmation.scss'
 import logo from './../../images/logo-with-background.svg'
 export interface IParams {
 	ref: string;

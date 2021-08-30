@@ -15,6 +15,17 @@ router.route('/').get((req, res, next) => {
         }
     })
 })
+router.route('/:booking_reference').get((req, res, next) => {
+    booking.findOne({booking_reference: req.params.booking_reference},
+        (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            console.log(data);
+            res.json(data)
+        }
+    })
+})
 
 router.route('/').post((req, res, next) => {
     booking.create(req.body, (error, data) => {
