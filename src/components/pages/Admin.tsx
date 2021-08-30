@@ -3,6 +3,7 @@ import React, {createRef, useEffect, useState} from "react";
 import IBooking from "../../interfaces/IBooking";
 import ReactLoading from "react-loading";
 import "../../styles/Booking.scss";
+import Header from "../Header";
 
 function Admin() {
   const [bookingList, setBookingList] = useState<IBooking[]>();
@@ -18,6 +19,18 @@ function Admin() {
     );
     setBookingList(totalNumberOfGuestsAndTimeList);
   }
+
+  function deleteBooking(ref: string) {
+    axios.delete(`http://localhost:4000/bookings/avboka/${ref}`).then(function (response) {
+      console.log(response);
+      axios
+        .get("http://localhost:4000/bookings")
+        .then((res) => {
+          console.log(res.data);
+          setBookingList(res.data);
+          setDone(true);
+  })
+})};
 
   useEffect(() => {
     setTimeout(() => {
@@ -36,6 +49,7 @@ function Admin() {
 
   return (
     <>
+    <Header title="Admin"></Header>
       <input
         ref={dateRef}
         min={today}
@@ -59,6 +73,7 @@ function Admin() {
               {filterBooking.firstname} {filterBooking.lastname}
             </div>
             <div>Guests: {filterBooking.guests}</div>
+            <div><button onClick={() => {deleteBooking(filterBooking.booking_reference)}}>Avboka</button></div>
           </>
         ))
       )}
