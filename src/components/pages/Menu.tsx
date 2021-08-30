@@ -28,18 +28,18 @@ function Menu() {
               Benedict
             </h3>
             <p className="food-description">
-              Pocherade ägg med hollandaisesås på en grillat bröd med färskost
+              Pocherat ägg med hollandaisesås, färskost och avocado på grillat bröd
             </p>
           </div>
           <hr></hr>
           <div className="food-container">
             <h3 className="food-name">
-              <img className="decoflower" src={decoflower} alt="" /> Burger La
-              Bee
+              <img className="decoflower" src={decoflower} alt="" /> Lazy Bee
+              burger
             </h3>
             <p className="food-description">
-              Sesamtoppat surdegsbröd med sallad, tomat, karmeliserad lök,
-              krispig bacon och vår egna La Bee sås
+              Sesamtoppat surdegsbröd med sallad, tomat, picklad rödlök, krispig
+              bacon och vår fantastiska Lazy Bee-sås
             </p>
           </div>
           <hr></hr>
@@ -48,9 +48,9 @@ function Menu() {
               <img className="decoflower" src={decoflower} alt="" /> Pannkakor
             </h3>
             <p className="food-description">
-              •Välj mellan olika: Amerikanska, Crêpes eller Våfflor <br></br>
-              •Välj mellan olika toppings: Oreo-crunch, jordnötssmör, Ekologisk
-              marmelad med kex, sylt (Jorgubb eller Äpple)
+              •Välj mellan: Amercan pancakes, Crêpes eller Belgiska våfflor <br></br>
+              •...och 3 toppings: Oreo-crunch, jordnötssmör, Ekologisk
+              marmelad med kex, sylt (jorgubbs- eller äppelsylt), färsk frukttopping
             </p>
           </div>
           <hr></hr>
