@@ -6,6 +6,7 @@ import Menu from './components/pages/Menu';
 import './styles/App.scss'
 import Confirmation from './components/pages/Confirmation';
 import Cancel from './components/pages/Cancel';
+import Admin from './components/pages/Admin';
 
 function App() {
 
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/avboka/:ref">
             <Cancel/>
+          </Route>
+          <Route path="/admin">
+          <Admin></Admin>
           </Route>
         </Switch>
       </Router>

@@ -237,6 +237,7 @@ function BookingForm() {
           )}
         </div>
       )}
+      
 
       {!showFirst && (
         <div className="white-container-booking">
@@ -258,6 +259,7 @@ function BookingForm() {
           ></GuestComponent>
         </div>
       )}
+      
     </>
   );
 }
