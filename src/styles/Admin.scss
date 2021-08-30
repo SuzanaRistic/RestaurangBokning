@@ -1,0 +1,37 @@
+
+
+.admin-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 50vh;
+    .date-container{
+        width: 50%;
+        h1 {
+            color: #B7AA81 ;
+            font-size: 200%;
+        }
+        input {
+            font-family: inherit;
+            padding: 1em;
+        }
+    }
+    .bookingslist {
+        width: 70%;
+        h1 {
+            color: #B7AA81 ;
+            font-size: 200%;
+        }
+        .booking-container {
+            border: 5px solid #B7AA81;
+            width: 95%;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            background-color: white;
+            color: black;
+            margin: 10px 0px;
+            padding: 3em 0;
+        }
+    }
+}
