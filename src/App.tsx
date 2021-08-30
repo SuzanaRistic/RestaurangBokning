@@ -7,6 +7,7 @@ import './styles/App.scss'
 import Confirmation from './components/pages/Confirmation';
 import Cancel from './components/pages/Cancel';
 import Admin from './components/pages/Admin';
+import AdminEdit from './components/pages/AdminEdit';
 
 function App() {
 
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/avboka/:ref">
             <Cancel/>
+          </Route>
+          <Route path="/edit/:ref">
+            <AdminEdit/>
           </Route>
           <Route path="/admin">
           <Admin></Admin>
