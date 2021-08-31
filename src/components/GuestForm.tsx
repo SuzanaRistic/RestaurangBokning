@@ -84,7 +84,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
       time: props.time,
       to_email: emailRef.current?.value,
       bookingref: booking_ref,
-      cancelBooking: `http://localhost:4000/avboka/${booking_ref}`,
+      cancelBooking: `http://localhost:3000/avboka/${booking_ref}`,
       guests: props.guests,
     };
     send('service_1t779ze', 'template_ui3c5na', templateParams).then(
