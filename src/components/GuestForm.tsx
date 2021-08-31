@@ -9,7 +9,7 @@ import axios from "axios";
 import {useHistory} from "react-router-dom";
 import "yup-phone";
 import {init, send} from "emailjs-com";
-init("user_Ch1FNPoMiF71pjLImRE4l");
+init("user_OHyxXpSu4H1rj4LKQ2q7L");
 
 interface IGuestComponentProps {
   time: string;
@@ -82,14 +82,17 @@ const GuestComponent = (props: IGuestComponentProps) => {
       firstname: firstNameRef.current?.value,
       date: props.date,
       time: props.time,
-      email: emailRef.current?.value,
+      to_email: emailRef.current?.value,
       bookingref: booking_ref,
       cancelBooking: `http://localhost:4000/avboka/${booking_ref}`,
+      guests: props.guests
     };
-    send('service_cv5c5tu', 'template_i3xa6ke', templateParams)
-      .then((res) => {
-        console.log(res);
-      });
+    send('service_1t779ze', 'template_ui3c5na', templateParams)
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+        console.log('FAILED...', error);
+      })
   }
 
   useEffect(() => {
