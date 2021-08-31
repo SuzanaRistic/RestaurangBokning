@@ -4,6 +4,7 @@ import gavidare from "./../images/gå vidare med bokning knapp.svg";
 import IBooking from "../interfaces/IBooking";
 import axios from "axios";
 import GuestComponent from "./GuestForm";
+import { findTables } from "./findTime";
 
 function BookingForm() {
   const now = new Date(Date.now())
@@ -83,26 +84,12 @@ function BookingForm() {
       0
     );
 
-    const tablesForSlotOne = totalNumberOfGuestsAndTimeList
-      ?.filter(
-        (totalNumberOfGuestsAndTimeListFiltered) =>
-          totalNumberOfGuestsAndTimeListFiltered.time === "18:00"
-      )
-      .map((filterSlotOne) => Math.ceil(filterSlotOne.guests / 6))
-      .reduce((a, b) => a + b, 0);
-
-    const tablesForSlotTwo = totalNumberOfGuestsAndTimeList
-      ?.filter(
-        (totalNumberOfGuestsAndTimeListFiltered) =>
-          totalNumberOfGuestsAndTimeListFiltered.time === "21:00"
-      )
-      .map((filterSlotTwo) => Math.ceil(filterSlotTwo.guests / 6))
-      .reduce((a, b) => a + b, 0);
+    const tables = findTables(bookingList || [], requestedBooking.date)
 
     setGuests({
       guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0,
-      guestsTOne: tablesForSlotOne || 0,
-      guestsTTwo: tablesForSlotTwo || 0,
+      guestsTOne: tables.tablesForSlotOne || 0,
+      guestsTTwo: tables.tablesForSlotTwo || 0,
     });
 
     setDateGuestTimeInfo({
@@ -110,6 +97,7 @@ function BookingForm() {
       date: dateRef.current?.value?.toString() || "",
       time: time,
     });
+    console.log(dateGuestTimeInfo)
   }, [requestedBooking]);
 
   useEffect(() => {
@@ -118,7 +106,7 @@ function BookingForm() {
         Math.ceil(requestedBooking.guests / 6) >=
       30
     ) {
-      setTime("");
+      setTime(" ");
       setButtonVariable(
         <>
           <div className="time-btns"></div>
@@ -217,14 +205,12 @@ function BookingForm() {
               {time.length > 1 && <p>Du har valt tiden: {time} </p>}
             </div>
           </div>
-          {dateGuestTimeInfo.date.length < 1 ||
-          dateGuestTimeInfo.guests < 1 ||
-          dateGuestTimeInfo.time.length < 1 ? (
+          {dateGuestTimeInfo.date.length <= 1 ||
+            dateGuestTimeInfo.guests <= 1 ||
+            dateGuestTimeInfo.time.length <= 1 ? 
             <button className="confirm-btn" disabled={true}>
               <img src={gavidare} alt="" />
-            </button>
-          ) : (
-            <button
+            </button> : <button
               className="confirm-btn"
               onClick={(e) => {
                 e.preventDefault();
@@ -234,7 +220,7 @@ function BookingForm() {
             >
               <img src={gavidare} alt="" />
             </button>
-          )}
+          }
         </div>
       )}
       

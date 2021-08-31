@@ -6,12 +6,15 @@ import Header from '../Header'
 import './../../styles/EditAdmin.scss'
 import {IParams} from './Confirmation'
 import knapp from "./../../images/ändrabokningknapp.svg";
+import { findTables } from '../findTime';
 
 function AdminEdit() {
     const history = useHistory();
     const { ref } = useParams<IParams>();
     const [booking, setBooking] = useState<IBooking>()
     const [bookingList, setBookingList] = useState<IBooking[]>();
+    const [timeOptions, setTimeOptions] = useState(<div></div>);
+    const [warning, setWarning] = useState(<p></p>);
     useEffect(() => {
         axios.get(`http://localhost:4000/bookings/${ref}`)
         .then(function (response) {
@@ -28,17 +31,63 @@ function AdminEdit() {
     const emailRef = createRef<HTMLInputElement>();
     const messageRef = createRef<HTMLTextAreaElement>();
     const dateRef = createRef<HTMLInputElement>();
+    const guestRef = createRef<HTMLInputElement>();
+    const timeRef = createRef<HTMLSelectElement>();
 
+    function findAvailable () {
+        const tables = findTables(bookingList || [], dateRef.current?.value || ' ');
+        const guests = Number(guestRef.current?.value) || 0
+        if (tables.tablesForSlotOne + tables.tablesForSlotTwo + Math.ceil(guests / 6) >= 30) {
+            setTimeOptions(
+                <>
+                    <option disabled={true} value="18:00">18:00</option>
+                    <option disabled={true}  value="21:00">21:00</option>
+                </>
+            )
+            setWarning(<p  className="time-warning">Hela dagen fullbokad</p> )
+        }
+        else if (tables.tablesForSlotOne + Math.ceil(guests / 6) >= 15) {
+            setTimeOptions(
+                <>
+                    <option disabled={true} value="18:00">18:00</option>
+                    <option disabled={false}  value="21:00">21:00</option>
+                </>
+            )
+            setWarning(<p className="time-warning">18:00 fullbokad</p>)
+        } else if (tables.tablesForSlotTwo + Math.ceil(guests / 6) >= 15) {
+            setTimeOptions(
+                <>
+                    <option disabled={false} value="18:00">18:00</option>
+                    <option disabled={true}  value="21:00">21:00</option>
+                </>
+            )
+            setWarning(<p className="time-warning">21:00 fullbokad</p>)
+        } else {
+            setTimeOptions(
+                <>
+                    <option disabled={false} value="18:00">18:00</option>
+                    <option disabled={false}  value="21:00">21:00</option>
+                </>
+    
+            )
 
+        }
+        console.log(timeRef.current?.value)
+
+    }
     
     function sendChange () {
+        console.log(timeRef.current?.value)
         axios.put(`http://localhost:4000/bookings/update/${ref}`, 
         {
             firstname: firstNameRef.current?.value,
             lastname: lastNameRef.current?.value,
             phonenumber: phoneRef.current?.value,
             email: emailRef.current?.value,
-            message : messageRef.current?.value
+            message : messageRef.current?.value,
+            time: timeRef.current?.value || booking?.time,
+            date: dateRef.current?.value,
+            guests: guestRef.current?.value
 
         }).then((response) => {console.log(response)})
         history.push('/')
@@ -61,10 +110,15 @@ function AdminEdit() {
             <Header title="Ändra Bokning"/>
             <div className="white-container-wrapper">
                 <div className="white-container">
+                    <label htmlFor="guests">Antal Gäster: </label>
+                    <input type="number" name="guests" id="" defaultValue={booking?.guests} ref={guestRef} />
                     <label htmlFor="date">Datum:</label>
-                    <input type="date" name="date" defaultValue={booking?.date} ref={dateRef} id="" onChange={() => { }}/>
-                    <h3>{booking?.time}</h3>
-
+                    <p >Välj Datum för att kolla om en ny tid är tillgänglig</p>
+                    <input type="date" name="date" defaultValue={booking?.date} ref={dateRef} id="" onChange={() => { findAvailable()}}/>
+                    <label htmlFor="tid">Tider: </label>
+                    <select name="tid" id="" ref={timeRef}>
+                        {timeOptions}
+                    </select>
                     <label htmlFor="firstname">Förnamn:</label>
                     <input type="text" name="firstname" defaultValue={booking?.firstname} ref={firstNameRef} />
                     <label htmlFor="lastname">Efternamn:</label>

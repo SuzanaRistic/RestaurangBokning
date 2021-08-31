@@ -6,6 +6,9 @@ import "../../styles/Booking.scss";
 import Header from "../Header";
 import { useHistory } from "react-router-dom";
 import './../../styles/Admin.scss'
+import bin from './../../images/bin.png'
+import edit from './../../images/edit.png'
+
 
 function Admin() {
   const history = useHistory()
@@ -93,13 +96,14 @@ function Admin() {
         bookingList?.map((filterBooking) => ( 
           
           <div className="booking-container"  >
-            <div>
-              {filterBooking.firstname} {filterBooking.lastname}
-            </div>
-            <div>Guests: {filterBooking.guests}</div>
-            <div>Time:  {filterBooking.time}</div>
-            <div onClick={() => {deleteBooking(filterBooking.booking_reference)}}>Avboka</div>
-            <div onClick={() => {history.push(`/edit/${filterBooking.booking_reference}`)}}>Ändra Boking</div>
+              <div>
+                {filterBooking.firstname} {filterBooking.lastname}
+              </div>
+              <div>Guests: {filterBooking.guests}</div>
+              <div>Time:  {filterBooking.time}</div>
+            <div onClick={() => {history.push(`/edit/${filterBooking.booking_reference}`)}}><img src={edit}></img></div>
+            <div onClick={() => {deleteBooking(filterBooking.booking_reference)}}><img src={bin}></img></div>
+           
           </div>
         ))
       )
