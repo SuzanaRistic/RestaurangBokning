@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import "yup-phone";
+import{ init, send } from 'emailjs-com';
+init("user_OHyxXpSu4H1rj4LKQ2q7L");
 
 
 interface IGuestComponentProps {
@@ -64,7 +66,13 @@ const GuestComponent=(props: IGuestComponentProps)=> {
             date:  props.date,
             message: messageRef.current?.value || ' '
         })
-        
+        send('service_1t779ze', 'template_ui3c5na', {name: firstNameRef.current?.value, booking_reference: booking_ref, avboka: `http://localhost:3000/avboka/${booking_ref}`, to_email: emailRef.current?.value,
+            date: props.date, time: props.time, guests: props.guests})
+        .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        }, function(error) {
+        console.log('FAILED...', error);
+        });
     }
     useEffect(() => {
         if (booking) {

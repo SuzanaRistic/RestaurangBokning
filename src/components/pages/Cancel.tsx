@@ -4,11 +4,25 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import Header from '../Header';
 import {IParams} from './Confirmation'
 import logo from './../../images/lazy-logo-white.svg'
+import{ init, send } from 'emailjs-com';
+
+init("user_OHyxXpSu4H1rj4LKQ2q7L");
 function Cancel() {
     const [cancelled, setCancelled] = useState(false);
     const history = useHistory();
     const { ref } = useParams<IParams>();
     function cancelTable () {
+        axios.get(`http://localhost:4000/bookings/${ref}`)
+        .then(function (response) {
+            send('service_1t779ze', 'template_23ykxwx', {to_email: response.data.email})
+            .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            }, function(error) {
+            console.log('FAILED...', error);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         axios.delete(`http://localhost:4000/bookings/avboka/${ref}`)
         .then(function (response) {
             console.log(response);
@@ -17,6 +31,8 @@ function Cancel() {
             console.log(error);
           });
         setCancelled(true);
+        
+        });
     }
     return (
         <div>
