@@ -87,8 +87,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
       bookingref: booking_ref,
       cancelBooking: `http://localhost:4000/bookings/avboka/${booking_ref}`,
     };
-    emailjs
-      .send("service_cv5c5tu", "template_i3xa6ke", templateParams)
+    send("service_cv5c5tu", "template_i3xa6ke", templateParams)
       .then((res) => {
         console.log(res);
       });
