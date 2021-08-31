@@ -119,6 +119,7 @@ function AdminEdit() {
                     <select name="tid" id="" ref={timeRef}>
                         {timeOptions}
                     </select>
+                    {warning}
                     <label htmlFor="firstname">Förnamn:</label>
                     <input type="text" name="firstname" defaultValue={booking?.firstname} ref={firstNameRef} />
                     <label htmlFor="lastname">Efternamn:</label>
