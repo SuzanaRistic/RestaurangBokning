@@ -8,7 +8,6 @@ import {v4 as uuidv4} from "uuid";
 import axios from "axios";
 import {useHistory} from "react-router-dom";
 import "yup-phone";
-import emailjs from "emailjs-com";
 import {init, send} from "emailjs-com";
 init("user_Ch1FNPoMiF71pjLImRE4l");
 
