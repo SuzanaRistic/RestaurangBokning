@@ -86,7 +86,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
       bookingref: booking_ref,
       cancelBooking: `http://localhost:3000/bookings/avboka/${booking_ref}`,
     };
-    send("service_cv5c5tu", "template_i3xa6ke", templateParams)
+    send('service_cv5c5tu', 'template_i3xa6ke', templateParams)
       .then((res) => {
         console.log(res);
       });
@@ -105,6 +105,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
       history.push(`/bokningsbekraftelse/${booking.booking_reference}`);
     }
   }, [booking]);
+
   return (
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="firstname">Förnamn*</label>
