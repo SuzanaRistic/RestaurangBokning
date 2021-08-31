@@ -36,7 +36,7 @@ function Menu() {
         <div className="food-container">
         <h3 className="food-name"><img className="decoflower" src={decoflower} alt=""/> Rainbow-Choc Bowl </h3>
         <p className="food-description">Havregryn med kakao, jordnötssmör och chokladbitar, 
-        toppad med färsta jordgubbar, blåbär, hallön, nöter och kokosflingor</p>
+        toppad med färsta jordgubbar, blåbär, hallon, nöter och kokosflingor</p>
         </div>
         <hr></hr>
         <div className="food-container">
