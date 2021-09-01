@@ -66,7 +66,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
     },
   });
 
-  function SendBooking() {
+   function SendBooking() {
     setBooking({
       guests: props.guests,
       firstname: firstNameRef.current?.value || ' ',
@@ -192,3 +192,4 @@ const GuestComponent = (props: IGuestComponentProps) => {
   );
 };
 export default GuestComponent;
+
