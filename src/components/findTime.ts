@@ -1,13 +1,21 @@
 import IBooking from '../interfaces/IBooking';
 
 export function findTables (bookingList: IBooking[], date: string) {
-
-    const totalNumberOfGuestsAndTimeList = bookingList
-  ?.filter((totalGuests: IBooking) => totalGuests.date === date)
-  .map((filteredGuests: IBooking) => ({
+  const totalNumberOfGuestsAndTimeList = bookingList
+  ?.filter((totalGuests) => totalGuests.date === date)
+  .map((filteredGuests) => ({
     time: filteredGuests.time,
     guests: filteredGuests.guests,
   }));
+
+  const totalNumberOfGuestsForRequestedDate = totalNumberOfGuestsAndTimeList?.map(
+    (filterGuests) => filterGuests.guests
+  ).reduce(
+    (a, b) => a + b,
+    0
+  );
+
+
 
   const tablesForSlotOne = totalNumberOfGuestsAndTimeList
     ?.filter(
@@ -25,6 +33,6 @@ export function findTables (bookingList: IBooking[], date: string) {
     .map((filterSlotTwo) => Math.ceil(filterSlotTwo.guests / 6))
     .reduce((a, b) => a + b, 0);
     
-    return {tablesForSlotOne , tablesForSlotTwo};
+    return {tablesForSlotOne , tablesForSlotTwo, totalNumberOfGuestsForRequestedDate};
      
 }
