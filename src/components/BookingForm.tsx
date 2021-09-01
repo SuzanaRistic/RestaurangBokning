@@ -5,7 +5,6 @@ import IBooking from '../interfaces/IBooking';
 import axios from 'axios';
 import GuestComponent from './GuestForm';
 import {findTables} from './findTime';
-import {FindBookings} from './GetBookings';
 
 function BookingForm() {
   const now = new Date(Date.now());
@@ -43,7 +42,15 @@ function BookingForm() {
   }
 
   useEffect(() => {
-    const bookingsFromDB = FindBookings;
+    axios
+      .get('http://localhost:4000/bookings')
+      .then((res) => {
+        console.log(res.data);
+        setBookingList(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   function sendRequest() {
