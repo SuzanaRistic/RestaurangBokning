@@ -19,6 +19,7 @@ function Admin() {
   const today = todayIso.slice(0, 10);
   const dateRef = createRef<HTMLInputElement>();
 
+// Function that gets all bookings for admin to see
   function sendRequest() {
           axios
             .get("http://localhost:4000/bookings")
@@ -38,6 +39,7 @@ function Admin() {
 
   }
 
+// Function that allows admin to delete booking 
   function deleteBooking(ref: string) {
     axios.delete(`http://localhost:4000/bookings/avboka/${ref}`).then(function (response) {
       console.log(response);
@@ -65,6 +67,8 @@ function Admin() {
     }, 2000);
   }, []);
 
+
+  //Admin HTML and structure
   return (
     <>
     <Header title="Admin"></Header>

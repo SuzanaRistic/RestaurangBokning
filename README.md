@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Brief description of the project 
+# Description of the project 
 
 In this React project we did offical website in both desktop and mobile screen for The Lazy Bee restaurant. All pages contain header with spinning logo of The Lazy Bee restaurant, as well as footer with information about restaurants place, open hours and contact number. This website starts with landingpage where you can find links for menu and table resarvation. Menu leads you to information of what food restaurants serves where you can as well find a link to table booking. Table booking starts with guest being able to choose how many people are visiting restaurant as well as date and time of the booking. Guest can continue to page where he can enter his contact information and confirm booking after which he will recive confirmation mail. In confirmation mail the guest will recive link to cancel booking if wished. Administrative route is available for restaurant to make cancelations and changes to existing bookings. 
 
@@ -52,3 +52,10 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Contact
+
+Email: 
+suzana.ristic@medieinstitutet.se
+melina.kamyab@medieinstitutet.se
+marta.ballardini@medieinstitutet.se
