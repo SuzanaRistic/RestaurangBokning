@@ -1,26 +1,27 @@
-import React, {createRef, useEffect, useState} from "react";
-import "./../styles/Booking.scss";
-import gavidare from "./../images/gå vidare med bokning knapp.svg";
-import IBooking from "../interfaces/IBooking";
-import axios from "axios";
-import GuestComponent from "./GuestForm";
-import { findTables } from "./findTime";
+import React, {createRef, useEffect, useState} from 'react';
+import './../styles/Booking.scss';
+import gavidare from './../images/gå vidare med bokning knapp.svg';
+import IBooking from '../interfaces/IBooking';
+import axios from 'axios';
+import GuestComponent from './GuestForm';
+import {findTables} from './findTime';
+import {FindBookings} from './GetBookings';
 
 function BookingForm() {
-  const now = new Date(Date.now())
-  const todayIso = now.toISOString()
-  const today = todayIso.slice(0, 10)
-  const [time, setTime] = useState("18:00");
+  const now = new Date(Date.now());
+  const todayIso = now.toISOString();
+  const today = todayIso.slice(0, 10);
+  const [time, setTime] = useState('18:00');
   const [showFirst, setShowFirst] = useState(true);
   const [bookingList, setBookingList] = useState<IBooking[]>();
   const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({
     guests: 0,
-    time: "",
-    date: "",
+    time: '',
+    date: '',
   });
   const [requestedBooking, setRequestedBooking] = useState({
     guests: 1,
-    date: "",
+    date: '',
   });
   const [guests, setGuests] = useState({
     guestsForRequestedDate: 0,
@@ -35,36 +36,28 @@ function BookingForm() {
   function sendFirstPart() {
     setDateGuestTimeInfo({
       guests: Number(guestsRef.current?.value) || 0,
-      date: dateRef.current?.value?.toString() || "",
+      date: dateRef.current?.value?.toString() || '',
       time: time,
     });
     setShowFirst(false);
   }
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/bookings")
-      .then((res) => {
-        console.log(res.data);
-        setBookingList(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const bookingsFromDB = FindBookings;
   }, []);
 
   function sendRequest() {
     setRequestedBooking({
       guests: Number(guestsRef.current?.value),
-      date: dateRef.current?.value?.toString() || "",
+      date: dateRef.current?.value?.toString() || '',
     });
   }
 
   useEffect(() => {
     console.log(
-      "Number of guests: ",
+      'Number of guests: ',
       requestedBooking?.guests,
-      "Date requested: ",
+      'Date requested: ',
       requestedBooking?.date
     );
 
@@ -84,7 +77,7 @@ function BookingForm() {
       0
     );
 
-    const tables = findTables(bookingList || [], requestedBooking.date)
+    const tables = findTables(bookingList || [], requestedBooking.date);
 
     setGuests({
       guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0,
@@ -94,10 +87,10 @@ function BookingForm() {
 
     setDateGuestTimeInfo({
       guests: Number(guestsRef.current?.value) || 0,
-      date: dateRef.current?.value?.toString() || "",
+      date: dateRef.current?.value?.toString() || '',
       time: time,
     });
-    console.log(dateGuestTimeInfo)
+    console.log(dateGuestTimeInfo);
   }, [requestedBooking]);
 
   useEffect(() => {
@@ -106,7 +99,7 @@ function BookingForm() {
         Math.ceil(requestedBooking.guests / 6) >=
       30
     ) {
-      setTime(" ");
+      setTime(' ');
       setButtonVariable(
         <>
           <div className="time-btns"></div>
@@ -117,7 +110,7 @@ function BookingForm() {
       guests.guestsTOne + Math.ceil(requestedBooking.guests / 6) >=
       15
     ) {
-      setTime("21:00");
+      setTime('21:00');
       setButtonVariable(
         <>
           <div className="time-btns">
@@ -130,7 +123,7 @@ function BookingForm() {
       guests.guestsTTwo + Math.ceil(requestedBooking.guests / 6) >=
       15
     ) {
-      setTime("18:00");
+      setTime('18:00');
       setButtonVariable(
         <>
           <div className="time-btns">
@@ -146,7 +139,7 @@ function BookingForm() {
             <button
               className="time-btn"
               onClick={() => {
-                setTime("18:00");
+                setTime('18:00');
               }}
             >
               18:00
@@ -154,7 +147,7 @@ function BookingForm() {
             <button
               className="time-btn"
               onClick={() => {
-                setTime("21:00");
+                setTime('21:00');
               }}
             >
               21:00
@@ -206,11 +199,13 @@ function BookingForm() {
             </div>
           </div>
           {dateGuestTimeInfo.date.length <= 1 ||
-            dateGuestTimeInfo.guests <= 1 ||
-            dateGuestTimeInfo.time.length <= 1 ? 
+          dateGuestTimeInfo.guests <= 1 ||
+          dateGuestTimeInfo.time.length <= 1 ? (
             <button className="confirm-btn" disabled={true}>
               <img src={gavidare} alt="" />
-            </button> : <button
+            </button>
+          ) : (
+            <button
               className="confirm-btn"
               onClick={(e) => {
                 e.preventDefault();
@@ -220,10 +215,9 @@ function BookingForm() {
             >
               <img src={gavidare} alt="" />
             </button>
-          }
+          )}
         </div>
       )}
-      
 
       {!showFirst && (
         <div className="white-container-booking">
@@ -245,7 +239,6 @@ function BookingForm() {
           ></GuestComponent>
         </div>
       )}
-      
     </>
   );
 }
