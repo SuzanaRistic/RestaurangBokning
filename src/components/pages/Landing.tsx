@@ -3,6 +3,7 @@ import './../../styles/Landing.scss'
 import { Link } from 'react-router-dom'
 import Header from '../Header'
 
+//Websites start page with links to the menu and table booking
 function Landing() {
     return (
         <>

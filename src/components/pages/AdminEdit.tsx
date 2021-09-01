@@ -8,6 +8,7 @@ import {IParams} from './Confirmation'
 import knapp from "./../../images/ändrabokningknapp.svg";
 import { findTables } from '../findTime';
 
+//Function for admin to edit bookings
 function AdminEdit() {
     const history = useHistory();
     const { ref } = useParams<IParams>();
@@ -34,6 +35,7 @@ function AdminEdit() {
     const guestRef = createRef<HTMLInputElement>();
     const timeRef = createRef<HTMLSelectElement>();
 
+// Function that allows admin to search for available date/time
     function findAvailable () {
         const tables = findTables(bookingList || [], dateRef.current?.value || ' ');
         const guests = Number(guestRef.current?.value) || 0
@@ -75,7 +77,7 @@ function AdminEdit() {
         console.log(timeRef.current?.value)
 
     }
-    
+    // Function that saves changes that admin made in guests booking
     function sendChange () {
         console.log(timeRef.current?.value)
         axios.put(`http://localhost:4000/bookings/update/${ref}`, 
@@ -105,6 +107,8 @@ function AdminEdit() {
             console.log(error);
           });
       }, []);
+
+      //Admin edit allow and structure
     return (
         <div>
             <Header title="Ändra Bokning"/>
