@@ -7,6 +7,8 @@ import logo from "./../../images/logo-with-background.svg";
 export interface IParams {
   ref: string;
 }
+
+//Function that gives guest confirmation of booking with cofirmation id as well as possibility of cancelation
 function Confirmation() {
   const history = useHistory();
   const {ref} = useParams<IParams>();

@@ -1,3 +1,5 @@
+// Booking schema for bookings made on website that will be saved to database
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 let bookingSchema = new Schema({

@@ -7,6 +7,7 @@ import GuestComponent from './GuestForm';
 import {findTables} from './findTime';
 import {FindBookings} from './GetBookings';
 
+
 function BookingForm() {
   const now = new Date(Date.now());
   const todayIso = now.toISOString();

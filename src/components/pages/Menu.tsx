@@ -5,6 +5,7 @@ import decoflower from "./../../images/bulletpoint 1.png";
 import "./../../styles/Menu.scss";
 import {Link} from "react-router-dom";
 
+// Restaurants menu information with link to table booking 
 function Menu() {
   return (
     <>

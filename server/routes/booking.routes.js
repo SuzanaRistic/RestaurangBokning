@@ -15,6 +15,7 @@ router.route('/').get((req, res, next) => {
         }
     })
 })
+
 router.route('/:booking_reference').get((req, res, next) => {
     booking.findOne({booking_reference: req.params.booking_reference},
         (error, data) => {
@@ -27,6 +28,8 @@ router.route('/:booking_reference').get((req, res, next) => {
     })
 })
 
+
+
 router.route('/').post((req, res, next) => {
     booking.create(req.body, (error, data) => {
         if (error) {
@@ -38,6 +41,7 @@ router.route('/').post((req, res, next) => {
     })
 });
 
+//Route for editing bookings as admin
 
 router.route('/update/:booking_reference').put((req, res, next) => {
     booking.updateOne({booking_reference: req.params.booking_reference}, {
@@ -51,6 +55,8 @@ router.route('/update/:booking_reference').put((req, res, next) => {
         }
     })
 })
+
+// Route for cancelation 
 
 router.route('/avboka/:booking_reference').delete((req, res, next) => {
     booking.deleteOne({booking_reference : req.params.booking_reference}, (error, data) => {

@@ -6,6 +6,7 @@ import {IParams} from './Confirmation'
 import logo from './../../images/lazy-logo-white.svg'
 import{ init, send } from 'emailjs-com';
 
+// Booking cancelation function that allows cancelation and deletes booking from database
 init("user_OHyxXpSu4H1rj4LKQ2q7L");
 function Cancel() {
     const [cancelled, setCancelled] = useState(false);
