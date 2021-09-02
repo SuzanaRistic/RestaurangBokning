@@ -155,6 +155,7 @@ function BookingForm() {
               {time.length > 1 && <p>Du har valt tiden: {time} </p>}
             </div>
           </div>
+        {/* Check so that the user has filled out all input values in the booking form */}
           {dateGuestTimeInfo.date.length <= 1 ||
           dateGuestTimeInfo.guests < 0 ||
           dateGuestTimeInfo.time.length <= 1 ? (
@@ -175,7 +176,7 @@ function BookingForm() {
           )}
         </div>
       )}
-
+    {/* Show chosen values from previous page n the next step of the booking */}
       {!showFirst && (
         <div className="white-container-booking">
           <div className="booking-info-container">
