@@ -16,7 +16,7 @@ interface IGuestComponentProps {
   date: string;
   guests: number;
 }
-
+// Validation of information that guest writes when booking table
 const GuestComponent = (props: IGuestComponentProps) => {
   const [booking, setBooking] = useState<IBooking>();
   let history = useHistory();
@@ -38,6 +38,8 @@ const GuestComponent = (props: IGuestComponentProps) => {
       phonenumber: '',
       message: '',
     },
+
+    //checking if inputs are valid
     validationSchema: yup.object({
       firstname: yup
         .string()

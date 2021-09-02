@@ -1,5 +1,6 @@
 import IBooking from '../interfaces/IBooking';
 
+//Function that checks if there are any available tables
 export function findTables (bookingList: IBooking[], date: string) {
   const totalNumberOfGuestsAndTimeList = bookingList
   ?.filter((totalGuests) => totalGuests.date === date)
