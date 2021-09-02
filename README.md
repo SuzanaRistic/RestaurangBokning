@@ -1,10 +1,17 @@
 # Group Assignment in React - The Lazy Bee evening brunch restaurant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Description of the project
+## Description of the project
 
-_In this React project we did offical website in both desktop and mobile screen for The Lazy Bee restaurant. All pages contain header with spinning logo of The Lazy Bee restaurant, as well as footer with information about restaurants place, open hours and contact number. This website starts with landingpage where you can find links for menu and table resarvation. Menu leads you to information of what food restaurants serves where you can as well find a link to table booking. Table booking starts with guest being able to choose how many people are visiting restaurant as well as date and time of the booking. Guest can continue to page where he can enter his contact information and confirm booking after which he will recive confirmation mail. In confirmation mail the guest will recive link to cancel booking if wished. Administrative route is available for restaurant to make cancelations and changes to existing bookings._
+_In this React project we did an offical website in both desktop and mobile screen for The Lazy Bee restaurant. 
+
+All pages contain header with spinning logo of The Lazy Bee restaurant, as well as a footer with information about the location of the restaurant, opening hours and contact details. 
+
+On the landinpage of the website you can find links to the menu and the table resarvation. Menu gives the viewer/potential guest an overview of the food served as well a link to table booking page
+
+The booking page gives the guest the possibility to choose the number of guests as well as date and time of the requested booking. The guest can continue to page where she/he can enter his contact information and confirm booking after which she/he will recive a confirmation mail. In confirmation mail the guest will recive cancelation link. 
+
+Finally, there is an administrative route available for restaurant employees to make cancelations and changes to existing bookings._
 
 ## Installation instructions
 
