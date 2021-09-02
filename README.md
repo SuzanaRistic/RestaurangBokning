@@ -30,7 +30,7 @@ _Below you'll find a brief summary of the naming conventions for this project_
 
 - When naming variables use **kebab-case**
   - Eg. `$bg-color: grey`
-- When naming classes and id:s use **camelCase**
+- When naming classes and id:s use **kebab-case**
 
 ### Functions
 
@@ -42,7 +42,7 @@ _Below you'll find a brief summary of the naming conventions for this project_
 - ProjectFolder/ contains the following folders and files:\_
   ```
   ├── public/         # is placed directly in the root directory
-  |  ├── index.html   # this file contains the html for the whole project
+  |   ├── index.html   # this file contains the html for the whole project
   ├── server/         # is placed directly in the root directory
   |   ├── models/         # schemas are placed in the models folder
   |   ├── routes/         # routes to database is placed in the routes folder
