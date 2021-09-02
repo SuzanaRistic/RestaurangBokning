@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Description of the project 
+
+In this React project we did offical website in both desktop and mobile screen for The Lazy Bee restaurant. All pages contain header with spinning logo of The Lazy Bee restaurant, as well as footer with information about restaurants place, open hours and contact number. This website starts with landingpage where you can find links for menu and table resarvation. Menu leads you to information of what food restaurants serves where you can as well find a link to table booking. Table booking starts with guest being able to choose how many people are visiting restaurant as well as date and time of the booking. Guest can continue to page where he can enter his contact information and confirm booking after which he will recive confirmation mail. In confirmation mail the guest will recive link to cancel booking if wished. Administrative route is available for restaurant to make cancelations and changes to existing bookings. 
+
+## Installation instructions 
+
+Create a new folder
+
+1. Navigate to the directory where you want to put your repository,
+2. Run `git clone https://github.com/SuzanaRistic/RestaurangBokning.git`
+3. Run `npm install` to install node modules
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -9,7 +21,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
@@ -44,17 +56,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-
-
-////
-## Installation:
-
-Create a new folder
-
-1. Navigate to the directory where you want to put your repository,
-2. Run `git clone https://github.com/SuzanaRistic/RestaurangBokning.git`
-3. Run `npm install` to install node modules
 
 ## Naming conventions
 _Below you'll find a brief summary of the naming conventions for this project_
@@ -98,4 +99,10 @@ _Below you'll find a brief summary of the naming conventions for this project_
                         keys. Make sure to replace these with your own keys.
  ```
   
+## Contact
+
+Email: 
+suzana.ristic@medieinstitutet.se
+melina.kamyab@medieinstitutet.se
+marta.ballardini@medieinstitutet.se
 

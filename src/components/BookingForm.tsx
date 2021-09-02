@@ -10,24 +10,12 @@ function BookingForm() {
   const now = new Date(Date.now());
   const todayIso = now.toISOString();
   const today = todayIso.slice(0, 10);
+  const [buttonVariable, setButtonVariable] = useState(<div></div>);
   const [time, setTime] = useState('18:00');
   const [showFirst, setShowFirst] = useState(true);
   const [bookingList, setBookingList] = useState<IBooking[]>();
-  const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({
-    guests: 0,
-    time: '',
-    date: '',
-  });
-  const [requestedBooking, setRequestedBooking] = useState({
-    guests: 1,
-    date: '',
-  });
-  const [guests, setGuests] = useState({
-    guestsForRequestedDate: 0,
-    guestsTOne: 0,
-    guestsTTwo: 0,
-  });
-  const [buttonVariable, setButtonVariable] = useState(<div></div>);
+  const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({guests: 0,  time: '', date: ''});
+
 
   const guestsRef = createRef<HTMLSelectElement>();
   const dateRef = createRef<HTMLInputElement>();
@@ -40,12 +28,10 @@ function BookingForm() {
     });
     setShowFirst(false);
   }
-
   useEffect(() => {
     axios
-      .get('http://localhost:4000/bookings')
+      .get<IBooking[]>('http://localhost:4000/bookings')
       .then((res) => {
-        console.log(res.data);
         setBookingList(res.data);
       })
       .catch((error) => {
@@ -54,56 +40,20 @@ function BookingForm() {
   }, []);
 
   function sendRequest() {
-    setRequestedBooking({
-      guests: Number(guestsRef.current?.value),
-      date: dateRef.current?.value?.toString() || '',
-    });
-  }
+    let guests = Number(guestsRef.current?.value);
+    let date = dateRef.current?.value?.toString();
 
-  useEffect(() => {
-    console.log(
-      'Number of guests: ',
-      requestedBooking?.guests,
-      'Date requested: ',
-      requestedBooking?.date
-    );
-
-    const totalNumberOfGuestsAndTimeList = bookingList
-      ?.filter((totalGuests) => totalGuests.date === requestedBooking?.date)
-      .map((filteredGuests) => ({
-        time: filteredGuests.time,
-        guests: filteredGuests.guests,
-      }));
-
-    const totalNumberOfGuestsList = totalNumberOfGuestsAndTimeList?.map(
-      (filterGuests) => filterGuests.guests
-    );
-
-    const totalNumberOfGuestsForRequestedDate = totalNumberOfGuestsList?.reduce(
-      (a, b) => a + b,
-      0
-    );
-
-    const tables = findTables(bookingList || [], requestedBooking.date);
-
-    setGuests({
-      guestsForRequestedDate: totalNumberOfGuestsForRequestedDate || 0,
-      guestsTOne: tables.tablesForSlotOne || 0,
-      guestsTTwo: tables.tablesForSlotTwo || 0,
-    });
+    const tables = findTables(bookingList || [], date || '');
 
     setDateGuestTimeInfo({
       guests: Number(guestsRef.current?.value) || 0,
       date: dateRef.current?.value?.toString() || '',
       time: time,
     });
-    console.log(dateGuestTimeInfo);
-  }, [requestedBooking]);
 
-  useEffect(() => {
     if (
-      Math.ceil(guests.guestsForRequestedDate / 6) +
-        Math.ceil(requestedBooking.guests / 6) >=
+      Math.ceil(tables.totalNumberOfGuestsForRequestedDate || 0 / 6) +
+        Math.ceil(guests / 6) >=
       30
     ) {
       setTime(' ');
@@ -114,7 +64,7 @@ function BookingForm() {
         </>
       );
     } else if (
-      guests.guestsTOne + Math.ceil(requestedBooking.guests / 6) >=
+      tables.tablesForSlotOne + Math.ceil(guests / 6) >=
       15
     ) {
       setTime('21:00');
@@ -127,7 +77,7 @@ function BookingForm() {
         </>
       );
     } else if (
-      guests.guestsTTwo + Math.ceil(requestedBooking.guests / 6) >=
+      tables.tablesForSlotTwo + Math.ceil(guests / 6) >=
       15
     ) {
       setTime('18:00');
@@ -164,7 +114,7 @@ function BookingForm() {
         </>
       );
     }
-  }, [guests]);
+  }
 
   return (
     <>
@@ -206,7 +156,7 @@ function BookingForm() {
             </div>
           </div>
           {dateGuestTimeInfo.date.length <= 1 ||
-          dateGuestTimeInfo.guests <= 1 ||
+          dateGuestTimeInfo.guests < 0 ||
           dateGuestTimeInfo.time.length <= 1 ? (
             <button className="confirm-btn" disabled={true}>
               <img src={gavidare} alt="" />
