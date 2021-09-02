@@ -8,7 +8,11 @@ In this React project we did offical website in both desktop and mobile screen f
 
 ## Installation instructions 
 
-Run npm i to install all node packages needed for this project
+Create a new folder
+
+1. Navigate to the directory where you want to put your repository,
+2. Run `git clone https://github.com/SuzanaRistic/RestaurangBokning.git`
+3. Run `npm install` to install node modules
 
 ## Available Scripts
 
@@ -53,9 +57,52 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+## Naming conventions
+_Below you'll find a brief summary of the naming conventions for this project_
+
+### Variables
+
+- Use let or const instead of var
+- When naming variables use **camelCase**
+  - Eg. `let userName = User`
+- When naming Mongoose schemas use **PascalCase**
+  - Eg. `const User = mongoose.model("user", userSchema)`
+
+###  CSS/SCSS namning conventions
+
+- When naming variables use **kebab-case**
+  - Eg. `$bg-color: grey`
+- When naming classes and id:s use **camelCase**
+
+### Functions
+
+  - When writing functions write `function functionName(example){example}`
+  - Function names should be in **camelCase**
+
+
+## Project structure
+
+- ProjectFolder/ contains the following folders and files:_
+  ```
+  ├── public/         # is placed directly in the root directory 
+  |  ├── index.html   # this file contains the html for the whole project
+  ├── server/         # is placed directly in the root directory 
+  |   ├── models/         # schemas are placed in the models folder 
+  |   ├── routes/         # routes to database is placed in the routes folder
+  |   ├── server.js       # this file contains connection to database 
+  ├── src/             # This folder contains all components for the project as 
+                         the following folders: 
+  |   ├── images/         # images are placed here
+  |   ├── interfaces/     # this folder contains all interfaces
+  |   ├── styles          # this folder contains SCSS files   
+  └──  .env           # config.js is placed in the root directory with important 
+                        keys. Make sure to replace these with your own keys.
+ ```
+  
 ## Contact
 
 Email: 
 suzana.ristic@medieinstitutet.se
 melina.kamyab@medieinstitutet.se
 marta.ballardini@medieinstitutet.se
+
