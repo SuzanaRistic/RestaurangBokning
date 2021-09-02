@@ -1,17 +1,16 @@
 # Group Assignment in React - The Lazy Bee evening brunch restaurant
 
-
 ## Description of the project
 
-_In this React project we did an offical website in both desktop and mobile screen for The Lazy Bee restaurant. 
+_In this React project we did an offical website in both desktop and mobile screen for The Lazy Bee restaurant._
 
-All pages contain header with spinning logo of The Lazy Bee restaurant, as well as a footer with information about the location of the restaurant, opening hours and contact details. 
+_All pages contain header with spinning logo of The Lazy Bee restaurant, as well as a footer with information about the location of the restaurant, opening hours and contact details._
 
-On the landinpage of the website you can find links to the menu and the table resarvation. Menu gives the viewer/potential guest an overview of the food served as well a link to table booking page
+_On the landinpage of the website you can find links to the menu and the table resarvation. Menu gives the viewer/potential guest an overview of the food served as well a link to table booking page_
 
-The booking page gives the guest the possibility to choose the number of guests as well as date and time of the requested booking. The guest can continue to page where she/he can enter his contact information and confirm booking after which she/he will recive a confirmation mail. In confirmation mail the guest will recive cancelation link. 
+_The booking page gives the guest the possibility to choose the number of guests as well as date and time of the requested booking. The guest can continue to page where she/he can enter his contact information and confirm booking after which she/he will recive a confirmation mail. In confirmation mail the guest will recive cancelation link._
 
-Finally, there is an administrative route available for restaurant employees to make cancelations and changes to existing bookings._
+_Finally, there is an administrative route available for restaurant employees to make cancelations and changes to existing bookings._
 
 ## Installation instructions
 
