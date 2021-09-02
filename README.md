@@ -48,7 +48,7 @@ _Below you'll find a brief summary of the naming conventions for this project_
   |   ├── routes/         # routes to database is placed in the routes folder
   |   ├── server.js       # this file contains connection to database
   ├── src/             # This folder contains all components for the project as
-                         the following folders:
+  |                       the following folders:
   |   ├── images/         # images are placed here
   |   ├── interfaces/     # this folder contains all interfaces
   |   ├── styles          # this folder contains SCSS files
@@ -99,12 +99,9 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-
 ## Contact
 
 Email:
 suzana.ristic@medieinstitutet.se
 melina.kamyab@medieinstitutet.se
 marta.ballardini@medieinstitutet.se
-
-
