@@ -2,11 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Description of the project 
+# Description of the project
 
-In this React project we did offical website in both desktop and mobile screen for The Lazy Bee restaurant. All pages contain header with spinning logo of The Lazy Bee restaurant, as well as footer with information about restaurants place, open hours and contact number. This website starts with landingpage where you can find links for menu and table resarvation. Menu leads you to information of what food restaurants serves where you can as well find a link to table booking. Table booking starts with guest being able to choose how many people are visiting restaurant as well as date and time of the booking. Guest can continue to page where he can enter his contact information and confirm booking after which he will recive confirmation mail. In confirmation mail the guest will recive link to cancel booking if wished. Administrative route is available for restaurant to make cancelations and changes to existing bookings. 
+_In this React project we did offical website in both desktop and mobile screen for The Lazy Bee restaurant. All pages contain header with spinning logo of The Lazy Bee restaurant, as well as footer with information about restaurants place, open hours and contact number. This website starts with landingpage where you can find links for menu and table resarvation. Menu leads you to information of what food restaurants serves where you can as well find a link to table booking. Table booking starts with guest being able to choose how many people are visiting restaurant as well as date and time of the booking. Guest can continue to page where he can enter his contact information and confirm booking after which he will recive confirmation mail. In confirmation mail the guest will recive link to cancel booking if wished. Administrative route is available for restaurant to make cancelations and changes to existing bookings._
 
-## Installation instructions 
+## Installation instructions
 
 Create a new folder
 
@@ -58,6 +58,7 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Naming conventions
+
 _Below you'll find a brief summary of the naming conventions for this project_
 
 ### Variables
@@ -68,7 +69,7 @@ _Below you'll find a brief summary of the naming conventions for this project_
 - When naming Mongoose schemas use **PascalCase**
   - Eg. `const User = mongoose.model("user", userSchema)`
 
-###  CSS/SCSS namning conventions
+### CSS/SCSS namning conventions
 
 - When naming variables use **kebab-case**
   - Eg. `$bg-color: grey`
@@ -76,33 +77,35 @@ _Below you'll find a brief summary of the naming conventions for this project_
 
 ### Functions
 
-  - When writing functions write `function functionName(example){example}`
-  - Function names should be in **camelCase**
-
+- When writing functions write `function functionName(example){example}`
+- Function names should be in **camelCase**
 
 ## Project structure
 
-- ProjectFolder/ contains the following folders and files:_
+- ProjectFolder/ contains the following folders and files:\_
   ```
-  ├── public/         # is placed directly in the root directory 
+  ├── public/         # is placed directly in the root directory
   |  ├── index.html   # this file contains the html for the whole project
-  ├── server/         # is placed directly in the root directory 
-  |   ├── models/         # schemas are placed in the models folder 
+  ├── server/         # is placed directly in the root directory
+  |   ├── models/         # schemas are placed in the models folder
   |   ├── routes/         # routes to database is placed in the routes folder
-  |   ├── server.js       # this file contains connection to database 
-  ├── src/             # This folder contains all components for the project as 
-                         the following folders: 
+  |   ├── server.js       # this file contains connection to database
+  ├── src/             # This folder contains all components for the project as
+                         the following folders:
   |   ├── images/         # images are placed here
   |   ├── interfaces/     # this folder contains all interfaces
-  |   ├── styles          # this folder contains SCSS files   
-  └──  .env           # config.js is placed in the root directory with important 
+  |   ├── styles          # this folder contains SCSS files
+  └──  .env           # config.js is placed in the root directory with important
                         keys. Make sure to replace these with your own keys.
- ```
-  
+  ```
+
+```
+
 ## Contact
 
-Email: 
+Email:
 suzana.ristic@medieinstitutet.se
 melina.kamyab@medieinstitutet.se
 marta.ballardini@medieinstitutet.se
 
+```
