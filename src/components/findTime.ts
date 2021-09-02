@@ -1,6 +1,7 @@
 import IBooking from '../interfaces/IBooking';
 
-//import the booking request from BookingForm with requested date and number of guests
+//This is a function that checks if there are any available tables
+//Firstly, import the booking request from BookingForm with requested date and number of guests
 export function findTables (bookingList: IBooking[], date: string) {
   //map out all guests and the booked times for the requested day and place them 
   //in a variable, here called "totalNumberOfGuestsAndTimeList"
