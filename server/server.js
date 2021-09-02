@@ -3,9 +3,10 @@ let express = require('express');
 let mongoose = require('mongoose');
 let cors = require('cors');
 let bodyParser = require('body-parser');
-
+// import our routes 
 const bookingRoute = require('../server/routes/booking.routes')
 
+// Connect our application to our MongoDB 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL, {
     useNewUrlParser: true
@@ -16,6 +17,8 @@ mongoose.connect(process.env.DATABASE_URL, {
         console.log('Database could not be connected : ' + error)
     }
 )
+
+// configure some options like express, ports, routes.
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -28,7 +31,8 @@ const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
     console.log('Connected to port ' + port)
 })
-// Error Handling
+
+// errors
 app.use((req, res, next) => {
     // eslint-disable-next-line no-undef
     next(res);

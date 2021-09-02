@@ -2,12 +2,15 @@ import React from 'react'
 import '../styles/Header.scss'
 import { useHistory } from 'react-router-dom'
 import logo from './../images/logo-with-background.svg'
+
+
 interface IHeaderProps {
     title: string
 }
 function Header(props: IHeaderProps) {
     let history = useHistory();
 
+    //to send user to landingpage if they click the logo
     function handleClick() {
         history.push("/");
     }

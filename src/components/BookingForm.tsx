@@ -7,27 +7,34 @@ import GuestComponent from './GuestForm';
 import {findTables} from './findTime';
 
 function BookingForm() {
+  // making a string for todays date to use as minimun value in our date-input
   const now = new Date(Date.now());
   const todayIso = now.toISOString();
   const today = todayIso.slice(0, 10);
+  // all our states 
   const [buttonVariable, setButtonVariable] = useState(<div></div>);
   const [time, setTime] = useState('18:00');
   const [showFirst, setShowFirst] = useState(true);
   const [bookingList, setBookingList] = useState<IBooking[]>();
   const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({guests: 0,  time: '', date: ''});
 
-
+  // refs for the inputs
   const guestsRef = createRef<HTMLSelectElement>();
   const dateRef = createRef<HTMLInputElement>();
 
+  // a function to set the state of our first 3 choices in the booking form and then, show the user the other form for the contactinfo
   function sendFirstPart() {
+    // sets the choices
     setDateGuestTimeInfo({
       guests: Number(guestsRef.current?.value) || 0,
       date: dateRef.current?.value?.toString() || '',
       time: time,
     });
+    // toggles the component GuestForm 
     setShowFirst(false);
   }
+
+  // gets all of our bookings from our database and put them in a state
   useEffect(() => {
     axios
       .get<IBooking[]>('http://localhost:4000/bookings')
@@ -39,19 +46,17 @@ function BookingForm() {
       });
   }, []);
 
+  // sends a request for a date, and shows the appropriate html for that specifik scenario
   function sendRequest() {
     let guests = Number(guestsRef.current?.value);
     let date = dateRef.current?.value?.toString();
 
+    // gets the info from the findTables function that is in findTime.ts, this function calculates how many tables there is for each timeslot for the requested date
     const tables = findTables(bookingList || [], date || '');
 
-    setDateGuestTimeInfo({
-      guests: Number(guestsRef.current?.value) || 0,
-      date: dateRef.current?.value?.toString() || '',
-      time: time,
-    });
-
+    // if statement that checks the availability for the night and show the matching html
     if (
+      // if the night is all fully booked
       Math.ceil(tables.totalNumberOfGuestsForRequestedDate || 0 / 6) +
         Math.ceil(guests / 6) >=
       30
@@ -64,6 +69,7 @@ function BookingForm() {
         </>
       );
     } else if (
+      // if 18:00 is all fully booked
       tables.tablesForSlotOne + Math.ceil(guests / 6) >=
       15
     ) {
@@ -77,6 +83,7 @@ function BookingForm() {
         </>
       );
     } else if (
+      // if 21:00 is all fully booked
       tables.tablesForSlotTwo + Math.ceil(guests / 6) >=
       15
     ) {
@@ -90,6 +97,7 @@ function BookingForm() {
         </>
       );
     } else {
+      // if both timeslots are available
       setButtonVariable(
         <>
           <div className="time-btns">
