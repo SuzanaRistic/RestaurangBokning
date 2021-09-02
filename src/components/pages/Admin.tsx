@@ -54,8 +54,7 @@ function Admin() {
 
   useEffect(() => {
     setTimeout(() => {
-      axios
-        .get("http://localhost:4000/bookings")
+      return axios.get("http://localhost:4000/bookings")
         .then((res) => {
           console.log(res.data);
           setBookingList(res.data);
@@ -99,7 +98,7 @@ function Admin() {
       ) : (
         bookingList?.map((filterBooking) => ( 
           
-          <div className="booking-container"  >
+          <div key={filterBooking.booking_reference} className="booking-container"  >
               <div>
                 {filterBooking.firstname} {filterBooking.lastname}
               </div>
