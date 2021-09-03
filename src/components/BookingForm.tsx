@@ -50,6 +50,13 @@ function BookingForm() {
   function sendRequest() {
     let guests = Number(guestsRef.current?.value);
     let date = dateRef.current?.value?.toString();
+    
+    // sets the choices
+    setDateGuestTimeInfo({
+      guests: Number(guestsRef.current?.value) || 0,
+      date: dateRef.current?.value?.toString() || '',
+      time: time,
+    });
 
     // gets the info from the findTables function that is in findTime.ts, this function calculates how many tables there is for each timeslot for the requested date
     const tables = findTables(bookingList || [], date || '');
