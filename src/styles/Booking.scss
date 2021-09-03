@@ -1,4 +1,5 @@
 @import 'common';
+@import 'button';
 
 .white-container-booking {
   width: 70vw;
@@ -12,13 +13,15 @@
   flex-direction: column;
   align-items: center;
   font-size: 150%;
+
+    label {
+        font-size: 100%;
+        font-weight: bold;
+    }
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  label {
-    padding: 1em;
   }
   select {
     padding: 1em;

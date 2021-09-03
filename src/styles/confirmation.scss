@@ -1,8 +1,10 @@
+@import 'button';
+
 div {
-    label{
-        font-size: 100%;
-        font-weight: bold;
-    }
+    // label{
+    //     font-size: 100%;
+    //     font-weight: bold;
+    // }
     p {
         color: rgb(18, 18, 18);
         font-size: 80%;
@@ -10,12 +12,5 @@ div {
             color: inherit;
         }
     }
-    button {
-        margin: 1em;
-        background-color: transparent;
-        border: 1px solid #B7AA81;
-        font-family: inherit;
-        font-size: 150%;
-        padding: 1em;
-    }
+
 }
