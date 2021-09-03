@@ -1,24 +1,35 @@
 @import 'common';
 
 .food-container {
-  color: black;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
 }
 
 .food-name {
-  font-family: 'Chivo', serif;
-  font-size: 40px;
+    padding: 0em 1em;
+    font-family: 'Chivo', serif;
+    font-size: 180%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .decoflower {
-  width: 40px;
+    width: 15px;
+    padding: 15px;
 }
 
 .food-description {
-  line-height: 40px;
-  font-size: 30px;
-  margin: 50px;
-  margin-top: 0;
-  margin-bottom: 25px;
+    line-height: 40px;
+    font-size: 120%;
+    margin: 50px;
+    margin-top: 0;
+    margin-bottom: 25px;
+
 }
 
 hr {

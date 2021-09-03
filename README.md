@@ -61,6 +61,21 @@ _Below you'll find a brief summary of the naming conventions for this project_
   └──  .env           # config.js is placed in the root directory with important
                         keys. Make sure to replace these with your own keys.
   ```
+## API
+### User intructions
+  We have a MongoDB database, that we have connected with our application in the server-folder. It is run with Express.js and Mongoose. We have a few routes in our API that are good to know: 
+
+  ``` http://localhost:4000/bookings ```
+  this is the route that will show you all of the booking-objects that are stored in our database.
+
+  ``` http://localhost:4000/bookings/:booking_reference ```
+  in this route you can see one booking-object if you add their bookingreference in the url.
+
+ ``` http://localhost:4000/bookings/delete/:booking_reference ```
+  this is the route to use when cancelling a booking, it finds the right booking using the bookingreference you have provided in the url and then makes a delete request.
+
+  ``` http://localhost:4000/bookings/edit/:booking_reference ```
+  this is the route to use when editing a booking, it finds the right booking using the bookingreference you have provided in the url and then makes a put request, and changes all of the changes that you have provided in the request body.
 
 ## Available Scripts
 

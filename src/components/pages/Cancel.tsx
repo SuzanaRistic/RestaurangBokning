@@ -24,7 +24,7 @@ function Cancel() {
           .catch(function (error) {
             console.log(error);
           });
-        axios.delete(`http://localhost:4000/bookings/avboka/${ref}`)
+        axios.delete(`http://localhost:4000/bookings/delete/${ref}`)
         .then(function (response) {
             console.log(response);
           })
