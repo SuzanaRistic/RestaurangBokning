@@ -93,7 +93,7 @@ function Menu() {
           <hr></hr>
 
           <Link to="/boka">
-            <button className="book-btn">
+            <button className="lazy-bee-confirm-btn">
               <img src={bookbutton} alt="" />
             </button>
           </Link>

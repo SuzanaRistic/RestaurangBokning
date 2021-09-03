@@ -134,7 +134,7 @@ function AdminEdit() {
                     <input type="text" name="email"  defaultValue={booking?.email} ref={emailRef}/>
                     <label htmlFor="message"></label>
                     <textarea name="message" rows={4} defaultValue={booking?.message} ref={messageRef}></textarea>
-                    <button className="confirm-btn" onClick={sendChange}>
+                    <button className="lazy-bee-confirm-btn" onClick={sendChange}>
                         <img src={knapp} alt="" />
                     </button>
                 </div>

@@ -194,7 +194,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
       </p>
 
       <button
-        className="confirm-btn"
+        className="lazy-bee-confirm-btn"
         onClick={SendBooking}
         disabled={!(formik.isValid && formik.dirty)}
       >
