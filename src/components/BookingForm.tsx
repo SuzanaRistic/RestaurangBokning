@@ -11,12 +11,16 @@ function BookingForm() {
   const now = new Date(Date.now());
   const todayIso = now.toISOString();
   const today = todayIso.slice(0, 10);
-  // all our states 
+  // all our states
   const [buttonVariable, setButtonVariable] = useState(<div></div>);
   const [time, setTime] = useState('18:00');
   const [showFirst, setShowFirst] = useState(true);
   const [bookingList, setBookingList] = useState<IBooking[]>();
-  const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({guests: 0,  time: '', date: ''});
+  const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({
+    guests: 0,
+    time: '',
+    date: '',
+  });
 
   // refs for the inputs
   const guestsRef = createRef<HTMLSelectElement>();
@@ -30,7 +34,7 @@ function BookingForm() {
       date: dateRef.current?.value?.toString() || '',
       time: time,
     });
-    // toggles the component GuestForm 
+    // toggles the component GuestForm
     setShowFirst(false);
   }
 
@@ -50,7 +54,7 @@ function BookingForm() {
   function sendRequest() {
     let guests = Number(guestsRef.current?.value);
     let date = dateRef.current?.value?.toString();
-    
+
     // sets the choices
     setDateGuestTimeInfo({
       guests: Number(guestsRef.current?.value) || 0,
@@ -125,7 +129,6 @@ function BookingForm() {
               21:00
             </button>
           </div>
-          <p>Välj en ledig tid för ditt besök</p>
         </>
       );
     }
@@ -153,6 +156,7 @@ function BookingForm() {
           <div className="date-time-wrap">
             <div>
               <label htmlFor="date">Datum</label>
+              <p>Välj önskat besöksdatum: </p>
               <input
                 ref={dateRef}
                 min={today}
@@ -162,15 +166,17 @@ function BookingForm() {
                 required
                 onChange={sendRequest}
               />
-              <p>Välj önskat besöksdatum</p>
             </div>
             <div>
               <label htmlFor="tid">Tid</label>
+              <p>Välj en ledig tid för ditt besök:</p>
               {buttonVariable}
-              {time.length > 1 && <p>Du har valt tiden: {time} </p>}
+              {time.length > 0 && (
+                <p className="picked-time">Du har valt tiden: {time} </p>
+              )}
             </div>
           </div>
-        {/* Check so that the user has filled out all input values in the booking form */}
+          {/* Check so that the user has filled out all input values in the booking form */}
           {dateGuestTimeInfo.date.length <= 1 ||
           dateGuestTimeInfo.guests < 0 ||
           dateGuestTimeInfo.time.length <= 1 ? (
@@ -191,7 +197,7 @@ function BookingForm() {
           )}
         </div>
       )}
-    {/* Show chosen values from previous page n the next step of the booking */}
+      {/* Show chosen values from previous page n the next step of the booking */}
       {!showFirst && (
         <div className="white-container-booking">
           <div className="booking-info-container">

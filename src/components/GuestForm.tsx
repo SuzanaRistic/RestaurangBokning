@@ -124,7 +124,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
   }, [booking]);
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} className="guest-form">
       <label htmlFor="firstname">Förnamn*</label>
       <input
         type="text"
