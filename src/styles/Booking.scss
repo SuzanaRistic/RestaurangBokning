@@ -89,24 +89,7 @@
     margin-top: 20px;
     font-size: 15px;
   }
-  .confirm-btn {
-    margin: 10px;
-    border: none;
-    background-color: white;
-    img {
-      width: 90px;
-    }
 
-    img:hover {
-      animation: spin 10s linear infinite;
-    }
-  }
-  .confirm-btn:disabled {
-    img {
-      opacity: 35%;
-      animation: none;
-    }
-  }
   .booking-info-container {
     background-color: #b7aa81;
     flex-direction: row;
@@ -118,14 +101,7 @@
     }
   }
 }
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 
 .guest-form{
     font-size: 70%;

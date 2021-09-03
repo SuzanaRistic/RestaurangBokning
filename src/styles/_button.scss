@@ -15,3 +15,29 @@
         border: none;
     }
 }
+
+    .lazy-bee-confirm-btn {
+        margin: 10px;
+        border: none;
+        background-color: white;
+        img {
+          width: 90px;
+        }
+        img:hover {
+          animation: spin 10s linear infinite;
+        }
+      }
+       .lazy-bee-confirm-btn:disabled {
+        img {
+          opacity: 35%;
+          animation: none;
+        }
+      }
+      @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }

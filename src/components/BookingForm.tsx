@@ -171,7 +171,7 @@ function BookingForm() {
               <label htmlFor="tid">Tid</label>
               <p>Välj en ledig tid för ditt besök:</p>
               {buttonVariable}
-              {time.length > 0 && (
+              {dateGuestTimeInfo.date.length > 0 && (
                 <p className="picked-time">Du har valt tiden: {time} </p>
               )}
             </div>
@@ -180,12 +180,13 @@ function BookingForm() {
           {dateGuestTimeInfo.date.length <= 1 ||
           dateGuestTimeInfo.guests < 0 ||
           dateGuestTimeInfo.time.length <= 1 ? (
-            <button className="confirm-btn" disabled={true}>
+            <button className="lazy-bee-confirm-btn" disabled={true}>
               <img src={gavidare} alt="" />
             </button>
           ) : (
             <button
-              className="confirm-btn"
+              className="lazy-bee-confirm-btn
+              "
               onClick={(e) => {
                 e.preventDefault();
                 sendFirstPart();

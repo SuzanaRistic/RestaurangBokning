@@ -20,7 +20,7 @@ function Confirmation() {
           <p>Tack så mycket för din bokning hos The Lazy Bee!</p>
           <p>Din bokningsreferens är: {ref}</p>
           <p>Välkommen!</p>
-          <img src={logo} alt="logo"></img>
+          <img src={logo} alt="logo" className="confirmation-logo"></img>
           <button className="button"
             onClick={() => {
               history.push(`/avboka/${ref}`);
