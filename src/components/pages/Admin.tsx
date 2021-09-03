@@ -41,7 +41,7 @@ function Admin() {
 
 // Function that allows admin to delete booking 
   function deleteBooking(ref: string) {
-    axios.delete(`http://localhost:4000/bookings/avboka/${ref}`).then(function (response) {
+    axios.delete(`http://localhost:4000/bookings/delete/${ref}`).then(function (response) {
       console.log(response);
       axios
         .get("http://localhost:4000/bookings")
