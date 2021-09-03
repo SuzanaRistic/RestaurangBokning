@@ -1,117 +1,134 @@
-@import "common";
+@import 'common';
 
 .white-container-booking {
-    width: 70vw;
-    height: auto;
-    margin-top: -100px;
+  width: 70vw;
+  height: auto;
+  margin-top: -100px;
+  background-color: white;
+  z-index: 1;
+  color: #b7aa81;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 150%;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  label {
+    padding: 1em;
+  }
+  select {
+    padding: 1em;
+    font-family: inherit;
+  }
+  input,
+  textarea {
+    font-family: inherit;
+    padding: 8px;
+    border: 3px solid #b7aa81;
+    border-radius: 5px;
+    resize: none;
+  }
+  .date-time-wrap {
+    flex-direction: row;
+    align-items: flex-start;
+
+    .time-btns {
+      flex-direction: row;
+      .time-btn {
+        margin: 10px;
+        padding: 15px;
+        border: 2px solid #b7aa81;
+        background-color: #fff;
+        color: #b7aa81;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 30%;
+      }
+      .time-btn:active {
+        margin: 10px;
+        padding: 15px;
+        border: 2px solid #b7aa81;
+        background-color: #b7aa81;
+        color: #fff;
+        border-radius: 10px;
+        font-size: 30%;
+      }
+
+      .time-btn-disabled {
+        margin: 10px;
+        padding: 15px;
+        border: 2px solid #b7aa81;
+        color: #fff;
+        border-radius: 10px;
+        font-family: inherit;
+        font-size: 30%;
+        background-color: grey;
+      }
+    }
+    p {
+      font-size: 60%;
+      font-style: italic;
+    }
+    .picked-time {
+      text-decoration: underline;
+    }
+  }
+
+  .invalid-input {
+    font-size: 60%;
+  }
+
+  .obligatory-message {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+  .confirm-btn {
+    margin: 10px;
+    border: none;
     background-color: white;
-    z-index: 1;
-      color: #B7AA81;
-       
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        font-size: 150%;
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        label {
-            padding: 1em;
-        }
-        select {
-            padding: 1em;
-            font-family: inherit;
-        }
-        input, textarea {
-            font-family: inherit;
-            padding: 8px;
-            border: 3px solid #B7AA81;
-            border-radius: 5px;
-            resize: none;
-        }
-        .date-time-wrap{
-            flex-direction: row;
-            align-items: flex-start;
-            .time-btns{
-                flex-direction: row;
-                .time-btn {
-                    margin: 10px;
-                    padding: 15px;
-                    border: 2px solid #B7AA81;
-                    background-color: #fff;
-                    color: #B7AA81;
-                    border-radius: 10px;
-                    font-family: inherit;
-                    font-size: 30%;
-                }
-                .time-btn:active {
-                    margin: 10px;
-                    padding: 15px;
-                    border: 2px solid #B7AA81;
-                    background-color: #B7AA81;
-                    color: #fff;
-                    border-radius: 10px;
-                    font-size: 30%;
-                }
+    img {
+      width: 90px;
+    }
 
-                .time-btn-disabled{
-                    margin: 10px;
-                    padding: 15px;
-                    border: 2px solid #B7AA81;
-                    color:#fff;
-                    border-radius: 10px;
-                    font-family: inherit;
-                    font-size: 30%;
-                    background-color: grey;
-                }
-            }
-            
-        }
-
-        .invalid-input {
-            font-size: 60%;
-        }
-
-        .obligatory-message {
-            margin-top: 20px;
-            font-size: 15px;
-        }
-        .confirm-btn {
-            margin: 10px;
-            border: none;
-            background-color: white;
-            img {
-                width: 100px;
-            }
-            
-            img:hover {
-                animation: spin 4s linear infinite;
-            }
-        }
-        .confirm-btn:disabled {
-            img {
-                opacity: 35%;
-                animation: none;
-            }
-        }
-        .booking-info-container {
-            background-color: #B7AA81;
-            flex-direction: row;
-            justify-content: space-evenly;
-            font-size: 150%;
-            p {
-                text-align: center;
-                color: white;
-
-            }
-        }
-        
-    
+    img:hover {
+      animation: spin 10s linear infinite;
+    }
+  }
+  .confirm-btn:disabled {
+    img {
+      opacity: 35%;
+      animation: none;
+    }
+  }
+  .booking-info-container {
+    background-color: #b7aa81;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: 110%;
+    p {
+      text-align: center;
+      color: white;
+    }
+  }
 }
 @keyframes spin {
-    from {transform:rotate(0deg);}
-    to {transform:rotate(360deg);}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
+.guest-form{
+    font-size: 70%;
+    margin: 3rem;
+
+    label{
+        padding-top: 1.5rem;
+    }
+}
