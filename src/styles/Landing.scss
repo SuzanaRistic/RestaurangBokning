@@ -1,46 +1,46 @@
 @import "common";
 
-body {
-        background-color: #1e1b19;
-}
-
-
 
 .button-container {
         display: flex;
-        flex-direction: column;
-
-}
-
-.meny-button, .boka-button {
-        color: rgb(206, 192, 137);
-        font-family: 'Chivo', serif;
-        font-weight: lighter;
-        font-size: 60px;
-        background-color: transparent;
-        border: none;
-        a {
-                text-decoration: none;
-                color: inherit;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        .meny-button, .boka-button {
+                color: rgb(206, 192, 137);
+                font-family: 'Chivo', serif;
+                font-weight: lighter;
+                font-size: 270%;
+                background-color: transparent;
+                border: none;
+                padding: 3em;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: row;
+                a {
+                        text-decoration: none;
+                        color: inherit;
+                }
+                
         }
-        
-}
-
+        .meny-button:hover, .boka-button:hover {
+                transform: scale(1.1); 
+                text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+            } 
         hr {
-                width: 90%;
+                transform: rotate(90deg);
+                width: 100%;
                 border: 1px solid rgb(206, 192, 137);
         }
 
-
-        .meny-button:hover, .boka-button:hover {
-                transform: scale(1.5); 
-            }  
+}
 
 .picture-container {
         background-image: url('./../images/coffeeimage.png') ;
         background-size: contain;
-        width:69vw;
+        width: 90%;
         height: 65vh;
-        margin: 5px;
+        margin: 30px;
 }
 

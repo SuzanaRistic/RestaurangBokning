@@ -1,0 +1,43 @@
+.button {
+    font-size: 65%;
+    margin: 1em;
+    background-color: #b7aa8180;
+    border: 1px solid #B7AA81;
+    font-family: inherit;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 5px;
+    letter-spacing: 3px;
+
+    &:hover{
+        font-weight: bold;
+        background-color: #d78308;
+        color: #e7e7e7;
+        border: none;
+    }
+}
+
+    .lazy-bee-confirm-btn {
+        margin: 10px;
+        border: none;
+        background-color: white;
+        img {
+          width: 90px;
+        }
+        img:hover {
+          animation: spin 10s linear infinite;
+        }
+      }
+       .lazy-bee-confirm-btn:disabled {
+        img {
+          opacity: 35%;
+          animation: none;
+        }
+      }
+      @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }

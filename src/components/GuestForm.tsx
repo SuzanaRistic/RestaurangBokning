@@ -11,6 +11,7 @@ import 'yup-phone';
 import {init, send} from 'emailjs-com';
 init('user_OHyxXpSu4H1rj4LKQ2q7L');
 
+// the props for this component, they take the values from the input of its parent
 interface IGuestComponentProps {
   time: string;
   date: string;
@@ -21,13 +22,17 @@ const GuestComponent = (props: IGuestComponentProps) => {
   const [booking, setBooking] = useState<IBooking>();
   let history = useHistory();
 
+  // uuid creates a unique id for our booking reference 
   const booking_ref = uuidv4();
 
+  // refs for inputs
   const firstNameRef = createRef<HTMLInputElement>();
   const lastNameRef = createRef<HTMLInputElement>();
   const phoneRef = createRef<HTMLInputElement>();
   const emailRef = createRef<HTMLInputElement>();
   const messageRef = createRef<HTMLTextAreaElement>();
+
+  // validation for the inputs
   const phoneValid =
     /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
   const formik = useFormik({
@@ -68,7 +73,9 @@ const GuestComponent = (props: IGuestComponentProps) => {
     },
   });
 
+   //set the booking state and send the confirmation email to the guest
    function SendBooking() {
+    //set state for booking
     setBooking({
       guests: props.guests,
       firstname: firstNameRef.current?.value || ' ',
@@ -80,6 +87,8 @@ const GuestComponent = (props: IGuestComponentProps) => {
       date: props.date,
       message: messageRef.current?.value || ' ',
     });
+
+    // send email using emailjs
     var templateParams = {
       firstname: firstNameRef.current?.value,
       date: props.date,
@@ -99,6 +108,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
     );
   }
 
+  // send booking to database when the state is updated
   useEffect(() => {
     if (booking) {
       axios
@@ -114,7 +124,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
   }, [booking]);
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit} className="guest-form">
       <label htmlFor="firstname">Förnamn*</label>
       <input
         type="text"
@@ -184,7 +194,7 @@ const GuestComponent = (props: IGuestComponentProps) => {
       </p>
 
       <button
-        className="confirm-btn"
+        className="lazy-bee-confirm-btn"
         onClick={SendBooking}
         disabled={!(formik.isValid && formik.dirty)}
       >

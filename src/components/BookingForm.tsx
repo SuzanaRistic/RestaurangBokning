@@ -7,27 +7,38 @@ import GuestComponent from './GuestForm';
 import {findTables} from './findTime';
 
 function BookingForm() {
+  // making a string for todays date to use as minimun value in our date-input
   const now = new Date(Date.now());
   const todayIso = now.toISOString();
   const today = todayIso.slice(0, 10);
+  // all our states
   const [buttonVariable, setButtonVariable] = useState(<div></div>);
   const [time, setTime] = useState('18:00');
   const [showFirst, setShowFirst] = useState(true);
   const [bookingList, setBookingList] = useState<IBooking[]>();
-  const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({guests: 0,  time: '', date: ''});
+  const [dateGuestTimeInfo, setDateGuestTimeInfo] = useState({
+    guests: 0,
+    time: '',
+    date: '',
+  });
 
-
+  // refs for the inputs
   const guestsRef = createRef<HTMLSelectElement>();
   const dateRef = createRef<HTMLInputElement>();
 
+  // a function to set the state of our first 3 choices in the booking form and then, show the user the other form for the contactinfo
   function sendFirstPart() {
+    // sets the choices
     setDateGuestTimeInfo({
       guests: Number(guestsRef.current?.value) || 0,
       date: dateRef.current?.value?.toString() || '',
       time: time,
     });
+    // toggles the component GuestForm
     setShowFirst(false);
   }
+
+  // gets all of our bookings from our database and put them in a state
   useEffect(() => {
     axios
       .get<IBooking[]>('http://localhost:4000/bookings')
@@ -39,19 +50,24 @@ function BookingForm() {
       });
   }, []);
 
+  // sends a request for a date, and shows the appropriate html for that specifik scenario
   function sendRequest() {
     let guests = Number(guestsRef.current?.value);
     let date = dateRef.current?.value?.toString();
 
-    const tables = findTables(bookingList || [], date || '');
-
+    // sets the choices
     setDateGuestTimeInfo({
       guests: Number(guestsRef.current?.value) || 0,
       date: dateRef.current?.value?.toString() || '',
       time: time,
     });
 
+    // gets the info from the findTables function that is in findTime.ts, this function calculates how many tables there is for each timeslot for the requested date
+    const tables = findTables(bookingList || [], date || '');
+
+    // if statement that checks the availability for the night and show the matching html
     if (
+      // if the night is all fully booked
       Math.ceil(tables.totalNumberOfGuestsForRequestedDate || 0 / 6) +
         Math.ceil(guests / 6) >=
       30
@@ -64,6 +80,7 @@ function BookingForm() {
         </>
       );
     } else if (
+      // if 18:00 is all fully booked
       tables.tablesForSlotOne + Math.ceil(guests / 6) >=
       15
     ) {
@@ -77,6 +94,7 @@ function BookingForm() {
         </>
       );
     } else if (
+      // if 21:00 is all fully booked
       tables.tablesForSlotTwo + Math.ceil(guests / 6) >=
       15
     ) {
@@ -90,6 +108,7 @@ function BookingForm() {
         </>
       );
     } else {
+      // if both timeslots are available
       setButtonVariable(
         <>
           <div className="time-btns">
@@ -110,7 +129,6 @@ function BookingForm() {
               21:00
             </button>
           </div>
-          <p>Välj en ledig tid för ditt besök</p>
         </>
       );
     }
@@ -138,6 +156,7 @@ function BookingForm() {
           <div className="date-time-wrap">
             <div>
               <label htmlFor="date">Datum</label>
+              <p>Välj önskat besöksdatum: </p>
               <input
                 ref={dateRef}
                 min={today}
@@ -147,23 +166,27 @@ function BookingForm() {
                 required
                 onChange={sendRequest}
               />
-              <p>Välj önskat besöksdatum</p>
             </div>
             <div>
               <label htmlFor="tid">Tid</label>
+              <p>Välj en ledig tid för ditt besök:</p>
               {buttonVariable}
-              {time.length > 1 && <p>Du har valt tiden: {time} </p>}
+              {dateGuestTimeInfo.date.length > 0 && (
+                <p className="picked-time">Du har valt tiden: {time} </p>
+              )}
             </div>
           </div>
+          {/* Check so that the user has filled out all input values in the booking form */}
           {dateGuestTimeInfo.date.length <= 1 ||
           dateGuestTimeInfo.guests < 0 ||
           dateGuestTimeInfo.time.length <= 1 ? (
-            <button className="confirm-btn" disabled={true}>
+            <button className="lazy-bee-confirm-btn" disabled={true}>
               <img src={gavidare} alt="" />
             </button>
           ) : (
             <button
-              className="confirm-btn"
+              className="lazy-bee-confirm-btn
+              "
               onClick={(e) => {
                 e.preventDefault();
                 sendFirstPart();
@@ -175,7 +198,7 @@ function BookingForm() {
           )}
         </div>
       )}
-
+      {/* Show chosen values from previous page n the next step of the booking */}
       {!showFirst && (
         <div className="white-container-booking">
           <div className="booking-info-container">

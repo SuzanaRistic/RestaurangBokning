@@ -4,7 +4,7 @@ import when from './../images/when.svg'
 import where from './../images/where.png'
 import info from './../images/info.png'
 
-//Information about restaurant that u will find and the end of every page of this application
+//Information about restaurant that you will find at the bottom of every page in this application
 function Footer() {
     return (
         <footer>
