@@ -49,10 +49,10 @@ function Cancel() {
             }
             {cancelled && 
                 <>
-                <h1>Tråkigt att du behövde avboka</h1>
-                <h1>Om du vill boka nytt bord går det bra att göra <Link style={{color: 'inherit'}} to="/boka">här!</Link></h1>
-                <h1>Välkommen Tillbaka!</h1>
-                <img style={{width: '10em', padding: '2em'}} src={logo} alt="logo"></img>
+                <h2>Tråkigt att du behövde avboka</h2>
+                <h2>Om du vill boka nytt bord går det bra att göra <Link style={{color: 'inherit'}} to="/boka">här!</Link></h2>
+                <h2>Välkommen Tillbaka!</h2>
+                <img style={{width: '8em', padding: '2em'}} src={logo} alt="logo"></img>
                 </>
             }
                

@@ -73,7 +73,7 @@ function Admin() {
     <Header title="Admin"></Header>
     <div className="admin-container">
       <div className="date-container">
-        <h1 >Välj Datum: </h1>
+        <p className="category-info">Välj Datum: </p>
         <input
           ref={dateRef}
           min={today}
@@ -86,7 +86,7 @@ function Admin() {
       </div>
   
       <div className="bookingslist">
-        <h1>Bokningar: </h1>
+        <p className="category-info">Bokningar: </p>
       {
        !done ? (
         <ReactLoading

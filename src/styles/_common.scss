@@ -22,3 +22,16 @@
 
 }
 }
+
+h1, h2{
+    font-size: 110%;
+    margin-bottom: -20px;
+    text-align: center;
+    line-height: 50px;
+
+    @include tabletsUp {
+        font-size: 200%;
+    }
+}
+
+

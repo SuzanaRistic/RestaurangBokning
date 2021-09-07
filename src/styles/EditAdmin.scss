@@ -1,8 +1,25 @@
 @import "common";
+@import './mixins';
+
 .white-container-wrapper {
 
-    font-size: 120%;
+    font-size: 100%;
+
+    @include tabletsUp {
+        font-size: 120%;
+    }
     
+    }
+
+    .alert-container {
+        height: 30px;
+        color: #B7AA81;
+        text-align: center;
+        font-size: 10px;
+
+        @include tabletsUp {
+            font-size: 15px;
+        }
     }
 
 label {
@@ -21,6 +38,11 @@ input, textarea , select {
     border: 3px solid #B7AA81;
     border-radius: 5px;
     resize: none;
+    font-size: 80%;
+
+    @include tabletsUp {
+        font-size: 100%;
+    }
 }
 select {
     margin: 10px;
@@ -36,6 +58,7 @@ select {
     background-color: white;
     img {
         width: 100px;
+
     }
     
     img:hover {
