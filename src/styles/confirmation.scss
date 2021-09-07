@@ -1,11 +1,11 @@
 @import 'button';
 @import './mixins';
 
-div {
-    padding: 1rem;
+.white-container-booking {
+    padding: 2rem;
     p {
         color: rgb(18, 18, 18);
-        font-size: 80%;
+        font-size: 60%;
         a {
             color: inherit;
         }
