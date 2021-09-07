@@ -12,26 +12,23 @@
     }
 }
 
-//For responsive tablets displays
-@mixin tabletsOnly {
-    @media screen and (min-width: 768px) {
-        @content;
-    }
-}
-
-//For responsive laptops displays
-@mixin laptopsOnly {
-    @media screen and (min-width: 1024px) {
-        @content;
-    }
-}
-
 //For responsive desktop displays
-@mixin desktopsOnly {
-    @media screen and (min-width: 1025px) {
+@mixin tabletsUp {
+    @media screen and (min-width: 760px) {
         @content;
     }
 }
+
+
+// //For responsive laptops displays
+// @mixin laptopsOnly {
+//     @media screen and (min-width: 1023px) {
+//         @content;
+//     }
+// }
+
+
+
 
 
 

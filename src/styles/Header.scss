@@ -10,9 +10,10 @@ header {
     font-weight: 300;
     color: #CDBE8F;
     height: 200px;
-    @include desktopsOnly {
+     @include tabletsUp {
         height: 400px;
-    }
+     }
+
     .logo {
         display: flex;
         flex-direction: column;
@@ -23,7 +24,7 @@ header {
             width: 20%;
             z-index: 2;
             padding: 2em;
-            @include desktopsOnly {
+            @include tabletsUp {
                 width: 7.5%;
             }
         }
@@ -32,8 +33,7 @@ header {
             animation: spin 10s linear infinite;
         }
     }
-
-    }
+}
     
     .hero {
         position: relative;
@@ -42,7 +42,7 @@ header {
         background-image: url('./../images/hero.png') ;
         background-size: cover;
         height: 200px;
-        @include desktopsOnly {
+        @include tabletsUp {
             margin-top: -80px;
             height: 400px;
         }
@@ -56,7 +56,7 @@ header {
             width: 100%;
             text-align: center;
 
-            @include desktopsOnly {
+            @include tabletsUp {
                 font-size: 500%;
             }
         }
