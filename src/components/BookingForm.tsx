@@ -139,7 +139,7 @@ function BookingForm() {
       {showFirst && (
         <div className="white-container-booking">
           <label htmlFor="guests">Antal Gäster</label>
-          <select name="guests" id="guests" ref={guestsRef} required>
+          <select name="guests" id="guests" ref={guestsRef} required className="input-box">
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>
@@ -165,6 +165,7 @@ function BookingForm() {
                 id="date"
                 required
                 onChange={sendRequest}
+                className="input-box"
               />
             </div>
             <div>
@@ -200,7 +201,7 @@ function BookingForm() {
       )}
       {/* Show chosen values from previous page n the next step of the booking */}
       {!showFirst && (
-        <div className="white-container-booking">
+        <div className="white-container-booking white-container-booking-confirmation">
           <div className="booking-info-container">
             <p>
               Antal: <br></br> {dateGuestTimeInfo.guests}

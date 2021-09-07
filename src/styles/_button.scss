@@ -1,3 +1,4 @@
+
 @import './mixins';
 
 .button {
@@ -6,18 +7,27 @@
     background-color: #b7aa8180;
     border: 1px solid #B7AA81;
     font-family: inherit;
-    padding: 0.5rem 1rem 0.5rem 1rem;
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
     border-radius: 5px;
+    letter-spacing: 1.5px;
+
     letter-spacing: 3px;
     @include tabletsUp {
       font-size: 100%;
-}
+  }
+
 
     &:hover{
         font-weight: bold;
         background-color: #d78308;
         color: #e7e7e7;
         border: none;
+    }
+
+    @include tabletsUp{
+      font-size: 60%;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      letter-spacing: 3px;
     }
 }
 
@@ -51,7 +61,10 @@
     border: none;
     background-color: white;
     img {
-      width: 90px;
+      width: 70px;
+      @include tabletsUp{
+        width: 90px;
+      }
     }
     img:hover {
       animation: spin 10s linear infinite;
@@ -72,9 +85,6 @@
   }
 }
 }
-
-
-    
 
     @mixin timeButton {
       .time-btns {

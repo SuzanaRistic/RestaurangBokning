@@ -16,11 +16,13 @@ function Confirmation() {
     <>
       <Header title="Tack!"></Header>
       <div className="white-container-wrapper">
-        <div className="white-container-booking" style={{height: '80vh'}}>
-          <p>Tack så mycket för din bokning hos The Lazy Bee!</p>
-          <p>Din bokningsreferens är: {ref}</p>
-          <p>Välkommen!</p>
-          <img src={logo} alt="logo" className="confirmation-logo"></img>
+        <div className="white-container-booking white-container-booking-confirmation" >
+          <div className="thank-you-message">
+          <h1>Tack så mycket för din bokning hos The Lazy Bee!</h1>
+          <p >Din bokningsreferens är: </p>
+          <p className="booking-ref">{ref}</p>
+          <p >Välkommen!</p>
+          
           <button className="button"
             onClick={() => {
               history.push(`/avboka/${ref}`);
@@ -29,6 +31,9 @@ function Confirmation() {
             {' '}
             Avboka Här!
           </button>
+          <img src={logo} alt="logo" className="confirmation-logo"></img>
+          </div>
+
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 @import 'common';
 @import 'button';
 
+
 .white-container-booking {
   @include lazyBeeConfirmBtn;
   @include timeButton
@@ -11,16 +12,27 @@
   background-color: white;
   z-index: 1;
   color: #b7aa81;
+  padding: 4rem 0 4rem 0;
+
 
   display: flex;
   flex-direction: column;
   align-items: center;
   font-size: 150%;
 
+  div{
+    margin:0.7rem;
+  }
+
     label {
-        font-size: 100%;
+        font-size: 60%;
         font-weight: bold;
+
+        @include tabletsUp{
+          font-size: 100%;
+      }
     }
+
   form {
     display: flex;
     flex-direction: column;
@@ -39,17 +51,32 @@
     resize: none;
   }
   .date-time-wrap {
-    flex-direction: row;
-    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    @include tabletsUp{
+        flex-direction: row;
+        align-items: flex-start;
+    }
  
     p {
       font-size: 60%;
       font-style: italic;
+      color: rgb(18, 18, 18);
+      a {
+        color: inherit;
+    }
     }
     .picked-time {
       text-decoration: underline;
     }
   }
+
+  .input-box {
+    font-size: 0.5rem;
+    @include tabletsUp{
+        font-size: 1rem;
+    }
+}
 
   .invalid-input {
     font-size: 60%;
@@ -60,23 +87,7 @@
     font-size: 15px;
   }
 
-  .booking-info-container {
-    background-color: #b7aa81;
-    flex-direction: row;
-    justify-content: space-evenly;
-    font-size: 110%;
-    p {
-      text-align: center;
-      color: white;
-    }
-  }
+  
 }
 
-.guest-form{
-    font-size: 70%;
-    margin: 3rem;
 
-    label{
-        padding-top: 1.5rem;
-    }
-}
