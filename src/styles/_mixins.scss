@@ -1,0 +1,37 @@
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+//For responsive mobile displays
+@mixin mobileOnly {
+    @media screen and (min-width: 480px) {
+        @content;
+    }
+}
+
+//For responsive tablets displays
+@mixin tabletsOnly {
+    @media screen and (min-width: 768px) {
+        @content;
+    }
+}
+
+//For responsive laptops displays
+@mixin laptopsOnly {
+    @media screen and (min-width: 1024px) {
+        @content;
+    }
+}
+
+//For responsive desktop displays
+@mixin desktopsOnly {
+    @media screen and (min-width: 1025px) {
+        @content;
+    }
+}
+
+
+

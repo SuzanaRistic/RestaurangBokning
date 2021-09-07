@@ -1,4 +1,7 @@
 @import 'common';
+@import 'button';
+
+@include lazyBeeConfirmBtn;
 
 .food-container {
     color: black;
@@ -36,23 +39,4 @@ hr {
   width: 90%;
   border: 1px solid rgb(206, 192, 137);
 }
-.book-btn {
-  margin: 10px;
-  border: none;
-  background-color: white;
-  img {
-    width: 100px;
-  }
-  img:hover {
-    animation: spin 10s linear infinite;
-  }
-}
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
