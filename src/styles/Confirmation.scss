@@ -2,8 +2,8 @@
 @import './mixins';
 
 .white-container-booking {
-    padding: 0 0 4rem 0;
-    margin-top: -3.5rem;
+    padding: 2rem 0 4rem 0;
+    margin-top: -5.5rem;
 
     .booking-info-container {
         background-color: #b7aa81;
@@ -11,19 +11,17 @@
         justify-content: space-evenly;
         font-size: 70%;
         margin: 0;
-
+        @include tabletsUp{
+            font-size: 110%;
+        }
         p {
             text-align: center;
             color: white;
           }
-
-        @include tabletsUp{
-            font-size: 110%;
-        }
       }
 
 
-.guest-form{
+    .guest-form{
         font-size: 100%;
         margin: 3rem;
     
@@ -42,11 +40,11 @@
         text-decoration: underline;
         font-weight: bolder;
         width: 80%;
-
         @include tabletsUp{
             font-size: 1.9rem; 
         }
     }
+
     p{
         font-size: 0.7rem;
         font-weight: bolder;
@@ -61,7 +59,6 @@
     .booking-ref{
         width: 40%;
         font-size: 0.3rem;
-
         @include tabletsUp{
             width: 40%;
             font-size: 0.9rem;
