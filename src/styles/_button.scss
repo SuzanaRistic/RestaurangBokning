@@ -1,5 +1,5 @@
 .button {
-    font-size: 65%;
+    font-size: 100%;
     margin: 1em;
     background-color: #b7aa8180;
     border: 1px solid #B7AA81;
@@ -15,6 +15,31 @@
         border: none;
     }
 }
+
+.cancel-button {
+  font-size: 150%;
+  margin: 1em;
+  background-color: #b7aa8180;
+  border: 1px solid #B7AA81;
+  font-family: inherit;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 5px;
+  letter-spacing: 5px;
+
+  &:hover{
+      font-weight: bold;
+      background-color: #d78308;
+      color: #e7e7e7;
+      border: none;
+  }
+}
+
+    .lazy-bee-confirm-btn {
+        margin: 10px;
+        border: none;
+        background-color: white;
+        img {
+          width: 90px;
 
 @mixin lazyBeeConfirmBtn{
   .lazy-bee-confirm-btn {
@@ -59,6 +84,7 @@
           border-radius: 10px;
           font-family: inherit;
           font-size: 30%;
+
         }
         .time-btn:active {
           margin: 10px;

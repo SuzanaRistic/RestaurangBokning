@@ -42,8 +42,8 @@ function Cancel() {
                  <>
                  <h1>Är du säker på att du vill avboka?</h1>
                  <div style={{flexDirection: 'row', padding: '3em'}} >
-                     <button style={{color: 'inherit'}} className="button" onClick={cancelTable}>Ja</button>
-                     <button style={{color: 'inherit'}} className="button" onClick={() => {history.push('/')}}>Nej</button>
+                     <button style={{color: 'inherit'}} className="cancel-button" onClick={cancelTable}>Ja</button>
+                     <button style={{color: 'inherit'}} className="cancel-button" onClick={() => {history.push('/')}}>Nej</button>
                  </div>
                  </>
             }
