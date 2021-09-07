@@ -13,7 +13,7 @@ footer {
     text-align: center;
     justify-content: center;
     line-height: 40px;
-    @include desktopsOnly {
+    @include tabletsUp {
         flex-direction: row;
         height: 300px;
         align-items: flex-start;
@@ -24,7 +24,7 @@ footer {
         width: 90%;
         display: flex;
 
-        @include desktopsOnly {
+        @include tabletsUp {
             width: 30%;
         }
         img {

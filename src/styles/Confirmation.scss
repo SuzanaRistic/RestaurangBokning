@@ -16,7 +16,7 @@
 }
 
 
-    @include desktopsOnly {
+    @include tabletsUp{
         .white-container-booking{
             p {
                 color: rgb(18, 18, 18);
