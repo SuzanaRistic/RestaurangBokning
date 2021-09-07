@@ -34,12 +34,6 @@
   }
 }
 
-    .lazy-bee-confirm-btn {
-        margin: 10px;
-        border: none;
-        background-color: white;
-        img {
-          width: 90px;
 
 @mixin lazyBeeConfirmBtn{
   .lazy-bee-confirm-btn {
@@ -72,7 +66,7 @@
 
     
 
-    @mixin timeButton{
+    @mixin timeButton {
       .time-btns {
         flex-direction: row;
         .time-btn {
