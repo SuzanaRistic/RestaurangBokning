@@ -1,8 +1,8 @@
 import React from 'react'
 import './../../src/styles/Footer.scss'
 import when from './../images/when.svg'
-import where from './../images/where.png'
-import info from './../images/info.png'
+import where from './../images/location.svg'
+import info from './../images/phone-set.svg'
 
 //Information about restaurant that you will find at the bottom of every page in this application
 function Footer() {

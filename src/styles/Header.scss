@@ -1,3 +1,5 @@
+@import './mixins';
+
 header {
     width: 100%;
     display: flex;
@@ -7,18 +9,23 @@ header {
     font-family: 'Spectral', serif;
     font-weight: 300;
     color: #CDBE8F;
-    height: 400px;
-
+    height: 200px;
+    @include desktopsOnly {
+        height: 400px;
+    }
     .logo {
         display: flex;
         flex-direction: column;
         align-items: center;
 
+        
         img {
-            width: 7.5%;
+            width: 20%;
             z-index: 2;
             padding: 2em;
-
+            @include desktopsOnly {
+                width: 7.5%;
+            }
         }
         
         img:hover {
@@ -30,19 +37,28 @@ header {
     
     .hero {
         position: relative;
-        margin-top: -80px;
+        margin-top: -70px;
         background-color: grey;
-       background-image: url('./../images/hero.png') ;
-        height: 400px;
+        background-image: url('./../images/hero.png') ;
+        background-size: cover;
+        height: 200px;
+        @include desktopsOnly {
+            margin-top: -80px;
+            height: 400px;
+        }
         .title {
-            font-size: 500%;
+            font-size: 200%;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 2;
+            width: 100%;
+            text-align: center;
 
-
+            @include desktopsOnly {
+                font-size: 500%;
+            }
         }
     }
    

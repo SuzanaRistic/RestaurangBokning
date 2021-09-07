@@ -40,22 +40,71 @@
         background-color: white;
         img {
           width: 90px;
+
+@mixin lazyBeeConfirmBtn{
+  .lazy-bee-confirm-btn {
+    margin: 10px;
+    border: none;
+    background-color: white;
+    img {
+      width: 90px;
+    }
+    img:hover {
+      animation: spin 10s linear infinite;
+    }
+  }
+   .lazy-bee-confirm-btn:disabled {
+    img {
+      opacity: 35%;
+      animation: none;
+    }
+  }
+  @keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+}
+
+
+    
+
+    @mixin timeButton{
+      .time-btns {
+        flex-direction: row;
+        .time-btn {
+          margin: 10px;
+          padding: 15px;
+          border: 2px solid #b7aa81;
+          background-color: #fff;
+          color: #b7aa81;
+          border-radius: 10px;
+          font-family: inherit;
+          font-size: 30%;
+
         }
-        img:hover {
-          animation: spin 10s linear infinite;
+        .time-btn:active {
+          margin: 10px;
+          padding: 15px;
+          border: 2px solid #b7aa81;
+          background-color: #b7aa81;
+          color: #fff;
+          border-radius: 10px;
+          font-size: 30%;
         }
-      }
-       .lazy-bee-confirm-btn:disabled {
-        img {
-          opacity: 35%;
-          animation: none;
+  
+        .time-btn-disabled {
+          margin: 10px;
+          padding: 15px;
+          border: 2px solid #b7aa81;
+          color: #fff;
+          border-radius: 10px;
+          font-family: inherit;
+          font-size: 30%;
+          background-color: grey;
         }
-      }
-      @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
       }
     }

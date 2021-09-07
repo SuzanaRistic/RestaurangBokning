@@ -2,6 +2,9 @@
 @import 'button';
 
 .white-container-booking {
+  @include lazyBeeConfirmBtn;
+  @include timeButton
+
   width: 70vw;
   height: auto;
   margin-top: -100px;
@@ -38,40 +41,7 @@
   .date-time-wrap {
     flex-direction: row;
     align-items: flex-start;
-
-    .time-btns {
-      flex-direction: row;
-      .time-btn {
-        margin: 10px;
-        padding: 15px;
-        border: 2px solid #b7aa81;
-        background-color: #fff;
-        color: #b7aa81;
-        border-radius: 10px;
-        font-family: inherit;
-        font-size: 30%;
-      }
-      .time-btn:active {
-        margin: 10px;
-        padding: 15px;
-        border: 2px solid #b7aa81;
-        background-color: #b7aa81;
-        color: #fff;
-        border-radius: 10px;
-        font-size: 30%;
-      }
-
-      .time-btn-disabled {
-        margin: 10px;
-        padding: 15px;
-        border: 2px solid #b7aa81;
-        color: #fff;
-        border-radius: 10px;
-        font-family: inherit;
-        font-size: 30%;
-        background-color: grey;
-      }
-    }
+ 
     p {
       font-size: 60%;
       font-style: italic;
@@ -101,7 +71,6 @@
     }
   }
 }
-
 
 .guest-form{
     font-size: 70%;
