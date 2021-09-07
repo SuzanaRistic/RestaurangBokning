@@ -1,4 +1,9 @@
 @import "common";
+.white-container-wrapper {
+
+    font-size: 120%;
+    
+    }
 
 label {
     padding: 1em;
@@ -41,3 +46,4 @@ select {
     from {transform:rotate(0deg);}
     to {transform:rotate(360deg);}
 }
+
