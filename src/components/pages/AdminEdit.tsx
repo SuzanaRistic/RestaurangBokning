@@ -117,7 +117,7 @@ function AdminEdit() {
                     <label htmlFor="guests">Antal Gäster: </label>
                     <input type="number" name="guests" id="" defaultValue={booking?.guests} ref={guestRef} />
                     <label htmlFor="date">Datum:</label>
-                    <p >Välj Datum för att kolla om en ny tid är tillgänglig</p>
+                    <p className="alert-container">Välj Datum för att kolla om en ny tid är tillgänglig</p>
                     <input type="date" name="date" defaultValue={booking?.date} ref={dateRef} id="" onChange={() => { findAvailable()}}/>
                     <label htmlFor="tid">Tider: </label>
                     <select name="tid" id="" ref={timeRef}>

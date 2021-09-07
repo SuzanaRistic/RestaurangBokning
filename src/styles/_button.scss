@@ -1,5 +1,7 @@
+@import './mixins';
+
 .button {
-    font-size: 100%;
+    font-size: 50%;
     margin: 1em;
     background-color: #b7aa8180;
     border: 1px solid #B7AA81;
@@ -7,6 +9,9 @@
     padding: 0.5rem 1rem 0.5rem 1rem;
     border-radius: 5px;
     letter-spacing: 3px;
+    @include tabletsUp {
+      font-size: 100%;
+}
 
     &:hover{
         font-weight: bold;
@@ -17,14 +22,19 @@
 }
 
 .cancel-button {
-  font-size: 150%;
+  font-size: 100%;
   margin: 1em;
   background-color: #b7aa8180;
   border: 1px solid #B7AA81;
   font-family: inherit;
   padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 5px;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
+  @include tabletsUp {
+    font-size: 150%;
+    letter-spacing: 5px;
+
+}
 
   &:hover{
       font-weight: bold;
