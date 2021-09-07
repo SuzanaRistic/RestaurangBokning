@@ -16,7 +16,7 @@
             text-align: center;
             color: white;
           }
-          
+
         @include tabletsUp{
             font-size: 110%;
         }
@@ -36,8 +36,19 @@
 .thank-you-message{
     margin: 1rem;
     text-align: center;
+
+    h1{
+        font-size: 1rem;
+        text-decoration: underline;
+        font-weight: bolder;
+        width: 80%;
+
+        @include tabletsUp{
+            font-size: 1.9rem; 
+        }
+    }
     p{
-        font-size: 0.5rem;
+        font-size: 0.7rem;
         font-weight: bolder;
         width: 80%;
         margin: 0.3rem;
@@ -47,15 +58,20 @@
         }
     }
 
+    .booking-ref{
+        width: 40%;
+        font-size: 0.3rem;
 
+        @include tabletsUp{
+            width: 40%;
+            font-size: 0.9rem;
+        }
+    }
 }
 
 .confirmation-logo{
         width: 13%;
         padding: 1rem;
-        @include tabletsUp{
-            width: 15%;
-        }
 }
 
 
