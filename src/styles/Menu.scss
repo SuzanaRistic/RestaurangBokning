@@ -1,5 +1,6 @@
 @import 'common';
 @import 'button';
+@import './mixins';
 
 @include lazyBeeConfirmBtn;
 
@@ -9,31 +10,48 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
+    .food-name {
+        padding: 0em 1em;
+        font-family: 'Chivo', serif;
+        font-size: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        @include desktopsOnly {
+            font-size: 180%;
+
+        }
+
+        .decoflower {
+            width: 10px;
+            padding: 10px;
+            @include desktopsOnly {
+                width: 15px;
+                padding: 15px;
+    
+            }
+        }
+    }
+    
+    .food-description {
+        line-height: 25px;
+        font-size: 90%;
+        margin: 20px;
+        margin-top: 0;
+        margin-bottom: 15px;
+        @include desktopsOnly {
+            line-height: 40px;
+            font-size: 120%;
+            margin: 50px;
+            margin-top: 0;
+            margin-bottom: 25px;
+
+        }    
+    }
 }
 
-.food-name {
-    padding: 0em 1em;
-    font-family: 'Chivo', serif;
-    font-size: 180%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
 
-.decoflower {
-    width: 15px;
-    padding: 15px;
-}
-
-.food-description {
-    line-height: 40px;
-    font-size: 120%;
-    margin: 50px;
-    margin-top: 0;
-    margin-bottom: 25px;
-
-}
 
 hr {
   width: 90%;
