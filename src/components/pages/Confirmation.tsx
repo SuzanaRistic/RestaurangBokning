@@ -18,9 +18,9 @@ function Confirmation() {
       <div className="white-container-wrapper">
         <div className="white-container-booking white-container-booking-confirmation" >
           <div className="thank-you-message">
-          <p >Tack så mycket för din bokning hos The Lazy Bee!</p>
+          <h1>Tack så mycket för din bokning hos The Lazy Bee!</h1>
           <p >Din bokningsreferens är: </p>
-          <p>{ref}</p>
+          <p className="booking-ref">{ref}</p>
           <p >Välkommen!</p>
           
           <button className="button"
