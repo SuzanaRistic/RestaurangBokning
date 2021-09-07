@@ -1,6 +1,8 @@
 @import 'button';
+@import './mixins';
 
 div {
+    padding: 1rem;
     p {
         color: rgb(18, 18, 18);
         font-size: 80%;
@@ -10,5 +12,24 @@ div {
     }
 }
 .confirmation-logo{
-    width: 20%;
+    width: 10%;
 }
+
+
+    @include desktopsOnly {
+        .white-container-booking{
+            p {
+                color: rgb(18, 18, 18);
+                font-size: 80%;
+                a {
+                    color: inherit;
+                }
+            }
+        }
+        .confirmation-logo{
+            width: 10%;
+        }
+    }
+
+
+
