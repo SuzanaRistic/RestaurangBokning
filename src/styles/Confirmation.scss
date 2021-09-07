@@ -2,34 +2,63 @@
 @import './mixins';
 
 .white-container-booking {
-    padding: 1rem;
-    p {
-        color: rgb(18, 18, 18);
-        font-size: 80%;
-        a {
-            color: inherit;
+    padding: 0 0 4rem 0;
+    margin-top: -3.5rem;
+
+    .booking-info-container {
+        background-color: #b7aa81;
+        flex-direction: row;
+        justify-content: space-evenly;
+        font-size: 70%;
+        margin: 0;
+
+        p {
+            text-align: center;
+            color: white;
+          }
+          
+        @include tabletsUp{
+            font-size: 110%;
+        }
+      }
+
+
+.guest-form{
+        font-size: 100%;
+        margin: 3rem;
+    
+        label{
+            padding-top: 1.5rem;
         }
     }
 }
+
+.thank-you-message{
+    margin: 1rem;
+    text-align: center;
+    p{
+        font-size: 0.5rem;
+        font-weight: bolder;
+        width: 80%;
+        margin: 0.3rem;
+        @include tabletsUp{
+            font-size: 1.5rem; 
+            margin: 1rem;
+        }
+    }
+
+
+}
+
 .confirmation-logo{
-    width: 10%;
+        width: 13%;
+        padding: 1rem;
+        @include tabletsUp{
+            width: 15%;
+        }
 }
 
 
-    @include tabletsUp{
-        .white-container-booking{
-            p {
-                color: rgb(18, 18, 18);
-                font-size: 80%;
-                a {
-                    color: inherit;
-                }
-            }
-        }
-        .confirmation-logo{
-            width: 10%;
-        }
-    }
-
-
-
+.white-container-booking-confirmation{
+    padding: 0;
+}

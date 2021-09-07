@@ -41,7 +41,10 @@
     border: none;
     background-color: white;
     img {
-      width: 90px;
+      width: 70px;
+      @include tabletsUp{
+        width: 90px;
+      }
     }
     img:hover {
       animation: spin 10s linear infinite;
@@ -62,9 +65,6 @@
   }
 }
 }
-
-
-    
 
     @mixin timeButton {
       .time-btns {
