@@ -49,12 +49,12 @@ const GuestComponent = (props: IGuestComponentProps) => {
       firstname: yup
         .string()
         .max(15, 'Firstname should not exceed 15 characters.')
-        .matches(/^[aA-zZ\s]+$/, 'Only alphabets are allowed in this field.')
+        .matches(/^[aA-öÖ\s]+$/, 'Only alphabets are allowed in this field.')
         .required('Please enter your firstname.'),
       lastname: yup
         .string()
         .max(15, 'Lastname should not exceed 15 characters.')
-        .matches(/^[aA-zZ\s]+$/, 'Only alphabets are allowed in this field.')
+        .matches(/^[aA-öÖ\s]+$/, 'Only alphabets are allowed in this field.')
         .required('Please enter your lastname.'),
       email: yup
         .string()

@@ -68,11 +68,11 @@ function BookingForm() {
     // if statement that checks the availability for the night and show the matching html
     if (
       // if the night is all fully booked
-      Math.ceil(tables.totalNumberOfGuestsForRequestedDate || 0 / 6) +
+      Math.ceil(tables.totalNumberOfGuestsForRequestedDate / 6 || 0 / 6) +
         Math.ceil(guests / 6) >=
       30
     ) {
-      setTime(' ');
+      setTime('');
       setButtonVariable(
         <>
           <div className="time-btns"></div>
@@ -172,15 +172,15 @@ function BookingForm() {
               <label htmlFor="tid">Tid</label>
               <p>Välj en ledig tid för ditt besök:</p>
               {buttonVariable}
-              {dateGuestTimeInfo.date.length > 0 && (
+              {dateGuestTimeInfo.date.length > 0 && time.length > 2 ? (
                 <p className="picked-time">Du har valt tiden: {time} </p>
-              )}
+              ): (<p className="picked-time"> </p>)}
             </div>
           </div>
           {/* Check so that the user has filled out all input values in the booking form */}
           {dateGuestTimeInfo.date.length <= 1 ||
           dateGuestTimeInfo.guests < 0 ||
-          dateGuestTimeInfo.time.length <= 1 ? (
+          time.length < 3 ? (
             <button className="lazy-bee-confirm-btn" disabled={true}>
               <img src={gavidare} alt="" />
             </button>

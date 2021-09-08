@@ -115,7 +115,7 @@ function AdminEdit() {
             <div className="white-container-wrapper">
                 <div className="white-container">
                     <label htmlFor="guests">Antal Gäster: </label>
-                    <input type="number" name="guests" id="" defaultValue={booking?.guests} ref={guestRef} />
+                    <input type="number" name="guests" id="" defaultValue={booking?.guests} ref={guestRef}  onChange={() => { findAvailable()}}/>
                     <label htmlFor="date">Datum:</label>
                     <p className="alert-container">Välj Datum för att kolla om en ny tid är tillgänglig</p>
                     <input type="date" name="date" defaultValue={booking?.date} ref={dateRef} id="" onChange={() => { findAvailable()}}/>
