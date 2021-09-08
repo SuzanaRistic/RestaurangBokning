@@ -9,9 +9,9 @@ header {
     font-family: 'Spectral', serif;
     font-weight: 300;
     color: #CDBE8F;
-    height: 320px;
+    height: 250px;
      @include tabletsUp {
-        height: 400px;
+        height: 500px;
      }
 
     .logo {
@@ -25,7 +25,7 @@ header {
             z-index: 2;
             padding: 2em;
             @include tabletsUp {
-                width: 10%;
+                width: 7%;
             }
         }
         
@@ -37,9 +37,9 @@ header {
     
     .hero {
         position: relative;
-        margin-top: -70px;
+        margin-top: -50px;
         background-color: grey;
-        background-image: url('./../images/hero.png') ;
+        background-image: url('./../images/hero.png');
         background-size: cover;
         height: 200px;
         @include tabletsUp {
@@ -55,12 +55,16 @@ header {
             z-index: 2;
             width: 100%;
             text-align: center;
+            opacity: 100%;
 
             @include tabletsUp {
                 font-size: 500%;
+                
             }
         }
+        
     }
+    
    
 
 

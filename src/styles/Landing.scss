@@ -3,35 +3,41 @@
 
 .restaurant-description{
         width: 70%;
-        margin: 3rem; 
+        margin: 1rem; 
         text-align: center; 
-        border: 2px solid #1e1b19;
-        font-style: italic; 
+        font-size: 90%;
+        color: #1e1b19 ;
+        @include tabletsUp {
+                font-size: 150%;
+                margin-top: 3rem; 
+
+        }
 }
 
 .button-container {
+        padding: 1rem 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        @include tabletsUp {
-                flex-direction: row;
-        }
+        justify-content: space-evenly;
+        
         .meny-button, .boka-button {
+                margin: 1rem;
+                width: 70%;
                 color: rgb(206, 192, 137);
                 font-family: 'Chivo', serif;
                 font-weight: lighter;
                 font-size: 100%;
                 background-color: transparent;
-                border: none;
                 padding: 1em;
                 justify-content: center;
                 align-items: center;
                 display: flex;
                 flex-direction: row;
+                border: 3px solid rgb(206, 192, 137);
                 @include tabletsUp{
-                        font-size: 270%;
-                        padding: 2em; 
+                        font-size: 220%;
+                        padding: 1em 0em; 
                 }
 
                 a {
@@ -44,27 +50,13 @@
                 transform: scale(1.1); 
                 text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
             } 
-        hr {
-                width: 80%;
-                border: 1px solid rgb(206, 192, 137);
-                @include tabletsUp {
-                        width: 100%;
-                        transform: rotate(90deg);
-
-                }
-        }
+     
 
 }
-
-.picture-container {
-        background-image: url('./../images/coffeeimage.png') ;
-        background-size: contain;
+img {
         width: 90%;
-        height: 20vh;
-        margin: 10px;
+        padding: 1em;
         @include tabletsUp {
-                height: 65vh;
-                margin: 30px;
+                padding: 3em;
         }
 }
-

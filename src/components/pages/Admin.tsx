@@ -86,6 +86,7 @@ function Admin() {
       </div>
   
       <div className="bookingslist">
+        
         <p className="category-info">Bokningar: </p>
       {
        !done ? (
@@ -104,8 +105,8 @@ function Admin() {
               </div>
               <div>Guests: {filterBooking.guests}</div>
               <div>Time:  {filterBooking.time}</div>
-            <div onClick={() => {history.push(`/edit/${filterBooking.booking_reference}`)}}><img src={edit}></img></div>
-            <div onClick={() => {deleteBooking(filterBooking.booking_reference)}}><img src={bin}></img></div>
+            <div onClick={() => {history.push(`/edit/${filterBooking.booking_reference}`)}}><img alt="editicon" src={edit}></img></div>
+            <div onClick={() => {deleteBooking(filterBooking.booking_reference)}}><img alt="binicon" src={bin}></img></div>
            
           </div>
         ))
