@@ -68,7 +68,7 @@ function BookingForm() {
     // if statement that checks the availability for the night and show the matching html
     if (
       // if the night is all fully booked
-      Math.ceil(tables.totalNumberOfGuestsForRequestedDate || 0 / 6) +
+      Math.ceil(tables.totalNumberOfGuestsForRequestedDate/6 || 0 / 6) +
         Math.ceil(guests / 6) >=
       30
     ) {
