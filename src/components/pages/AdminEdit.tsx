@@ -70,9 +70,8 @@ function AdminEdit() {
                     <option disabled={false} value="18:00">18:00</option>
                     <option disabled={false}  value="21:00">21:00</option>
                 </>
-    
             )
-
+                setWarning(<p  className="time-warning"></p> )
         }
         console.log(timeRef.current?.value)
 
