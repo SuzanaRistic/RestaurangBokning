@@ -1,6 +1,13 @@
 @import "common";
 @import './mixins';
 
+.restaurant-description{
+        width: 70%;
+        margin: 3rem; 
+        text-align: center; 
+        border: 2px solid #1e1b19;
+        font-style: italic; 
+}
 
 .button-container {
         display: flex;
@@ -24,9 +31,9 @@
                 flex-direction: row;
                 @include tabletsUp{
                         font-size: 270%;
-                        padding: 2em;
-
+                        padding: 2em; 
                 }
+
                 a {
                         text-decoration: none;
                         color: inherit;
