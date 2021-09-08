@@ -48,7 +48,7 @@ function AdminEdit() {
             )
             setWarning(<p  className="time-warning">Hela dagen fullbokad</p> )
         }
-        else if (tables.tablesForSlotOne + Math.ceil(guests / 6) >= 15) {
+        else if (tables.tablesForSlotOne + Math.ceil(guests / 6) > 15) {
             setTimeOptions(
                 <>
                     <option disabled={true} value="18:00">18:00</option>
@@ -56,7 +56,7 @@ function AdminEdit() {
                 </>
             )
             setWarning(<p className="time-warning">18:00 fullbokad</p>)
-        } else if (tables.tablesForSlotTwo + Math.ceil(guests / 6) >= 15) {
+        } else if (tables.tablesForSlotTwo + Math.ceil(guests / 6) > 15) {
             setTimeOptions(
                 <>
                     <option disabled={false} value="18:00">18:00</option>
@@ -92,7 +92,7 @@ function AdminEdit() {
             guests: guestRef.current?.value
 
         }).then((response) => {console.log(response)})
-        history.push('/')
+        history.push('/admin')
     }
 
 

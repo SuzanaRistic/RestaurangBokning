@@ -23,13 +23,16 @@ footer {
     .where-div, .when-div, .info-div{
         width: 90%;
         display: flex;
+        padding-top: 3rem; 
 
         @include tabletsUp {
             width: 30%;
         }
         img {
             padding: 20px;
+            padding-bottom: 1rem;
             width: 50px;
+           
            
         }
         }
