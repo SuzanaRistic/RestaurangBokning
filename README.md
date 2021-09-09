@@ -123,6 +123,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ## Contact
 
 Email:
-suzana.ristic@medieinstitutet.se
-melina.kamyab@medieinstitutet.se
+suzana.ristic@medieinstitutet.se,
+melina.kamyab@medieinstitutet.se,
 marta.ballardini@medieinstitutet.se
