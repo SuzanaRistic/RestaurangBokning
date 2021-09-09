@@ -103,10 +103,14 @@ function Admin() {
               <div>
                 {filterBooking.firstname} {filterBooking.lastname}
               </div>
-              <div>Guests: {filterBooking.guests}</div>
-              <div>Time:  {filterBooking.time}</div>
-            <div onClick={() => {history.push(`/edit/${filterBooking.booking_reference}`)}}><img alt="editicon" src={edit}></img></div>
-            <div onClick={() => {deleteBooking(filterBooking.booking_reference)}}><img alt="binicon" src={bin}></img></div>
+              <div>Gäster: {filterBooking.guests}</div>
+              <div>Tid:  {filterBooking.time}</div>
+              <div>Datum: {filterBooking.date}</div>
+              <div className="button-container">
+                <div onClick={() => {history.push(`/edit/${filterBooking.booking_reference}`)}}><img alt="editicon" src={edit}></img></div>
+                <div onClick={() => {deleteBooking(filterBooking.booking_reference)}}><img alt="binicon" src={bin}></img></div>
+              </div>
+            
            
           </div>
         ))
