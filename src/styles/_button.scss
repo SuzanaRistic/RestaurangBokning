@@ -63,7 +63,7 @@
     img {
       width: 70px;
       @include tabletsUp{
-        width: 90px;
+        width: 100px;
       }
     }
     img:hover {
@@ -97,7 +97,7 @@
           color: #b7aa81;
           border-radius: 10px;
           font-family: inherit;
-          font-size: 30%;
+          font-size: 70%;
 
         }
         .time-btn:active {
@@ -107,7 +107,7 @@
           background-color: #b7aa81;
           color: #fff;
           border-radius: 10px;
-          font-size: 30%;
+          font-size: 70%;
         }
   
         .time-btn-disabled {

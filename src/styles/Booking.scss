@@ -4,7 +4,7 @@
 
 .white-container-booking {
   @include lazyBeeConfirmBtn;
-  @include timeButton
+  @include timeButton;
 
   width: 70vw;
   height: auto;
@@ -59,7 +59,7 @@
     }
  
     p {
-      font-size: 60%;
+      font-size: 90%;
       font-style: italic;
       color: rgb(18, 18, 18);
       a {
